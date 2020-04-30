@@ -1,0 +1,6 @@
+// Ajout de la colonne isShipped dans la table order fait le 2020-04-30
+
+USE isidrone;
+
+ALTER TABLE isidrone.order
+ADD isShipped TINYINT NULL;
