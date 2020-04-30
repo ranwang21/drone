@@ -174,3 +174,4 @@ nbdist/
 ISIDrone/target/*
 **/target/*
 *.war
+target/

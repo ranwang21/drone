@@ -4,7 +4,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.Properties;
 
-// this class read properties files from src/main/resources.
+// this class read properties files from src/main/resources
 public class PropertyLoader {
     private Properties config;
 
