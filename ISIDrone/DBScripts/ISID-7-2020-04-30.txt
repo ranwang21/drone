@@ -1,0 +1,8 @@
+// Ajout de la colonne isActive dans la table category fait le 2020-04-30
+
+USE isidrone;
+
+ALTER TABLE category
+ADD isActive TINYINT NULL;
+
+UPDATE category SET isActive = 1;
