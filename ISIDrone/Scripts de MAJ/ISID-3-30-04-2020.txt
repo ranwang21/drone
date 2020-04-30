@@ -1,0 +1,11 @@
+use isidrone;
+
+/* Ajout de la colonne isAdmin dans user */
+
+ALTER TABLE user
+ADD isAdmin INT NULL;
+
+
+/* Mise a jour du user test */
+
+UPDATE user SET isAdmin=0 WHERE id=1;

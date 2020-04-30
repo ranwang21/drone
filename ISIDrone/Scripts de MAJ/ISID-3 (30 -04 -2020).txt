@@ -1,4 +1,0 @@
-// Ajout de la colonne isAdmin dans users fait le 30 / 04 / 2020
-
-ALTER TABLE user
-ADD isAdmin INT NOT NULL;
