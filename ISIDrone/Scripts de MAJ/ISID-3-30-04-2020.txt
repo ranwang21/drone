@@ -8,4 +8,4 @@ ADD isAdmin INT NULL;
 
 /* Mise a jour du user test */
 
-UPDATE user SET isAdmin=0 WHERE id=1;
+UPDATE user SET isAdmin=0;
