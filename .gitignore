@@ -173,3 +173,4 @@ nbdist/
 # End of https://www.gitignore.io/api/eclipse,intellij,netbeans
 ISIDrone/target/*
 **/target/*
+*.war
