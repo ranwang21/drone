@@ -1,5 +1,7 @@
 package manager;
 
+import util.PropertyLoader;
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -11,10 +13,16 @@ public class MDB {
     private static Connection connection = null;
 
     public static void connect() throws SQLException {
+        PropertyLoader pl = new PropertyLoader("configs");
+        String DB_USERNAME = pl.getConfig("DB_USERNAME");
+        String DB_PASSWORD = pl.getConfig("DB_PASSWORD");
+        String DB_NAME = pl.getConfig("DB_NAME");
+        String DB_IP = pl.getConfig("DB_IP");
+        String DB_PORT = pl.getConfig("DB_PORT");
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
-            String mysqlURL = "jdbc:mysql://127.0.0.1:3306/isidrone?serverTimezone=UTC";
-            connection = DriverManager.getConnection(mysqlURL, "root", "abc123...");
+            String mysqlURL = "jdbc:mysql://" + DB_IP + ":" + DB_PORT + "/" + DB_NAME + "?serverTimezone=UTC";
+            connection = DriverManager.getConnection(mysqlURL, DB_USERNAME, DB_PASSWORD);
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         }
@@ -25,7 +33,7 @@ public class MDB {
         ResultSet rs = null;
 
         try {
-			
+
 
             if (ps != null) {
                 ps.execute();
