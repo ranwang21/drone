@@ -1,11 +1,14 @@
 package manager;
 
+import java.io.UnsupportedEncodingException;
+import java.security.NoSuchAlgorithmException;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
 import entities.Item;
+import util.Hash;
 
 public class MItem {
 
@@ -125,5 +128,31 @@ public class MItem {
             e.printStackTrace();
         }
         return item;
+    }
+
+    public static String updateItem(Item item) {
+        try {
+            MDB.connect();
+
+            // Ajoute l'address a la BD
+            String query = "UPDATE product SET category = ?, name = ?, description = ?, price = ?, serialNumber = ?, stockQty = ?, isActive = ?,  WHERE id = ?";
+
+            PreparedStatement ps = MDB.getPS(query);
+            ps.setInt(1, item.getCategory());
+            ps.setString(2, item.getName());
+            ps.setString(3, item.getDescription());
+            ps.setDouble(4, item.getPrice());
+            ps.setString(5, item.getSerial());
+            ps.setDouble(6, item.getStock());
+            ps.setBoolean(7, item.isActive());
+            ps.setInt(8, item.getId());
+
+            ps.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            MDB.disconnect();
+        }
+        return "msg";
     }
 }

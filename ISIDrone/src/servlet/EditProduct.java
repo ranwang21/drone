@@ -42,7 +42,8 @@ public class EditProduct extends HttpServlet {
      * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
      */
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        request.getRequestDispatcher(Const.PATH_PAGE_EDIT_PRODUCT).forward(request, response);
+        Item item = new Item();
+        doGet(request, response);
     }
 
 }

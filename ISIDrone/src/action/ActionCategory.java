@@ -3,6 +3,7 @@ package action;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import entities.Category;
 import manager.MCategory;
 
 public class ActionCategory {
@@ -34,7 +35,7 @@ public class ActionCategory {
         return categorySelected;
     }
 
-    public static void getCategory(HttpServletRequest request, HttpServletResponse response) {
-        request.setAttribute("categories", MCategory.getCategories());
+    public static Category getCategory(int idCategory) {
+        return MCategory.getCategoryById(idCategory);
     }
 }
