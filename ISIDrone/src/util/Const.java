@@ -30,7 +30,7 @@ public class Const {
 
     public static String PATH_PAGE_HOME = PATH_PRIVATE + "index.jsp";
     public static String PATH_PAGE_ITEMS = PATH_PRIVATE + "items.jsp";
-    public static String PATH_PAGE_SEARCH_ITEMS = PATH_PRIVATE + "search-items.jsp";
+    public static String PATH_PAGE_EDIT_PRODUCT = PATH_PRIVATE + "editProduct.jsp";
     public static String PATH_PAGE_ABOUT = PATH_PRIVATE + "about.jsp";
     public static String PATH_PAGE_CONTACT = PATH_PRIVATE + "contact.jsp";
     public static String PATH_PAGE_ITEM = PATH_PRIVATE + "item.jsp";
@@ -43,6 +43,8 @@ public class Const {
     public static String PATH_PAGE_CARTUSER = PATH_PRIVATE + "cartuser.jsp";
     public static String PATH_PAGE_ORDERHISTORY = PATH_PRIVATE + "order-history.jsp";
     public static String PATH_PAGE_SERVICE = PATH_PRIVATE + "service.jsp";
+    public static String PATH_PAGE_LISTPRODUCTS = PATH_PRIVATE + "listProducts.jsp";
+    public static String PATH_PAGE_SEARCH_ITEMS = PATH_PRIVATE + "search-items.jsp";
 
     // Index
     public static String PATH_MENU_BANNER = PATH_INDEX_INCLUDES + "banner.jsp";        // Banner

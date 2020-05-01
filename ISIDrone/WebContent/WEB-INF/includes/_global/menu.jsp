@@ -2,6 +2,12 @@
          pageEncoding="UTF-8" %>
 
 <%@ page import="util.Const" %>
+<%@ page import="entities.User" %>
+
+<%
+    //S'il n'y a pas d'utilisateur déjà de connecté
+    User user = (User) session.getAttribute("user");
+%>
 
 <!-- Navigation -->
 <div class="container">
@@ -11,12 +17,10 @@
             <div class="navbar-right" style="margin-right:0">
                 <ul class="nav navbar-nav">
                     <li>
-                        <!-- 						La recherche n'est pas fini d'être implementé -->
+                        <!-- La recherche n'est pas fini d'être implementé -->
                         <form class="navbar-form" role="search" action="search-items?">
-                            <div id="auto-search" class="form-group" style="padding-right:0;">
-                                <input class="form-control biginput" name="search" placeholder="Rechercher"
-                                       id="autocomplete"
-                                       type="text">
+                            <div class="form-group" style="padding-right:0;">
+                                <input class="form-control biginput" name="search" placeholder="Rechercher" type="text">
                             </div>
                             <button type="submit" class="btn btn-default"><span
                                     class="glyphicon glyphicon-search"></span></button>
@@ -47,6 +51,9 @@
                     <li><a href="service">Services</a></li>
                     <li><a href="contact">Contact</a></li>
                     <li><a href="items?category=1">Boutique</a></li>
+                    <% if (user != null && user.getIsAdmin() == 1) { %>
+                    <li><a href="list-products?category=1">Produits</a></li>
+                    <% } %>
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
                     <jsp:include page="loginState.jsp"/>

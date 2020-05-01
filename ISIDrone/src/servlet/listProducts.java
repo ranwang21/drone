@@ -8,20 +8,19 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import action.ActionCategory;
 import util.Const;
 import action.ActionItems;
 
 /**
  * Servlet implementation class Products
  */
-@WebServlet(name = "search-items", urlPatterns = {"/search-items"})
-public class SearchItems extends HttpServlet {
-    private static final long serialVersionUID = 1L;
-
+@WebServlet(name = "listProducts", urlPatterns = {"/list-products"})
+public class listProducts extends HttpServlet {
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public SearchItems() {
+    public listProducts() {
         super();
     }
 
@@ -29,8 +28,9 @@ public class SearchItems extends HttpServlet {
      * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
      */
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        ActionItems.getSearchItems(request, response);
-        request.getRequestDispatcher(Const.PATH_PAGE_SEARCH_ITEMS).forward(request, response);
+        ActionItems.getItems(request, response);
+        ActionCategory.getCategories(request, response);
+        request.getRequestDispatcher(Const.PATH_PAGE_LISTPRODUCTS).forward(request, response);
     }
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

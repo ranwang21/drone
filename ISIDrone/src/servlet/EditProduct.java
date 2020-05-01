@@ -8,20 +8,22 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import util.Const;
+import action.ActionCategory;
 import action.ActionItems;
+import action.ActionSignUp;
+import util.Const;
 
 /**
- * Servlet implementation class Products
+ * Servlet implementation class EditProduct
  */
-@WebServlet(name = "search-items", urlPatterns = {"/search-items"})
-public class SearchItems extends HttpServlet {
+@WebServlet(name = "editProduct", urlPatterns = {"/editProduct"})
+public class EditProduct extends HttpServlet {
     private static final long serialVersionUID = 1L;
 
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public SearchItems() {
+    public EditProduct() {
         super();
     }
 
@@ -29,11 +31,20 @@ public class SearchItems extends HttpServlet {
      * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
      */
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        ActionItems.getSearchItems(request, response);
-        request.getRequestDispatcher(Const.PATH_PAGE_SEARCH_ITEMS).forward(request, response);
+        int idProduct = Integer.parseInt(request.getParameter("product_id"));
+
+        ActionCategory.getCategories(request, response);
+        ActionItems.getItemById(idProduct, request, response);
+        request.getRequestDispatcher(Const.PATH_PAGE_EDIT_PRODUCT).forward(request, response);
     }
 
+    /**
+     * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+     */
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        request.setCharacterEncoding("UTF-8");
+        ActionItems.updateItemById(request, response);
         doGet(request, response);
     }
+
 }
