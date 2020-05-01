@@ -1,6 +1,10 @@
 package servlet;
 
+import java.io.File;
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -11,31 +15,35 @@ import javax.servlet.http.HttpServletResponse;
 import action.ActionCart;
 import action.ActionCategory;
 import action.ActionFeaturedProduct;
+import com.sun.scenario.effect.impl.sw.sse.SSEBlend_SRC_OUTPeer;
+import org.apache.commons.io.FileUtils;
+import util.Const;
 
 /**
  * Servlet implementation class Index
  */
-@WebServlet(name = "index", urlPatterns = { "/home" })
+@WebServlet(name = "index", urlPatterns = {"/home"})
 public class Home extends HttpServlet {
-	private static final long serialVersionUID = 1L;
-       
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-		//Récupération des catégories
-		ActionCategory.getCategories(request, response);
-		//Récupération des produits en vedettes
-		ActionFeaturedProduct.getFeaturedProduct(request);
-		//Redirection
-		request.getRequestDispatcher("/WEB-INF/index.jsp").forward(request, response);
-	}
+    private static final long serialVersionUID = 1L;
 
-	@Override
-	protected void doPost(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
-		String strId = request.getParameter("itemId");
-		String strQty = request.getParameter("qty");
-	 
-		ActionCart.addItem(request, response, strId, strQty);
-		doGet(request, response);
-	}
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        //Récupération des catégories
+        ActionCategory.getCategories(request, response);
+        //Récupération des produits en vedettes
+        ActionFeaturedProduct.getFeaturedProduct(request);
+        //Redirection
+        request.getRequestDispatcher("/WEB-INF/index.jsp").forward(request, response);
+    }
+
+    @Override
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        String strId = request.getParameter("itemId");
+        String strQty = request.getParameter("qty");
+
+        ActionCart.addItem(request, response, strId, strQty);
+        doGet(request, response);
+    }
+
+
 }
