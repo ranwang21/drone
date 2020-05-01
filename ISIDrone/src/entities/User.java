@@ -13,7 +13,7 @@ public class User {
     }
 
     public User(int id, String lastName, String firstName, String email,
-                String password, Address shipAddress) {
+                String password, int isAdmin, Address shipAddress) {
         super();
         this.id = id;
         this.lastName = lastName;
@@ -21,6 +21,7 @@ public class User {
         this.email = email;
         this.password = password;
         this.shipAddress = shipAddress;
+        this.isAdmin = isAdmin;
     }
 
     public int getId() {
