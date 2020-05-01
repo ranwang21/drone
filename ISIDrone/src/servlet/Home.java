@@ -15,9 +15,6 @@ import javax.servlet.http.HttpServletResponse;
 import action.ActionCart;
 import action.ActionCategory;
 import action.ActionFeaturedProduct;
-import com.sun.scenario.effect.impl.sw.sse.SSEBlend_SRC_OUTPeer;
-import org.apache.commons.io.FileUtils;
-import util.Const;
 
 /**
  * Servlet implementation class Index
