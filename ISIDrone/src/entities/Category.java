@@ -1,39 +1,50 @@
 package entities;
 
 public class Category {
-	private int id;
-	private String name,
-		description;
-	
-	public Category() {}
-	
-	public Category(int id, String name, String description) {
-		this.id = id;
-		this.name = name;
-		this.description = description;
-	}
+    private int id;
+    private String name,
+            description;
+    private Boolean isActive;
 
-	public int getId() {
-		return id;
-	}
+    public Category() {
+    }
 
-	public String getName() {
-		return name;
-	}
+    public Category(int id, String name, String description, Boolean isActive) {
+        this.id = id;
+        this.name = name;
+        this.description = description;
+        this.isActive = isActive;
+    }
 
-	public String getDescription() {
-		return description;
-	}
+    public int getId() {
+        return id;
+    }
 
-	public void setId(int id) {
-		this.id = id;
-	}
+    public String getName() {
+        return name;
+    }
 
-	public void setName(String name) {
-		this.name = name;
-	}
+    public String getDescription() {
+        return description;
+    }
 
-	public void setDescription(String description) {
-		this.description = description;
-	}
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public Boolean getActive() {
+        return isActive;
+    }
+
+    public void setActive(Boolean active) {
+        isActive = active;
+    }
 }

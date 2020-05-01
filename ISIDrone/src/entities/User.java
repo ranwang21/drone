@@ -1,71 +1,82 @@
 package entities;
 
 public class User {
-	int id;
-	String lastName,
-		firstName,
-		email,
-		password;
-	Address shipAddress;
-	
-	public User() {}
-	
-	public User(int id, String lastName, String firstName, String email,
-			String password, Address shipAddress) {
-		super();
-		this.id = id;
-		this.lastName = lastName;
-		this.firstName = firstName;
-		this.email = email;
-		this.password = password;
-		this.shipAddress = shipAddress;
-	}
+    int id;
+    String lastName,
+            firstName,
+            email,
+            password;
+    int isAdmin;
+    Address shipAddress;
 
-	public int getId() {
-		return id;
-	}
+    public User() {
+    }
 
-	public String getFirstName() {
-		return firstName;
-	}
+    public User(int id, String lastName, String firstName, String email,
+                String password, int isAdmin, Address shipAddress) {
+        super();
+        this.id = id;
+        this.lastName = lastName;
+        this.firstName = firstName;
+        this.email = email;
+        this.password = password;
+        this.shipAddress = shipAddress;
+        this.isAdmin = isAdmin;
+    }
 
-	public String getLastName() {
-		return lastName;
-	}
+    public int getId() {
+        return id;
+    }
 
-	public String getEmail() {
-		return email;
-	}
-	
-	public String getPassword() {
-		return password;
-	}
+    public String getFirstName() {
+        return firstName;
+    }
 
-	public Address getShipAddress() {
-		return shipAddress;
-	}
+    public String getLastName() {
+        return lastName;
+    }
 
-	public void setId(int id) {
-		this.id = id;
-	}
+    public String getEmail() {
+        return email;
+    }
 
-	public void setFirstName(String firstName) {
-		this.firstName = firstName;
-	}
+    public String getPassword() {
+        return password;
+    }
 
-	public void setLastName(String lastName) {
-		this.lastName = lastName;
-	}
+    public int getIsAdmin() {
+        return isAdmin;
+    }
 
-	public void setEmail(String email) {
-		this.email = email;
-	}
-	
-	public void setPassword(String password) {
-		this.password = password;
-	}
+    public Address getShipAddress() {
+        return shipAddress;
+    }
 
-	public void setShipAdress(Address adress) {
-		this.shipAddress = adress;
-	}
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public void setIsAdmin(int isAdmin) {
+        this.isAdmin = isAdmin;
+    }
+
+    public void setShipAdress(Address adress) {
+        this.shipAddress = adress;
+    }
 }
