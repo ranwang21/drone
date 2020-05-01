@@ -1,11 +1,15 @@
 package manager;
 
+import java.io.UnsupportedEncodingException;
+import java.security.NoSuchAlgorithmException;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
 import entities.Item;
+import entities.User;
+import util.Hash;
 
 public class MItem {
 
@@ -125,5 +129,32 @@ public class MItem {
             e.printStackTrace();
         }
         return item;
+    }
+
+    public static void addItem(Item item) {
+
+
+        try {
+            MDB.connect();
+
+            String query = "INSERT INTO product (`category`, `name`, `description`, `price`, `serialNumber`, `imgName` , `stockQty` , `isActive`) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+
+            PreparedStatement ps = MDB.getPS(query);
+
+            ps.setInt(1, item.getCategory());
+            ps.setString(2, item.getName());
+            ps.setString(3, item.getDescription());
+            ps.setDouble(4, item.getPrice());
+            ps.setString(5, item.getSerial());
+            ps.setString(6, item.getImage());
+            ps.setInt(7, item.getStock());
+            ps.setBoolean(8, item.isActive());
+
+            ps.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            MDB.disconnect();
+        }
     }
 }

@@ -13,4 +13,4 @@ UPDATE user SET isAdmin=0;
 /* Creation admin par defaut */ 
 
 INSERT INTO `address` (no,appt,street,zip,city,state,country) VALUES (123,null,'Admin Street','H173K9','Montreal','Quebec','Canada');
-INSERT INTO `user` (lastName,firstName,email,password,ship_address_id,isAdmin) VALUES ('Admin','Admin','admin@mail.com','d348143be867a3d08a4f097b221d522cfba04805',2,1);
+INSERT INTO `user` (lastName,firstName,email,password,ship_address_id,isAdmin) VALUES ('Admin','Admin','admin@mail.com','d348143be867a3d08a4f097b221d522cfba04805',5,1);
