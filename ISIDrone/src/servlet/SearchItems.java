@@ -9,8 +9,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import util.Const;
-import action.ActionCart;
-import action.ActionCategory;
 import action.ActionItems;
 
 /**

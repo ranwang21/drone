@@ -52,7 +52,7 @@
                 <div class="dropdown">
                     <button class="btn btn-info">&#11167</button>
                     <div class="dropdown-content">
-                        <a href="#">Action 1</a>
+                        <a href="editProduct?product_id=<%=item.getId()%>">Modifier</a>
                         <a href="#">Action 2</a>
                         <a href="#">Action 3</a>
                     </div>
