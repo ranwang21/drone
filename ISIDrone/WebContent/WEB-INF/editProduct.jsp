@@ -31,6 +31,7 @@
                             Modification effectuée avec succès !!!
                         </div>
                         <%} %>
+                        <input type="hidden" name="product_id" value="<%=item.getId()%>">
 
                         <div class="form-group col-md-6">
                             <label for="input1">Nom</label>
@@ -62,7 +63,7 @@
                         </div>
                         <div class="form-group col-md-6">
                             <label for="input6">Quantite</label>
-                            <input type="number" class="form-control" id="input6" name="qty"
+                            <input type="number" class="form-control" id="input6" name="stock"
                                    placeholder="Quantite du produit"
                                    value="<%=item.getStock()%>">
                         </div>

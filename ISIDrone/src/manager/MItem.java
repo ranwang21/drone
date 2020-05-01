@@ -131,11 +131,12 @@ public class MItem {
     }
 
     public static String updateItem(Item item) {
+
         try {
             MDB.connect();
 
             // Ajoute l'address a la BD
-            String query = "UPDATE product SET category = ?, name = ?, description = ?, price = ?, serialNumber = ?, stockQty = ?, isActive = ?,  WHERE id = ?";
+            String query = "UPDATE product SET category = ?, name = ?, description = ?, price = ?, serialNumber = ?, stockQty = ?, isActive = ?  WHERE id = ?";
 
             PreparedStatement ps = MDB.getPS(query);
             ps.setInt(1, item.getCategory());
@@ -143,8 +144,8 @@ public class MItem {
             ps.setString(3, item.getDescription());
             ps.setDouble(4, item.getPrice());
             ps.setString(5, item.getSerial());
-            ps.setDouble(6, item.getStock());
-            ps.setBoolean(7, item.isActive());
+            ps.setInt(6, item.getStock());
+            ps.setInt(7, (item.isActive() ? 1 : 0));
             ps.setInt(8, item.getId());
 
             ps.executeUpdate();
