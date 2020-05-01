@@ -2,6 +2,12 @@
          pageEncoding="UTF-8" %>
 
 <%@ page import="util.Const" %>
+<%@ page import="entities.User" %>
+
+<%
+    //S'il n'y a pas d'utilisateur déjà de connecté
+    User user = (User) session.getAttribute("user");
+%>
 
 <!-- Navigation -->
 <div class="container">
@@ -46,6 +52,9 @@
                     <li><a href="contact">Contact</a></li>
                     <li><a href="items?category=1">Boutique</a></li>
                     <li><a href="editProduct?product_id=1">Edition</a></li>
+                    <% if (user != null && user.getIsAdmin() == 1) { %>
+                    <li><a href="list-products?category=1">Produits</a></li>
+                    <% } %>
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
                     <jsp:include page="loginState.jsp"/>
