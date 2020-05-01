@@ -18,5 +18,4 @@ public class ActionItems {
     public static void getItemById(int id, HttpServletRequest request, HttpServletResponse response) {
         request.setAttribute("item", MItem.getItemById(id));
     }
-
 }

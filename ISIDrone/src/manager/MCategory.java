@@ -6,6 +6,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 import entities.Category;
+import entities.Item;
 
 public class MCategory {
 
@@ -28,6 +29,45 @@ public class MCategory {
 
         return categories;
     }
+
+    public static Category getCategoryById(int id) {
+        Category category = null;
+        try {
+            MDB.connect();
+            String query = "SELECT * FROM category WHERE id = ?";
+
+            PreparedStatement ps = MDB.getPS(query);
+            ps.setInt(1, id);
+            ResultSet rs = ps.executeQuery();
+
+            while (rs.next()) {
+                category = getCategoryFromResultSet(rs);
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            MDB.disconnect();
+        }
+
+        return category;
+    }
+
+    private static Category getCategoryFromResultSet(ResultSet rs) {
+
+        Category category = new Category();
+
+        try {
+            category.setId(rs.getInt("id"));
+            category.setName(rs.getString("name"));
+            category.setDescription(rs.getString("description"));
+            category.setActive(rs.getBoolean("isActive"));
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return category;
+    }
+
 
     public static int isExist(int category) {
         int isExist = -1;
