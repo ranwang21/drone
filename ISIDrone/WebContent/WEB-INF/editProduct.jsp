@@ -32,7 +32,10 @@
                         </div>
                         <%} %>
                         <div style="display: none" class="alert alert-danger" id="editProductError" role="alert">
-                            Tous les champs sont obligatoires
+                            Tous les champs ci-dessous sont obligatoires
+                            <p id="errorName" style="display: none">* Nom</p>
+                            <p id="errorPrice" style="display: none">* Prix</p>
+                            <p id="errorStock" style="display: none">* Quantite</p>
                         </div>
                         <input type="hidden" name="product_id" value="<%=item.getId()%>">
 
