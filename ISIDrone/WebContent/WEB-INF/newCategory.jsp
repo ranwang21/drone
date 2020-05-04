@@ -1,9 +1,7 @@
-<%@page import="entities.Item" %>
 <%@page import="java.util.ArrayList" %>
 <%@page import="entities.Category" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ page import="util.Const" %>
-<%@ page import="action.ActionCategory" %>
 <%
     ArrayList<Category> categories = (ArrayList<Category>) request.getAttribute("categories");
     String msg = (String) request.getAttribute("message");
@@ -33,6 +31,11 @@
                             Tous les champs ci-dessous sont obligatoires
                             <p id="errorNameCategory">* Nom</p>
                             <p id="errorOrderCategory">* Position</p>
+                        </div>
+
+                        <div style="display: none" class="alert alert-danger" id="addCategorySameNameError"
+                             role="alert">
+                            Ce nom est déjà associé à une catégorie existante
                         </div>
 
                         <div class="form-group col-md-12">
@@ -66,4 +69,41 @@
         </div>
     </div>
 </div>
+<script>
+    function getById(param) {
+        return document.getElementById(param)
+    }
+
+    const categories = [<% for (int i = 0; i < categories.size(); i++) { %>"<%= categories.get(i).getName() %>"<%= i + 1 < categories.size() ? ",":"" %><% } %>];
+    console.log(categories)
+
+    // Validation du formulaire d'ajout d'une categorie
+    const btnAddCategory = getById("btnAddCategory")
+    btnAddCategory.addEventListener('click', btnAddCategoryClick)
+
+    function btnAddCategoryClick() {
+        const errorMessage = getById("addCategoryError")
+        const addSameNameError = getById("addCategorySameNameError")
+        const errorName = getById("errorNameCategory")
+        const errorOrder = getById("errorOrderCategory")
+
+        const form = getById("formAddCategory")
+        const name = getById("addCategoryName")
+        const order = getById("addCategoryPosition")
+
+        if (name.value.length === 0 || order.value.length === 0) {
+            errorMessage.style.display = "block";
+            errorName.style.display = name.value.length === 0 ? "block" : "none"
+            errorOrder.style.display = order.value.length === 0 ? "block" : "none"
+        } else {
+            errorMessage.style.display = "none";
+            if (categories.includes(name.value)) {
+                addSameNameError.style.display = "block"
+            } else {
+                addSameNameError.style.display = "none";
+                form.submit()
+            }
+        }
+    }
+</script>
 <jsp:include page="<%=Const.PATH_FOOTER_JSP%>"/>
