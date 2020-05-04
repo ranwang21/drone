@@ -63,7 +63,7 @@ public class Item extends HttpServlet {
         String strSerial = request.getParameter("serial");
         String strIsActif = request.getParameter("isActif");
 
-        Boolean isActif = true;
+        Boolean isActif = false;
 
         if (strId != null && strQty != null) {
             ActionCart.addItem(request, response, strId, strQty);
@@ -72,9 +72,10 @@ public class Item extends HttpServlet {
             int qty = Integer.parseInt(strQty);
             int category = Integer.parseInt(strCategory);
             double prix = Double.parseDouble(strPrix);
-            if (!strIsActif.equals("Actif")) {
-                isActif = false;
+            if (strIsActif != null) {
+                isActif = true;
             }
+            System.out.println(strIsActif);
             entities.Item newItem = new entities.Item(category, strNom, strDescription, prix, strSerial, "drone_default", qty, isActif);
             ActionItems.addItem(request, response, newItem);
             ActionCategory.getCategories(request, response);
