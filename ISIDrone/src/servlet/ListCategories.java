@@ -1,26 +1,25 @@
 package servlet;
 
-import java.io.IOException;
+import action.ActionCategory;
+import action.ActionItems;
+import util.Const;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
-import action.ActionCategory;
-import util.Const;
-import action.ActionItems;
+import java.io.IOException;
 
 /**
- * Servlet implementation class Products
+ * Servlet implementation class ListCategories
  */
-@WebServlet(name = "listProducts", urlPatterns = {"/list-products"})
-public class listProducts extends HttpServlet {
+@WebServlet(name = "listCategories", urlPatterns = {"/list-categories"})
+public class ListCategories extends HttpServlet {
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public listProducts() {
+    public ListCategories() {
         super();
     }
 
@@ -28,9 +27,8 @@ public class listProducts extends HttpServlet {
      * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
      */
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        ActionItems.getItems(request, response);
         ActionCategory.getCategories(request, response);
-        request.getRequestDispatcher(Const.PATH_PAGE_LISTPRODUCTS).forward(request, response);
+        request.getRequestDispatcher(Const.PATH_PAGE_LISTCATEGORIES).forward(request, response);
     }
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

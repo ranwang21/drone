@@ -148,7 +148,7 @@ public class MItem {
             ps.setDouble(4, item.getPrice());
             ps.setString(5, item.getSerial());
             ps.setInt(6, item.getStock());
-            ps.setInt(7, (item.isActive() ? 1 : 0));
+            ps.setBoolean(7, (item.isActive()));
             ps.setInt(8, item.getId());
 
             ps.executeUpdate();
@@ -161,7 +161,6 @@ public class MItem {
     }
 
     public static void addItem(Item item) {
-
 
         try {
             MDB.connect();
