@@ -79,9 +79,9 @@
                                       placeholder="Description du produit"><%=item.getDescription()%></textarea>
                         </div>
                         <div class="form-group col-md-12 form-check">
-                            <input <%if (item.isActive()) {%> checked <% } %> type="checkbox"
-                                                              class="form-check-input" name="isActive"
-                                                              id="exampleCheck1">
+                            <input <% if(item.isActive()) { %> checked <% } %> type="checkbox"
+                                                               class="form-check-input" name="isActive"
+                                                               id="exampleCheck1">
                             <label class="form-check-label" for="exampleCheck1">Produit Actif</label>
                         </div>
                     </fieldset>

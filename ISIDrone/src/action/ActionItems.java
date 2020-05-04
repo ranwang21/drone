@@ -6,6 +6,8 @@ import javax.servlet.http.HttpServletResponse;
 import entities.Item;
 import manager.MItem;
 
+import java.util.Arrays;
+
 public class ActionItems {
 
     public static void getItems(HttpServletRequest request, HttpServletResponse response) {
@@ -29,8 +31,7 @@ public class ActionItems {
         item.setPrice(Double.parseDouble(request.getParameter("price")));
         item.setSerial(request.getParameter("serial"));
         item.setStock(Integer.parseInt(request.getParameter("stock")));
-        item.setActive(Boolean.parseBoolean(request.getParameter("isActive")));
-
+        item.setActive(!Arrays.toString(request.getParameterValues("isActive")).equals("null"));
         request.setAttribute("product_id", item.getId());
         request.setAttribute("message", MItem.updateItem(item));
     }
