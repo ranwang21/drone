@@ -38,6 +38,10 @@
 <script type="text/javascript" src="js/3rd/jquery.autocomplete.min.js"></script>
 <script type="text/javascript" src="js/drone-autocomplete.js"></script>
 
+<!-- Suppression popup -->
+<script type="text/javascript" src="js/suppression.js"></script>
+
+
 <%
     String pageUrl = request.getRequestURI();
     String fileName = Misc.getFileNameFromUrl(pageUrl);

@@ -27,6 +27,7 @@
     <link href="css/design.css" rel="stylesheet">
     <link href="css/auto-complete.css" rel="stylesheet">
     <link href="css/listProducts.css" rel="stylesheet">
+    <link href="css/suppression.css" rel="stylesheet">
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
