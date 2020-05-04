@@ -53,6 +53,7 @@
                     <li><a href="items?category=1">Boutique</a></li>
                     <% if (user != null && user.getIsAdmin() == 1) { %>
                     <li><a href="list-products?category=1">Produits</a></li>
+                    <li><a href="list-categories">Catégories</a></li>
                     <% } %>
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
