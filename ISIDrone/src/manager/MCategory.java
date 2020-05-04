@@ -18,7 +18,8 @@ public class MCategory {
             String query = "SELECT * FROM category";
             ResultSet rs = MDB.execQuery(query);
             while (rs.next()) {
-                categories.add(new Category(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getBoolean(4)));
+                categories.add(new Category(rs.getInt(1), rs.getString(2), rs.getString(3),
+                        rs.getInt(4), rs.getBoolean(5)));
             }
 
         } catch (SQLException e) {
@@ -61,6 +62,7 @@ public class MCategory {
             category.setId(rs.getInt("id"));
             category.setName(rs.getString("name"));
             category.setDescription(rs.getString("description"));
+            category.setOrder(rs.getInt("order"));
             category.setActive(rs.getBoolean("isActive"));
         } catch (SQLException e) {
             e.printStackTrace();
