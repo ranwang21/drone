@@ -30,7 +30,7 @@
         <a class="dropdown-item" href="list-products?category=1">Liste des produits</a>
         <a class="dropdown-item" href="list-categories">Liste des catégories</a>
         <div class="dropdown-divider"></div>
-        <a class="dropdown-item" href="#">Ajouter un produit</a>
+        <a class="dropdown-item" href="item?ajouterProduit=1">Ajouter un produit</a>
         <a class="dropdown-item" href="addCategory">Ajouter une catégorie</a>
         <%}%>
 
