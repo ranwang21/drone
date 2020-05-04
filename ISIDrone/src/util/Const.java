@@ -45,6 +45,7 @@ public class Const {
     public static String PATH_PAGE_ORDERHISTORY = PATH_PRIVATE + "order-history.jsp";
     public static String PATH_PAGE_SERVICE = PATH_PRIVATE + "service.jsp";
     public static String PATH_PAGE_LISTPRODUCTS = PATH_PRIVATE + "listProducts.jsp";
+    public static String PATH_PAGE_LISTCATEGORIES = PATH_PRIVATE + "listCategories.jsp";
     public static String PATH_PAGE_SEARCH_ITEMS = PATH_PRIVATE + "search-items.jsp";
 
     // Index

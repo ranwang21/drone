@@ -21,6 +21,7 @@ Edit Tomact Configurations -> Tab Deployment -> Add -> External Sources -> Choos
 
 ##### For Linux system
 To test the project in Linux environment:
+
 - Install tomcat in your linux system
 - Create `isidrone/products/img/` at the root base `/`
 - Transfer all products images into the above created folder
