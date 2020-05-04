@@ -34,4 +34,9 @@ public class ActionItems {
         request.setAttribute("product_id", item.getId());
         request.setAttribute("message", MItem.updateItem(item));
     }
+
+    public static void addItem(HttpServletRequest request, HttpServletResponse response, Item item) {
+        request.setAttribute("item", item);
+        MItem.addItem(item);
+    }
 }
