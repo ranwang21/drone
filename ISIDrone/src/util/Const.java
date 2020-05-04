@@ -28,9 +28,11 @@ public class Const {
     public static String PATH_CART_DROPDOWN_JSP = PATH_GLOBAL_INCLUDES + "cart_dropdown.jsp";            // Menu
     public static String PATH_CATEGORY_JSP = PATH_GLOBAL_INCLUDES + "category.jsp";
 
+    public static String PATH_NEW_PRODUCT_JSP = PATH_PRIVATE + "newProduct.jsp";
     public static String PATH_PAGE_HOME = PATH_PRIVATE + "index.jsp";
     public static String PATH_PAGE_ITEMS = PATH_PRIVATE + "items.jsp";
     public static String PATH_PAGE_EDIT_PRODUCT = PATH_PRIVATE + "editProduct.jsp";
+    public static String PATH_PAGE_ADD_CATEGORY = PATH_PRIVATE + "newCategory.jsp";
     public static String PATH_PAGE_ABOUT = PATH_PRIVATE + "about.jsp";
     public static String PATH_PAGE_CONTACT = PATH_PRIVATE + "contact.jsp";
     public static String PATH_PAGE_ITEM = PATH_PRIVATE + "item.jsp";

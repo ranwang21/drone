@@ -31,9 +31,6 @@
 <!-- User -->
 <script src="js/userPanelToogle.js"></script>
 
-<!-- Validation -->
-<script src="js/validation.js"></script>
-
 <!-- AutoComplete Search -->
 <script type="text/javascript" src="js/3rd/jquery.autocomplete.min.js"></script>
 <script type="text/javascript" src="js/drone-autocomplete.js"></script>
