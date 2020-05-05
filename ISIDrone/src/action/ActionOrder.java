@@ -5,6 +5,7 @@ import java.util.List;
 import entities.Cart;
 import entities.Order;
 import entities.User;
+import manager.MCategory;
 import manager.MItem;
 import manager.MOrder;
 import manager.MSendMail;
@@ -33,7 +34,7 @@ public class ActionOrder {
         String sujet = "Achat completé";
         String message = "Félicitation, vous avez commander quelquechose.";
 
-        MSendMail.sendEmail(message, to, sujet);
+//        MSendMail.sendEmail(message, to, sujet);
 
     }
 
@@ -46,4 +47,9 @@ public class ActionOrder {
     public static void getAllOrders(HttpServletRequest request, HttpServletResponse response) {
         request.setAttribute("orders", MOrder.getAllOrders());
     }
+
+    public static boolean deleteOrder(int idOrder) {
+        return MOrder.delete(idOrder);
+    }
+
 }
