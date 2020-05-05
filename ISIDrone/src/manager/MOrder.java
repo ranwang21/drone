@@ -181,6 +181,20 @@ public class MOrder {
         return orders;
     }
 
+    public static boolean delete(int id) {
+        boolean isSuccess = true;
+        try {
+            String queryToDelete = "DELETE FROM isidrone.order WHERE id = ?";
+            PreparedStatement psToDelete = MDB.getPS(queryToDelete);
+            psToDelete.setInt(1, id);
+            psToDelete.executeUpdate();
+        } catch (SQLException e) {
+            isSuccess = false;
+        } finally {
+            MDB.disconnect();
+        }
+        return isSuccess;
+    }
 }
 
 
