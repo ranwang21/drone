@@ -6,7 +6,22 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+
+import com.sun.org.apache.xpath.internal.operations.Or;
+import entities.Cart;
+import entities.Item;
+import entities.ItemCart;
+import entities.Order;
+import entities.User;
+
+import entities.Cart;
+import entities.Item;
+import entities.ItemCart;
+import entities.Order;
+import entities.User;
+
 import entities.*;
+
 
 public class MOrder {
     public static int add(User user, Cart cart) {
@@ -128,6 +143,42 @@ public class MOrder {
         return orderList;
     }
 
+
+//    public static ArrayList<Order> getAllOrders() {
+//
+//        ArrayList<Order> orderList = new ArrayList<>();
+//
+//
+//        try {
+//            MDB.connect();
+//
+//            String query = "SELECT user.id,`order`.date,`order`.isShipped, `order`.id FROM `order` INNER JOIN user ON `order`.user_id = user.id;";
+//            ResultSet rs = MDB.execQuery(query);
+//
+//
+//            while (rs.next()) {
+//
+//                Order unOrder = new Order();
+//                unOrder.setId(rs.getInt(1));
+//                unOrder.setDate(rs.getString(2));
+//                unOrder.setShipped(rs.getBoolean(3));
+//                unOrder.setUserId(rs.getInt(4));
+//
+//                orderList.add(unOrder);
+//
+//            }
+//
+//        } catch (SQLException e) {
+//            e.printStackTrace();
+//        } finally {
+//            MDB.disconnect();
+//        }
+//
+//        return orderList;
+//
+//    }
+
+
     public static List<Order> getAllOrders() {
         List<Order> orders = new ArrayList<Order>();
         try {
@@ -181,3 +232,6 @@ public class MOrder {
         return isSuccess;
     }
 }
+
+
+

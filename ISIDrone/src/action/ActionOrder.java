@@ -51,5 +51,11 @@ public class ActionOrder {
     public static boolean deleteOrder(int idOrder) {
         return MOrder.delete(idOrder);
     }
+    // get all oder to manager
+
+//    public static void getAllOrders(HttpServletRequest request, HttpServletResponse response) {
+//        request.setAttribute("allOrders", MOrder.getAllOrders());
+//    }
+    
 
 }

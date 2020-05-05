@@ -1,3 +1,4 @@
+<%--<script type="text/javascript" src="../js/alert.js"></script>--%>
 <%@page import="java.text.DecimalFormat" %>
 <%@page import="entities.Item" %>
 <%@page import="java.util.ArrayList" %>
@@ -10,6 +11,7 @@
     ArrayList<Item> items = (ArrayList<Item>) request.getAttribute("items");
     @SuppressWarnings("unchecked")
     ArrayList<Category> categories = (ArrayList<Category>) request.getAttribute("categories");
+    int result = (int) (request.getAttribute("result"));
 %>
 
 <jsp:include page="<%=Const.PATH_HEAD_JSP%>"/>
@@ -53,7 +55,7 @@
                     <button class="btn btn-info">&#11167</button>
                     <div class="dropdown-content">
                         <a href="editProduct?product_id=<%=item.getId()%>">Modifier</a>
-                        <a href="#">Action 2</a>
+                        <a href="javascript:confirmer('list-products?category=1&productToremoveId=<%=item.getId()%>&remove=true',<%=result%>)">Supprimer</a>
                         <a href="#">Action 3</a>
                     </div>
                 </div>
@@ -67,5 +69,18 @@
         </tbody>
     </table>
 </div>
+<script type="text/javascript">
+    function confirmer(url, result) {
+
+        let rep = confirm("Etes vous sur de vouloir supprimer ?");
+        if (rep === true) {
+            document.location = url;
+
+        } else if (result === 0) {
+            alert(" impossiblede supprimer le produit ");
+        }
+    }
+
+</script>
 
 <jsp:include page="<%=Const.PATH_FOOTER_JSP%>"/>
