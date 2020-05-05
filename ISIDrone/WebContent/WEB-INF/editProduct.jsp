@@ -87,7 +87,7 @@
                     </fieldset>
 
                     <div class="form-group text-center" style="clear: left; top: 15px; margin-bottom: 15px;">
-                        <a href="#" id="btnEditProduct" class="btn btn-default">Modifier</a>
+                        <a href="#" id="btnEditCategory" class="btn btn-default">Modifier</a>
                         <button style="display: none" type="submit" class="btn btn-default">Modifier</button>
                     </div>
                 </div>

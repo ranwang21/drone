@@ -1,17 +1,23 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8" %>
 <%@ page import="util.Const" %>
+<%@ page import="entities.Category" %>
 <jsp:include page="<%=Const.PATH_HEAD_JSP%>"/>
 <jsp:include page="<%=Const.PATH_MENU_JSP%>"/>
+
+<%
+    Category category = (Category) request.getAttribute("category");
+    String msg = (String) request.getAttribute("message");
+%>
 <!-- /.container -->
 <!-- Page Content -->
 <div class="container">
     <div class="row">
         <div class="col-sm-12">
-            <form action="editProduct" method="post" class="panel panel-primary form-horizontal"
+            <form action="editCategory" method="post" class="panel panel-primary form-horizontal"
                   style="float: unset; margin: auto;">
                 <div class="panel-heading">
-                    <h3 class="panel-title">Modification d'un produit</h3>
+                    <h3 class="panel-title">Edit Category</h3>
                 </div>
                 <div class="panel-body">
                     <fieldset class="col-md-12">
@@ -20,14 +26,29 @@
                             Modification effectuée avec succès !!!
                         </div>
                         <%} %>
-                        <input type="hidden" name="product_id" value="<%=item.getId()%>">
+                        <div style="display: none" class="alert alert-danger" id="editCategoryError" role="alert">
+                            Tous les champs sont obligatoires
+                        </div>
+                        <input type="hidden" name="category_id" value="<%=category.getId()%>">
 
+                        <div class="form-group col-md-6">
+                            <label for="editCategoryName">Nom</label>
+                            <input type="text" class="form-control" id="editCategoryName" name="name"
+                                   placeholder="Nom de la Catégorie"
+                                   value="<%=category.getName()%>">
+                        </div>
+
+                        <div class="form-group col-md-6">
+                            <label for="editCategoryDescription">Description</label>
+                            <textarea class="form-control" id="editCategoryDescription" name="description" rows="3"
+                                      placeholder="Description de la Catégorie"><%=category.getDescription()%></textarea>
+                        </div>
 
                         <div class="form-group col-md-12 form-check">
-                            <input <%if (item.isActive()) {%> checked <% } %> type="checkbox"
-                                                              class="form-check-input" name="isActive"
-                                                              id="exampleCheck1">
-                            <label class="form-check-label" for="exampleCheck1">Produit Actif</label>
+                            <input <%if (category.isActive()) {%> checked <% } %> type="checkbox"
+                                                                  class="form-check-input" name="isActive"
+                                                                  id="exampleCheck1">
+                            <label class="form-check-label" for="exampleCheck1">Category Actif</label>
                         </div>
                     </fieldset>
 

@@ -57,4 +57,8 @@ public class Category {
     public void setActive(Boolean active) {
         isActive = active;
     }
+
+    public boolean isActive() {
+        return isActive;
+    }
 }
