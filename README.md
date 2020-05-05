@@ -34,4 +34,7 @@ To test the project in Linux environment:
 
 - Create folder `isidrone/conf/` at the root base `/`
 - Transfer configs.properties into the above created folder
+
+![](userGuide/configs.properties)
+
 - Restart the Tomcat
