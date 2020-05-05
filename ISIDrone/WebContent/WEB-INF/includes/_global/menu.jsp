@@ -49,12 +49,12 @@
                     <li><a href="service">Services</a></li>
                     <li><a href="contact">Contact</a></li>
                     <li><a href="items?category=1">Boutique</a></li>
-<<<<<<< HEAD
+
                     <% if (user != null && user.getIsAdmin() == 1) { %>
                     <li><a href="list-products?category=1&productToremoveId=<%=-1%>&remove=false">Produits</a></li>
                     <% } %>
-=======
->>>>>>> 1113cfecfac8cec9ea5340b6ab1b8a54a7d687f5
+
+
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
                     <jsp:include page="loginState.jsp"/>
