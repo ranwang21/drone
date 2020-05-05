@@ -46,7 +46,7 @@
                 <div class="dropdown">
                     <button class="btn btn-info">&#11167</button>
                     <div class="dropdown-content">
-                        <a href="#">Action 1</a>
+                        <a href="editCategory?category_id=<%=category.getId()%>">Modifier</a>
                         <a data-modal-target="#modal" href="#"
                            onclick="setIdCategory(<%=category.getId()%>)">Supprimer</a>
                         <a href="#">Action 3</a>

@@ -2,11 +2,13 @@
          pageEncoding="UTF-8" %>
 <%@ page import="util.Const" %>
 <%@ page import="entities.Category" %>
+<%@ page import="java.util.ArrayList" %>
 <jsp:include page="<%=Const.PATH_HEAD_JSP%>"/>
 <jsp:include page="<%=Const.PATH_MENU_JSP%>"/>
 
 <%
     Category category = (Category) request.getAttribute("category");
+    ArrayList<Category> categories = (ArrayList<Category>) request.getAttribute("categories");
     String msg = (String) request.getAttribute("message");
 %>
 <!-- /.container -->
@@ -36,6 +38,18 @@
                             <input type="text" class="form-control" id="editCategoryName" name="name"
                                    placeholder="Nom de la Catégorie"
                                    value="<%=category.getName()%>">
+                        </div>
+
+                        <div class="form-group col-md-6">
+                            <label for="editCategoryPosition">Position</label>
+                            <select class="form-control" id="editCategoryPosition" name="order">
+                                <% for (int i = 0; i <= categories.size(); i++) {%>
+                                <option value="<%=i%>"
+                                        <%if (category.getId() == i) {%>selected<% } %>>
+                                    <%=i%>
+                                </option>
+                                <%}%>
+                            </select>
                         </div>
 
                         <div class="form-group col-md-6">

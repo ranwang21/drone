@@ -39,8 +39,24 @@ public class ActionCategory {
         return categorySelected;
     }
 
+    public static void getCategoryById(int id, HttpServletRequest request, HttpServletResponse response) {
+        request.setAttribute("category", MCategory.getCategoryById(id));
+    }
+
     public static Category getCategory(int idCategory) {
         return MCategory.getCategoryById(idCategory);
+    }
+
+    public static void updateCategoryById(HttpServletRequest request, HttpServletResponse response) {
+
+        Category category = new Category();
+        category.setId(Integer.parseInt(request.getParameter("category_id")));
+        category.setName(request.getParameter("name"));
+        category.setDescription(request.getParameter("description"));
+        category.setOrder(Integer.parseInt(request.getParameter("order")));
+        category.setActive(!Arrays.toString(request.getParameterValues("isActive")).equals("null"));
+        request.setAttribute("category_id", category.getId());
+        request.setAttribute("message", MCategory.updateCategoty(category));
     }
 
     public static void addCategory(HttpServletRequest request, HttpServletResponse response) {
