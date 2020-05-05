@@ -156,4 +156,30 @@ public class MItem {
         }
         return "msg";
     }
+
+    public static int removeProduct(int id) {
+        int result = -1;
+
+
+        try {
+            MDB.connect();
+
+            String query = "DELETE FROM  product  WHERE id = ? and id NOT IN (SELECT  product_id FROM order_info) ";
+
+            PreparedStatement ps = MDB.getPS(query);
+
+            ps.setInt(1, id);
+
+            result = ps.executeUpdate();
+
+
+        } catch (SQLException ex) {
+
+        } finally {
+            MDB.disconnect();
+        }
+
+        System.out.println(result);
+        return result;
+    }
 }
