@@ -8,6 +8,7 @@
 <%
     @SuppressWarnings("unchecked")
     ArrayList<Category> categories = (ArrayList<Category>) request.getAttribute("categories");
+    String error = (String) request.getAttribute("deleteError");
 %>
 
 <jsp:include page="<%=Const.PATH_HEAD_JSP%>"/>
@@ -15,6 +16,12 @@
 
 <div class="container">
     <h2 class="text-center">Administration: Liste des catégories</h2>
+    <%if (error != null) {%>
+    <br>
+    <div class="alert alert-danger text-center" role="alert">
+        Impossible de supprimer la catégorie demandée. Des produits sont associés à celle-ci
+    </div>
+    <%}%>
     <br>
     <br>
     <table class="table table-striped">
@@ -28,6 +35,7 @@
         <tbody>
         <%
             for (Category category : categories) {
+                if (!category.getName().equals("Tous")) {
         %>
         <tr>
             <td><%=category.getName()%>
@@ -39,7 +47,8 @@
                     <button class="btn btn-info">&#11167</button>
                     <div class="dropdown-content">
                         <a href="#">Action 1</a>
-                        <a data-modal-target="#modal" href="#">Supprimer</a>
+                        <a data-modal-target="#modal" href="#"
+                           onclick="setIdCategory(<%=category.getId()%>)">Supprimer</a>
                         <a href="#">Action 3</a>
                     </div>
                 </div>
@@ -47,13 +56,13 @@
         </tr>
 
         <%
-
+                }
             }
 
         %>
         </tbody>
     </table>
-    <div class=" modal-supp" id="modal">
+    <div class="modal-supp" id="modal">
         <div class="modal-header-supp">
             <div class="title-supp">Suppression</div>
             <button data-close-button class="close-button-supp">&times;</button>
@@ -61,7 +70,9 @@
         <div class="modal-body-supp">
             Assurez-vous qu'aucun produit est associé à la catégorie que vous souhaitez supprimer.
             <div class="confirmer-button">
-                <button class="btn btn-danger">Confirmer</button>
+                <a id="confirm-link">
+                    <button class="btn btn-danger">Confirmer</button>
+                </a>
             </div>
         </div>
     </div>
