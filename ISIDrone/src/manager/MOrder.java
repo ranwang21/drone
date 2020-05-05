@@ -82,7 +82,7 @@ public class MOrder {
 
             MDB.connect();
 
-            String query = "SELECT `order`.id, `order`.date,"
+            String query = "SELECT `order`.id, `order`.date,`order`.isShipped,"
                     + " `order_info`.order_id, `order_info`.product_id, `order_info`.qty, `order_info`.price "
                     + "FROM `order` INNER JOIN `order_info` ON `order`.id = `order_info`.order_id WHERE `order`.user_id = ?;";
 
@@ -139,6 +139,7 @@ public class MOrder {
         } finally {
             MDB.disconnect();
         }
+
 
         return orderList;
     }
