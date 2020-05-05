@@ -34,3 +34,13 @@ function closeModal(modal) {
     modal.classList.remove('active')
     overlay.classList.remove('active')
 }
+
+function setIdCategory(id) {
+    let link = document.getElementById('confirm-link')
+    link.setAttribute('href', 'remove-category?category_id=' + id)
+}
+
+function setIdOrder(id) {
+    let link = document.getElementById('confirm-link')
+    link.setAttribute('href', 'remove-order?order_id=' + id)
+}

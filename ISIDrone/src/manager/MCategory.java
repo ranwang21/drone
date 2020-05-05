@@ -140,4 +140,30 @@ public class MCategory {
         }
         return "msg";
     }
+
+    public static boolean delete(int id) {
+        try {
+            MDB.connect();
+            String query = "SELECT * FROM isidrone.category INNER JOIN isidrone.product ON isidrone.category.id = isidrone.product.category WHERE isidrone.category.id = ?;";
+
+            PreparedStatement ps = MDB.getPS(query);
+            ps.setInt(1, id);
+            ResultSet rs = ps.executeQuery();
+
+            if (rs.first()) {
+                return false;
+            } else {
+                String queryToDelete = "DELETE FROM isidrone.category WHERE id = ?";
+                PreparedStatement psToDelete = MDB.getPS(queryToDelete);
+                psToDelete.setInt(1, id);
+                psToDelete.executeUpdate();
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            MDB.disconnect();
+        }
+        return true;
+    }
 }

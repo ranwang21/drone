@@ -1,6 +1,5 @@
 package manager;
 
-
 import java.io.UnsupportedEncodingException;
 import java.security.NoSuchAlgorithmException;
 import java.sql.PreparedStatement;
@@ -9,8 +8,6 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 import entities.Item;
-import entities.User;
-import manager.MDB;
 import util.Hash;
 
 public class MItem {
@@ -148,7 +145,7 @@ public class MItem {
             ps.setDouble(4, item.getPrice());
             ps.setString(5, item.getSerial());
             ps.setInt(6, item.getStock());
-            ps.setBoolean(7, (item.isActive()));
+            ps.setInt(7, (item.isActive() ? 1 : 0));
             ps.setInt(8, item.getId());
 
             ps.executeUpdate();
@@ -160,12 +157,38 @@ public class MItem {
         return "msg";
     }
 
+    public static int removeProduct(int id) {
+        int result = -1;
+
+
+        try {
+            MDB.connect();
+
+            String query = "DELETE FROM  product  WHERE id = ? and id NOT IN (SELECT  product_id FROM order_info) ";
+
+            PreparedStatement ps = MDB.getPS(query);
+
+            ps.setInt(1, id);
+
+            result = ps.executeUpdate();
+
+
+        } catch (SQLException ex) {
+
+        } finally {
+            MDB.disconnect();
+        }
+
+        System.out.println(result);
+        return result;
+    }
+
     public static void addItem(Item item) {
 
         try {
             MDB.connect();
 
-            String query = "INSERT INTO product (`category`, `name`, `description`, `price`, `serialNumber`, `imgName` , `stockQty` , `isActive`) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+            String query = "INSERT INTO product (category, name, description, price, serialNumber, imgName , stockQty , isActive) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
 
             PreparedStatement ps = MDB.getPS(query);
 
@@ -185,6 +208,5 @@ public class MItem {
             MDB.disconnect();
         }
     }
+
 }
-
-
