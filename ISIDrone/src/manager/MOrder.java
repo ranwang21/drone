@@ -151,7 +151,7 @@ public class MOrder {
             String query = "SELECT `order`.id, `order`.date, `order`.user_id,"
                     + " `user`.firstName, `user`.lastName, `user`.email "
                     + " FROM `order` "
-                    + " INNER JOIN `user` ON `order`.user_id = `user`.id;";
+                    + " INNER JOIN `user` ON `order`.user_id = `user`.id ";
 
             PreparedStatement ps = MDB.getPS(query);
             ResultSet rs = ps.executeQuery();
