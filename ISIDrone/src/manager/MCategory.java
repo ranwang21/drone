@@ -18,7 +18,8 @@ public class MCategory {
             String query = "SELECT * FROM category";
             ResultSet rs = MDB.execQuery(query);
             while (rs.next()) {
-                categories.add(new Category(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getBoolean(4)));
+                categories.add(new Category(rs.getInt(1), rs.getString(2), rs.getString(3),
+                        rs.getInt(4), rs.getBoolean(5)));
             }
 
         } catch (SQLException e) {
@@ -61,13 +62,13 @@ public class MCategory {
             category.setId(rs.getInt("id"));
             category.setName(rs.getString("name"));
             category.setDescription(rs.getString("description"));
+            category.setOrder(rs.getInt("order"));
             category.setActive(rs.getBoolean("isActive"));
         } catch (SQLException e) {
             e.printStackTrace();
         }
         return category;
     }
-
 
     public static int isExist(int category) {
         int isExist = -1;
@@ -88,5 +89,28 @@ public class MCategory {
         }
 
         return isExist;
+    }
+
+    public static String add(Category category) {
+
+        try {
+            MDB.connect();
+
+            String query = "INSERT INTO category (`name`, `description`, `order`, `isActive`) VALUES (?, ?, ?, ?)";
+
+            PreparedStatement ps = MDB.getPS(query);
+
+            ps.setString(1, category.getName());
+            ps.setString(2, category.getDescription());
+            ps.setInt(3, category.getOrder());
+            ps.setBoolean(4, category.getActive());
+
+            ps.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            MDB.disconnect();
+        }
+        return "msg";
     }
 }

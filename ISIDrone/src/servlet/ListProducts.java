@@ -13,14 +13,14 @@ import util.Const;
 import action.ActionItems;
 
 /**
- * Servlet implementation class Products
+ * Servlet implementation class ListProducts
  */
 @WebServlet(name = "listProducts", urlPatterns = {"/list-products"})
-public class listProducts extends HttpServlet {
+public class ListProducts extends HttpServlet {
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public listProducts() {
+    public ListProducts() {
         super();
     }
 
