@@ -44,3 +44,9 @@ function setIdOrder(id) {
     let link = document.getElementById('confirm-link')
     link.setAttribute('href', 'remove-order?order_id=' + id)
 }
+
+function confirmer(id) {
+    let link = document.getElementById('confirm-link')
+    link.setAttribute('href', 'list-products?category=1&productToremoveId=' + id)
+
+}

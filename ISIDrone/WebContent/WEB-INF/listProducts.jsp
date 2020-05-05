@@ -91,14 +91,6 @@
         </div>
     </div>
 </div>
-<script type="text/javascript">
 
-    function confirmer(id) {
-        let link = document.getElementById('confirm-link')
-        link.setAttribute('href', 'list-products?category=1&productToremoveId=' + id)
-
-    }
-
-</script>
 
 <jsp:include page="<%=Const.PATH_FOOTER_JSP%>"/>

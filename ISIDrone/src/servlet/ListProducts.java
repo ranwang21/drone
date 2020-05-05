@@ -29,18 +29,6 @@ public class ListProducts extends HttpServlet {
      */
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-
-        String productId = request.getParameter("productToremoveId");
-        int removeProductId = Integer.parseInt(productId);
-
-        if (removeProductId != -1) {
-            ActionItems.removeProduct(request, removeProductId);
-        } else {
-            request.setAttribute("result", -1);
-            
-        }
-
-
         ActionItems.getItems(request, response);
         ActionCategory.getCategories(request, response);
 
@@ -50,12 +38,6 @@ public class ListProducts extends HttpServlet {
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         doGet(request, response);
-//
-//        String removeProductRequest = request.getParameter("removeProdReq");
-//        String removeProductId = request.getParameter("productToRemoveId");
-//        if (removeProductRequest != null) {
-//            ActionItems.removeProduct(request, removeProductId);
-//            request.getRequestDispatcher(Const.PATH_PAGE_LISTPRODUCTS).forward(request, response);
 
 
     }
