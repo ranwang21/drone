@@ -21,6 +21,12 @@
     <h2 class="text-center">Administration: Liste des produits</h2>
     <br>
     <br>
+    <%if (result == 0) {%>
+    <br>
+    <div class="alert alert-danger text-center" role="alert">
+        Impossible de supprimer le produit demandée. Des commandes sont associés à celle-ci
+    </div>
+    <%}%>
     <table class="table table-striped">
         <thead>
         <tr>
@@ -55,7 +61,8 @@
                     <button class="btn btn-info">&#11167</button>
                     <div class="dropdown-content">
                         <a href="editProduct?product_id=<%=item.getId()%>">Modifier</a>
-                        <a href="javascript:confirmer('list-products?category=1&productToremoveId=<%=item.getId()%>&remove=true',<%=result%>)">Supprimer</a>
+                        <a data-modal-target="#modal" href="#"
+                           onclick="confirmer(<%=item.getId()%>)">Supprimer</a>
                         <a href="#">Action 3</a>
                     </div>
                 </div>
@@ -68,17 +75,28 @@
             } %>
         </tbody>
     </table>
+
+    <div class="modal-supp" id="modal">
+        <div class="modal-header-supp">
+            <div class="title-supp">Suppression</div>
+            <button data-close-button class="close-button-supp">&times;</button>
+        </div>
+        <div class="modal-body-supp">
+            Assurez-vous qu'aucune commande est associé au produit que vous souhaitez supprimer.
+            <div class="confirmer-button">
+                <a id="confirm-link">
+                    <button class="btn btn-danger">Confirmer</button>
+                </a>
+            </div>
+        </div>
+    </div>
 </div>
 <script type="text/javascript">
-    function confirmer(url, result) {
 
-        let rep = confirm("Etes vous sur de vouloir supprimer ?");
-        if (rep === true) {
-            document.location = url;
+    function confirmer(id) {
+        let link = document.getElementById('confirm-link')
+        link.setAttribute('href', 'list-products?category=1&productToremoveId=' + id)
 
-        } else if (result === 0) {
-            alert(" impossiblede supprimer le produit ");
-        }
     }
 
 </script>

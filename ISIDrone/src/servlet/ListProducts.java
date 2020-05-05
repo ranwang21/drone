@@ -38,6 +38,7 @@ public class ListProducts extends HttpServlet {
 
         } else {
             request.setAttribute("result", -1);
+            
         }
 
 
