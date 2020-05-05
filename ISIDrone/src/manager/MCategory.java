@@ -91,6 +91,33 @@ public class MCategory {
         return isExist;
     }
 
+    public static String updateCategoty(Category category) {
+
+        try {
+            MDB.connect();
+
+
+            // Ajoute l'address a la BD
+            String query = "UPDATE category SET name = ?, description = ?, `order` = ?, isActive = ?  WHERE id = ?";
+
+            PreparedStatement ps = MDB.getPS(query);
+            ps.setString(1, category.getName());
+            ps.setString(2, category.getDescription());
+            ps.setInt(3, category.getOrder());
+            ps.setBoolean(4, (category.isActive()));
+            ps.setInt(5, category.getId());
+
+            System.out.println(ps);
+
+            ps.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            MDB.disconnect();
+        }
+        return "msg";
+    }
+
     public static String add(Category category) {
 
         try {

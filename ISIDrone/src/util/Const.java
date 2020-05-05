@@ -32,6 +32,7 @@ public class Const {
     public static String PATH_PAGE_HOME = PATH_PRIVATE + "index.jsp";
     public static String PATH_PAGE_ITEMS = PATH_PRIVATE + "items.jsp";
     public static String PATH_PAGE_EDIT_PRODUCT = PATH_PRIVATE + "editProduct.jsp";
+    public static String PATH_PAGE_EDIT_CATEGORY = PATH_PRIVATE + "editCategory.jsp";
     public static String PATH_PAGE_ADD_CATEGORY = PATH_PRIVATE + "newCategory.jsp";
     public static String PATH_PAGE_ABOUT = PATH_PRIVATE + "about.jsp";
     public static String PATH_PAGE_CONTACT = PATH_PRIVATE + "contact.jsp";
