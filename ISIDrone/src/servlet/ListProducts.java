@@ -35,7 +35,6 @@ public class ListProducts extends HttpServlet {
 
         if (removeProductId != -1) {
             ActionItems.removeProduct(request, removeProductId);
-
         } else {
             request.setAttribute("result", -1);
             

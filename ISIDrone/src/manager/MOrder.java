@@ -143,48 +143,12 @@ public class MOrder {
         return orderList;
     }
 
-
-//    public static ArrayList<Order> getAllOrders() {
-//
-//        ArrayList<Order> orderList = new ArrayList<>();
-//
-//
-//        try {
-//            MDB.connect();
-//
-//            String query = "SELECT user.id,`order`.date,`order`.isShipped, `order`.id FROM `order` INNER JOIN user ON `order`.user_id = user.id;";
-//            ResultSet rs = MDB.execQuery(query);
-//
-//
-//            while (rs.next()) {
-//
-//                Order unOrder = new Order();
-//                unOrder.setId(rs.getInt(1));
-//                unOrder.setDate(rs.getString(2));
-//                unOrder.setShipped(rs.getBoolean(3));
-//                unOrder.setUserId(rs.getInt(4));
-//
-//                orderList.add(unOrder);
-//
-//            }
-//
-//        } catch (SQLException e) {
-//            e.printStackTrace();
-//        } finally {
-//            MDB.disconnect();
-//        }
-//
-//        return orderList;
-//
-//    }
-
-
-    public static List<Order> getAllOrders() {
-        List<Order> orders = new ArrayList<Order>();
+    public static ArrayList<Order> getAllOrders() {
+        ArrayList<Order> orders = new ArrayList<Order>();
         try {
             MDB.connect();
             String query = "SELECT `order`.id, `order`.date, `order`.user_id,"
-                    + " `user`.fisrtName, `user`.lastName, `user`.email "
+                    + " `user`.firstName, `user`.lastName, `user`.email "
                     + " FROM `order` "
                     + " INNER JOIN `user` ON `order`.user_id = `user`.id;";
 
@@ -217,6 +181,20 @@ public class MOrder {
         return orders;
     }
 
+    public static boolean delete(int id) {
+        boolean isSuccess = true;
+        try {
+            String queryToDelete = "DELETE FROM isidrone.order WHERE id = ?";
+            PreparedStatement psToDelete = MDB.getPS(queryToDelete);
+            psToDelete.setInt(1, id);
+            psToDelete.executeUpdate();
+        } catch (SQLException e) {
+            isSuccess = false;
+        } finally {
+            MDB.disconnect();
+        }
+        return isSuccess;
+    }
 }
 
 
