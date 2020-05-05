@@ -51,4 +51,8 @@ public class ActionCategory {
         category.setActive(!Arrays.toString(request.getParameterValues("isActive")).equals("null"));
         request.setAttribute("message", MCategory.add(category));
     }
+
+    public static boolean deleteCategory(int idCategory) {
+        return MCategory.delete(idCategory);
+    }
 }

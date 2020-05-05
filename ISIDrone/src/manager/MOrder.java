@@ -6,12 +6,22 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+
 import com.sun.org.apache.xpath.internal.operations.Or;
 import entities.Cart;
 import entities.Item;
 import entities.ItemCart;
 import entities.Order;
 import entities.User;
+
+import entities.Cart;
+import entities.Item;
+import entities.ItemCart;
+import entities.Order;
+import entities.User;
+
+import entities.*;
+
 
 public class MOrder {
     public static int add(User user, Cart cart) {
@@ -67,9 +77,7 @@ public class MOrder {
     }
 
     public static List<Order> getAllOrdersByUserId(int userId) {
-
         List<Order> orderList = new ArrayList<Order>();
-
         try {
 
             MDB.connect();
@@ -135,6 +143,7 @@ public class MOrder {
         return orderList;
     }
 
+
 //    public static ArrayList<Order> getAllOrders() {
 //
 //        ArrayList<Order> orderList = new ArrayList<>();
@@ -169,6 +178,44 @@ public class MOrder {
 //
 //    }
 
+
+    public static List<Order> getAllOrders() {
+        List<Order> orders = new ArrayList<Order>();
+        try {
+            MDB.connect();
+            String query = "SELECT `order`.id, `order`.date, `order`.user_id,"
+                    + " `user`.fisrtName, `user`.lastName, `user`.email "
+                    + " FROM `order` "
+                    + " INNER JOIN `user` ON `order`.user_id = `user`.id;";
+
+            PreparedStatement ps = MDB.getPS(query);
+            ResultSet rs = ps.executeQuery();
+
+            while (rs.next()) {
+                Order order = new Order();
+                User user = new User();
+
+                order.setId(rs.getInt("order.id"));
+                order.setUserId(rs.getInt("order.user_id"));
+                order.setDate(rs.getString("order.date"));
+
+                user.setId(rs.getInt("order.user_id"));
+                user.setFirstName(rs.getString("user.firstName"));
+                user.setLastName(rs.getString("user.lastName"));
+
+                order.setUser(user);
+                // Ajouter la commande a la liste
+                orders.add(order);
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            MDB.disconnect();
+        }
+
+        return orders;
+    }
 
 }
 

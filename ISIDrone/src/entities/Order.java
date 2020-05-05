@@ -5,6 +5,7 @@ public class Order extends Cart {
 
     int id;
     int userId;
+    User user;
     String date;
     Boolean isShipped;
 
@@ -17,6 +18,14 @@ public class Order extends Cart {
         this.userId = userId;
         this.date = date;
         this.isShipped = isShipped;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 
     public int getId() {
