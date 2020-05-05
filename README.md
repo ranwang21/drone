@@ -28,3 +28,10 @@ To test the project in Linux environment:
 - cd to `/isidrone/products/` and use command `chown tomcat:tomcat img/` to give access to Tomcat to images
 - add context base `<Context docBase="/isidrone/products/img"  path="/ISIDrone/images/products" />` to your Tomcat `server.xml`. This is to allow Tomcat access to the product images folder
 - Restart the Tomcat
+
+
+##### Configuration of the database
+
+- Create folder `isidrone/conf/` at the root base `/`
+- Transfer configs.properties into the above created folder
+- Restart the Tomcat
