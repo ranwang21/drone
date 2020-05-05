@@ -11,7 +11,6 @@
     ArrayList<Item> items = (ArrayList<Item>) request.getAttribute("items");
     @SuppressWarnings("unchecked")
     ArrayList<Category> categories = (ArrayList<Category>) request.getAttribute("categories");
-    int result = (int) (request.getAttribute("result"));
 %>
 
 <jsp:include page="<%=Const.PATH_HEAD_JSP%>"/>
@@ -21,12 +20,6 @@
     <h2 class="text-center">Administration: Liste des produits</h2>
     <br>
     <br>
-    <%if (result == 0) {%>
-    <br>
-    <div class="alert alert-danger text-center" role="alert">
-        Impossible de supprimer le produit demandée. Des commandes sont associés à celle-ci
-    </div>
-    <%}%>
     <table class="table table-striped">
         <thead>
         <tr>
@@ -62,7 +55,7 @@
                     <div class="dropdown-content">
                         <a href="editProduct?product_id=<%=item.getId()%>">Modifier</a>
                         <a data-modal-target="#modal" href="#"
-                           onclick="confirmer(<%=item.getId()%>)">Supprimer</a>
+                           onclick="setIdProduct(<%=item.getId()%>)">Supprimer</a>
                         <a href="#">Action 3</a>
                     </div>
                 </div>
@@ -75,7 +68,6 @@
             } %>
         </tbody>
     </table>
-
     <div class="modal-supp" id="modal">
         <div class="modal-header-supp">
             <div class="title-supp">Suppression</div>
@@ -90,6 +82,7 @@
             </div>
         </div>
     </div>
+    <div id="overlay-supp"></div>
 </div>
 
 
