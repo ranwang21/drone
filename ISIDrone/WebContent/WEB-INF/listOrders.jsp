@@ -4,7 +4,7 @@
 <%@ page import="entities.Order" %>
 <%
     @SuppressWarnings("unchecked")
-    ArrayList<Order> orders = (ArrayList<Order>) request.getAttribute("orders");
+    ArrayList<Order> orders = (ArrayList<Order>) request.getAttribute("allOrders");
 %>
 
 <jsp:include page="<%=Const.PATH_HEAD_JSP%>"/>

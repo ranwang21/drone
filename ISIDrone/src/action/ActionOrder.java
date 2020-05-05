@@ -42,11 +42,7 @@ public class ActionOrder {
         return orderList;
     }
 
-    // get all oder to manager
-
-//    public static void getAllOrders(HttpServletRequest request, HttpServletResponse response) {
-//        request.setAttribute("allOrders", MOrder.getAllOrders());
-//    }
-    
-
+    public static void getAllOrders(HttpServletRequest request, HttpServletResponse response) {
+        request.setAttribute("allOrders", MOrder.getAllOrders());
+    }
 }
