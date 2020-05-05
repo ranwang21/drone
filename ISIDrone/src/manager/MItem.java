@@ -162,7 +162,6 @@ public class MItem {
 
     public static void addItem(Item item) {
 
-
         try {
             MDB.connect();
 

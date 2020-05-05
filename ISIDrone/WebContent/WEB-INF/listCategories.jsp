@@ -39,12 +39,13 @@
                     <button class="btn btn-info">&#11167</button>
                     <div class="dropdown-content">
                         <a href="#">Action 1</a>
-                        <a href="#">Action 2</a>
+                        <a data-modal-target="#modal" href="#">Supprimer</a>
                         <a href="#">Action 3</a>
                     </div>
                 </div>
             </td>
         </tr>
+
         <%
 
             }
@@ -52,6 +53,19 @@
         %>
         </tbody>
     </table>
+    <div class=" modal-supp" id="modal">
+        <div class="modal-header-supp">
+            <div class="title-supp">Suppression</div>
+            <button data-close-button class="close-button-supp">&times;</button>
+        </div>
+        <div class="modal-body-supp">
+            Assurez-vous qu'aucun produit est associé à la catégorie que vous souhaitez supprimer.
+            <div class="confirmer-button">
+                <button class="btn btn-danger">Confirmer</button>
+            </div>
+        </div>
+    </div>
+    <div id="overlay-supp"></div>
 </div>
 
 <jsp:include page="<%=Const.PATH_FOOTER_JSP%>"/>

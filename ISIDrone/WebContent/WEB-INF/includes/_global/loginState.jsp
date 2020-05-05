@@ -18,29 +18,28 @@
 
 //Si le autoLogin a fonctionné
     if (user != null) {%>
-<li id="loginState">
-    <a href="#" id="user"><%=user.getFirstName()%>
-    </a>
-    <% if (user.getIsAdmin() == 0) {%>
-    <ul id="userAction" class="list-unstyled navbar navbar-default">
-        <li><a href="<%="order-history"%>">Historique commande</a></li>
-        <li>&nbsp;</li>
-        <li><a href="login">Déconnexion</a></li>
-    </ul>
-    <%
-    } else {%>
 
-    <ul id="userAction" class="list-unstyled navbar navbar-default">
-        <li><a href="login">Déconnexion</a></li>
-    </ul>
-    <%}%>
+<li class="nav-item dropdown user-state">
+    <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#"><%=user.getFirstName().toUpperCase()%>
+    </a>
+
+    <div class="dropdown-menu dropdown-menu-right" id="dropdownMenuUser">
+        <% if (user.getIsAdmin() == 0) {%>
+        <a class="dropdown-item" href="<%="order-history"%>">Historique commande</a>
+        <%} else {%>
+        <a class="dropdown-item" href="list-products?category=1">Liste des produits</a>
+        <a class="dropdown-item" href="list-categories">Liste des catégories</a>
+        <div class="dropdown-divider"></div>
+        <a class="dropdown-item" href="item?ajouterProduit=1">Ajouter un produit</a>
+        <a class="dropdown-item" href="addCategory">Ajouter une catégorie</a>
+        <%}%>
+
+        <div class="dropdown-divider"></div>
+        <a class="dropdown-item" href="login">Déconnexion</a>
+    </div>
 </li>
 
-<% } else {
-
-%>
+<% } else { %>
 <li><a href="signup<%=(request.getParameter("fromCart") != null ? "?fromCart=true" : "")%>">S'enregistrer</a></li>
 <li id="loginState"><a href="login">Connexion</a></li>
-<%
-    }
-%>
+<% } %>

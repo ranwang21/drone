@@ -4,7 +4,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import entities.Category;
+import entities.Item;
 import manager.MCategory;
+import manager.MItem;
+
+import java.util.Arrays;
 
 public class ActionCategory {
 
@@ -37,5 +41,14 @@ public class ActionCategory {
 
     public static Category getCategory(int idCategory) {
         return MCategory.getCategoryById(idCategory);
+    }
+
+    public static void addCategory(HttpServletRequest request, HttpServletResponse response) {
+        Category category = new Category();
+        category.setName(request.getParameter("name"));
+        category.setOrder(Integer.parseInt(request.getParameter("order")));
+        category.setDescription(request.getParameter("description"));
+        category.setActive(!Arrays.toString(request.getParameterValues("isActive")).equals("null"));
+        request.setAttribute("message", MCategory.add(category));
     }
 }

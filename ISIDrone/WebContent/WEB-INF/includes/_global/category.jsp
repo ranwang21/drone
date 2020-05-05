@@ -1,21 +1,24 @@
-<%@page import="action.ActionCategory"%>
-<%@page import="java.util.ArrayList, entities.Category"%>
+<%@page import="action.ActionCategory" %>
+<%@page import="java.util.ArrayList, entities.Category" %>
 <%
-	//Vérification si la catégorie sélectionne est valide (Un utilisateur pourrait tenter d'entré une catégorie invalide dans la barre d'adresse)
-	@SuppressWarnings("unchecked")
-	ArrayList<Category> categories = (ArrayList<Category>) request.getAttribute("categories");
-	int categorySelected = ActionCategory.getSelectedCategory(request, response);
-	
-	if(categories.size() > 0) {
-		for(Category category : categories) {
+    //Vï¿½rification si la catï¿½gorie sï¿½lectionne est valide (Un utilisateur pourrait tenter d'entrï¿½ une catï¿½gorie invalide dans la barre d'adresse)
+    @SuppressWarnings("unchecked")
+    ArrayList<Category> categories = (ArrayList<Category>) request.getAttribute("categories");
+    int categorySelected = ActionCategory.getSelectedCategory(request, response);
+
+    if (categories.size() > 0) {
+        for (Category category : categories) {
+            if (category.getActive()) {
 %>
-						<a href="items?category=<%=category.getId()%>" class="list-group-item<%=(category.getId() == categorySelected ? " active" : "")%>"><%=category.getName()%></a>
+<a href="items?category=<%=category.getId()%>"
+   class="list-group-item<%=(category.getId() == categorySelected ? " active" : "")%>"><%=category.getName()%>
+</a>
 <%
-		}
-	}
-	else {
+        }
+    }
+} else {
 %>
-					Aucune Catégorie n'est présente pour le moment.
+Aucune Catï¿½gorie n'est prï¿½sente pour le moment.
 <%
-	}
+    }
 %>
