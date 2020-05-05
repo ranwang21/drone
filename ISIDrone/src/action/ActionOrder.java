@@ -32,7 +32,7 @@ public class ActionOrder {
         String sujet = "Achat completé";
         String message = "Félicitation, vous avez commander quelquechose.";
 
-        MSendMail.sendEmail(message, to, sujet);
+//        MSendMail.sendEmail(message, to, sujet);
 
     }
 
