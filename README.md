@@ -33,7 +33,7 @@ To test the project in Linux environment:
 ##### Configuration of the database
 
 - Create folder `isidrone/conf/` at the root base `/`
-- Transfer configs.properties into the above created folder
+- Transfer configs.properties ( userGuide/configs.properties ) into the above created folder
 
 ![](userGuide/configs.properties)
 
