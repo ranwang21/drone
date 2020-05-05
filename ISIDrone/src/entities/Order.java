@@ -6,8 +6,6 @@ public class Order extends Cart {
     int id;
     int userId;
     User user;
-    int qty;
-    double price;
     String date;
     Boolean isShipped;
 
@@ -22,37 +20,12 @@ public class Order extends Cart {
         this.isShipped = isShipped;
     }
 
-    public Order(int id, String date, Boolean isShipped, int qty, double price, User user) {
-        this.id = id;
-        this.date = date;
-        this.qty = qty;
-        this.price = price;
-        this.isShipped = isShipped;
-        this.user = user;
-    }
-
-    public int getQty() {
-        return qty;
-    }
-
-    public double getPrice() {
-        return price;
-    }
-
     public User getUser() {
         return user;
     }
 
     public void setUser(User user) {
         this.user = user;
-    }
-
-    public void setQty(int qty) {
-        this.qty = qty;
-    }
-
-    public void setPrice(double price) {
-        this.price = price;
     }
 
     public int getId() {

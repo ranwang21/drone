@@ -16,26 +16,20 @@
     <table class="table table-striped">
         <thead>
         <tr>
-            <th scope="col">Date</th>
             <th scope="col">Nom</th>
             <th scope="col">Prénom</th>
-            <th scope="col">Quantité</th>
-            <th scope="col">Prix Total</th>
+            <th scope="col">Date</th>
             <th scope="col">Actions</th>
         </tr>
         </thead>
         <tbody>
         <%for (Order order : orders) {%>
         <tr>
-            <td><%=order.getDate()%>
-            </td>
             <td><%=order.getUser().getLastName()%>
             </td>
             <td><%=order.getUser().getFirstName()%>
             </td>
-            <td><%=order.getQty()%>
-            </td>
-            <td><%=order.getPrice()%>
+            <td><%=order.getDate()%>
             </td>
             <td>
                 <div class="dropdown">

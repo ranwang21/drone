@@ -133,10 +133,8 @@ public class MOrder {
         try {
             MDB.connect();
             String query = "SELECT `order`.id, `order`.date, `order`.user_id,"
-                    + " `order_info`.order_id, `order_info`.product_id, `order_info`.qty, `order_info`.price "
                     + " `user`.fisrtName, `user`.lastName, `user`.email "
-                    + " FROM `order_info` "
-                    + " INNER JOIN `order` ON `order`.id = `order_info`.order_id "
+                    + " FROM `order` "
                     + " INNER JOIN `user` ON `order`.user_id = `user`.id;";
 
             PreparedStatement ps = MDB.getPS(query);
@@ -149,14 +147,10 @@ public class MOrder {
                 order.setId(rs.getInt("order.id"));
                 order.setUserId(rs.getInt("order.user_id"));
                 order.setDate(rs.getString("order.date"));
-                order.setShipped(rs.getBoolean("order.isShipped"));
-                order.setQty(rs.getInt("order_info.qty"));
-                order.setPrice(rs.getDouble("order_info.price"));
 
                 user.setId(rs.getInt("order.user_id"));
                 user.setFirstName(rs.getString("user.firstName"));
                 user.setLastName(rs.getString("user.lastName"));
-                user.setEmail(rs.getString("user.email"));
 
                 order.setUser(user);
                 // Ajouter la commande a la liste
