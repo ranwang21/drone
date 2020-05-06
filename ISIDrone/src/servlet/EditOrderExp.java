@@ -1,9 +1,7 @@
 package servlet;
 
 import action.ActionCategory;
-import action.ActionItems;
-import action.ActionSignUp;
-import action.ActionUser;
+import action.ActionOrder;
 import util.Const;
 
 import javax.servlet.ServletException;
@@ -14,14 +12,14 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 /**
- * Servlet implementation class ListCategories
+ * Servlet implementation class EditOrderExp
  */
-@WebServlet(name = "listClients", urlPatterns = {"/listClients"})
-public class ListClients extends HttpServlet {
+@WebServlet(name = "editOrderExp", urlPatterns = {"/edit-order-exp"})
+public class EditOrderExp extends HttpServlet {
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public ListClients() {
+    public EditOrderExp() {
         super();
     }
 
@@ -29,8 +27,7 @@ public class ListClients extends HttpServlet {
      * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
      */
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        ActionUser.getClients(request, response);
-        request.getRequestDispatcher(Const.PATH_PAGE_LIST_CLIENTS).forward(request, response);
+        request.getRequestDispatcher(Const.PATH_PAGE_LIST_ORDERS).forward(request, response);
     }
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

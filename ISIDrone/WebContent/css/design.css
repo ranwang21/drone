@@ -121,22 +121,6 @@
     width: 200px;
 }
 
-.navbar-nav .dropdown-menu a {
-    transition: all .5s;
-    color: black;
-    padding: 10px;
-    text-decoration: none !important;
-}
-
-.navbar-nav .dropdown-menu .dropdown-divider {
-    border: 2px solid darkgray;
-    margin: 5px 0;
-}
-
-.navbar-nav .dropdown-menu a:hover {
-    background-color: lightgray !important;
-}
-
 .navbar-form {
     margin-top: 0;
 }
