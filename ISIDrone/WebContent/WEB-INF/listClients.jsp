@@ -4,7 +4,9 @@
 <%@ page import="entities.User" %>
 <%
     @SuppressWarnings("unchecked")
-    ArrayList<User> clients = (ArrayList<User>) request.getAttribute("clients");
+    ArrayList<User> users = (ArrayList<User>) request.getAttribute("users");
+    String search = request.getParameter("search");
+
 %>
 
 <jsp:include page="<%=Const.PATH_HEAD_JSP%>"/>
@@ -12,6 +14,20 @@
 
 <div class="container">
     <h2 class="text-center">Administration: Liste des clients</h2>
+    <%if (search != null) { %>
+    <div style="padding-bottom: 0.7em; font-size: 1.5em;text-align: center">
+        Resultat de recherche en fonction du mot clé <span style="color: #3399f3; font-size: 1.2em"><%=search%></span>
+    </div>
+    <% }%>
+
+    <form class="navbar-form" role="search" action="search-users?">
+        <div class="form-group col-lg-offset-9" style="padding-right:0;">
+            <input class="form-control biginput" name="search" placeholder="Rechercher" type="text">
+            <button type="submit" class="btn btn-primary"><span
+                    class="glyphicon glyphicon-search"></span></button>
+        </div>
+
+    </form>
     <br>
     <table class="table table-striped">
         <thead>
@@ -23,7 +39,7 @@
         </tr>
         </thead>
         <tbody>
-        <%for (User user : clients) {%>
+        <%for (User user : users) {%>
         <tr>
             <td><%=user.getLastName()%>
             </td>

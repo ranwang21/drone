@@ -440,7 +440,4 @@ public class ActionSignUp {
         return errorMsg;
     }
 
-    public static void getClients(HttpServletRequest request, HttpServletResponse response) {
-        request.setAttribute("clients", MSignUp.getClients());
-    }
 }
