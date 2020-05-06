@@ -15,6 +15,7 @@ import java.util.Properties;
 public class MDB {
     private static Connection connection = null;
     private static final String osName = System.getProperty("os.name").toLowerCase();
+    private static final String DATABASE_CONFIG = "ISIDRONE_CONFIG";
 
     public static void connect() throws SQLException {
 
@@ -22,15 +23,7 @@ public class MDB {
         InputStream input = null;
 
         try {
-            String configFile = "";
-
-            // Recuperation du fichier de configuration en fonction du type de systeme
-            if (isUnix()) {
-                configFile = File.separator + "isidrone" + File.separator + "conf" + File.separator + "configs.properties";
-            } else if (isWindows()) {
-                configFile = "C:" + File.separator + "isidrone" + File.separator + "conf" + File.separator + "configs.properties";
-            }
-            input = new FileInputStream(configFile);
+            input = new FileInputStream(getConfig());
             // load a properties file
             prop.load(input);
 
@@ -130,8 +123,18 @@ public class MDB {
         }
     }
 
-    public static boolean isWindows() {
-        return (osName.contains("win"));
+    private static String getConfig() {
+        // Recuperation du fichier de configuration en fonction du type de systeme
+        //For WINDOWS
+        String defaultConfig = "C:" + File.separator + "isidrone" + File.separator + "conf" + File.separator + "configs.properties";
+
+        //For LINUX
+        if (isUnix())
+            defaultConfig = File.separator + "isidrone" + File.separator + "conf" + File.separator + "configs.properties";
+
+        String config = System.getenv(DATABASE_CONFIG);
+
+        return config == null ? defaultConfig : config;
     }
 
     public static boolean isUnix() {

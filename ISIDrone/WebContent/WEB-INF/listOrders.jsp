@@ -33,9 +33,9 @@
         <tbody>
         <%for (Order order : orders) {%>
         <tr>
-            <td class="text-center"><%=order.getUser().getLastName()%>
+            <td><%=order.getUser().getLastName()%>
             </td>
-            <td class="text-center"><%=order.getUser().getFirstName()%>
+            <td><%=order.getUser().getFirstName()%>
             </td>
             <% if (order.getShipped()) { %>
             <td class="text-center text-success">Expédié</td>
@@ -45,10 +45,12 @@
                     <button class="btn btn-danger">&#9992;</button>
                 </a>
             </td>
+            <% if (order.getShipped()) {%>
+            <td class="text-center text-success align-middle">Expédié</td>
+            <% } else { %>
+            <td class="text-center text-danger align-middle">En Attente</td>
             <% } %>
-            <td class="text-center"><%=order.getDate()%>
-            </td>
-            <td class="text-center">
+            <td>
                 <div class="dropdown">
                     <button class="btn btn-info">&#11167</button>
                     <div class="dropdown-content">
