@@ -25,7 +25,7 @@
         <tr>
             <th class="text-center" scope="col">Nom</th>
             <th class="text-center" scope="col">Prénom</th>
-            <th class="text-center" scope="col">Status d'envoie</th>
+            <th class="text-center" scope="col">Status d'expédition</th>
             <th class="text-center" scope="col">Date</th>
             <th class="text-center" scope="col">Actions</th>
         </tr>
@@ -41,9 +41,8 @@
             <td class="text-center text-success">Expédié</td>
             <% } else { %>
             <td class="text-center">
-                <a data-modal-target="#modal" href="#"
-                   onclick="setIdOrderExp(<%=order.getId()%>)">
-                    <button class="btn btn-success">&#9992;</button>
+                <a data-modal-target="#modal" href="#" onclick="setIdUpdateExp(<%=order.getId()%>, 'true')">
+                    <button class="btn btn-danger">&#9992;</button>
                 </a>
             </td>
             <% } %>
@@ -53,10 +52,12 @@
                 <div class="dropdown">
                     <button class="btn btn-info">&#11167</button>
                     <div class="dropdown-content">
-                        <a href="#">Action 1</a>
                         <a data-modal-target="#modal" href="#"
                            onclick="setIdOrder(<%=order.getId()%>)">Supprimer</a>
-                        <a href="#">Action 3</a>
+                        <% if (order.getShipped()) {%>
+                        <a data-modal-target="#modal" href="#"
+                           onclick="setIdUpdateExp(<%=order.getId()%>, 'false')">Annuler l'expédition</a>
+                        <% } %>
                     </div>
                 </div>
             </td>
@@ -66,11 +67,11 @@
     </table>
     <div class="modal-supp" id="modal">
         <div class="modal-header-supp">
-            <div id="main-title" class="title-supp">Suppression</div>
+            <div id="order-main-title" class="title-supp"></div>
             <button data-close-button class="close-button-supp">&times;</button>
         </div>
         <div class="modal-body-supp">
-            Supprimer la commande?
+            <p id="order-body-title"></p>
             <div class="confirmer-button">
                 <a id="confirm-link">
                     <button class="btn btn-danger">Confirmer</button>

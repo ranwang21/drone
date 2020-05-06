@@ -1,10 +1,13 @@
 package action;
 
+import java.util.Arrays;
 import java.util.List;
 
 import entities.Cart;
+import entities.Category;
 import entities.Order;
 import entities.User;
+import manager.MCategory;
 import manager.MOrder;
 import manager.MSendMail;
 
@@ -48,5 +51,9 @@ public class ActionOrder {
 
     public static boolean deleteOrder(int idOrder) {
         return MOrder.delete(idOrder);
+    }
+
+    public static void updateOrderExp(HttpServletRequest request, int id, boolean isExp) {
+        request.setAttribute("message", MOrder.updateOrderExp(id, isExp));
     }
 }
