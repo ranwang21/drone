@@ -25,18 +25,17 @@
                 </div>
                 <div class="panel-body">
                     <div class="table-responsive">
-                        <table class="table table-condensed">
+                        <table class="table table-condensed" style="height: 100px;">
                             <%
                                 if (orderList.size() != 0) {
                             %>
                             <thead>
                             <tr>
-                                <th class="text-center">ID</th>
-                                <th class="text-center">Date</th>
-                                <th class="text-center">Nombre d'item</th>
-                                <th class="text-center">Livraison</th>
-                                <th class="text-right">Total</th>
-                                <th class="text-center"></th>
+                                <th class="text-center align-middle">ID</th>
+                                <th class="text-center align-middle">Date</th>
+                                <th class="text-center align-middle">Nombre d'item</th>
+                                <th class="text-center align-middle">Livraison</th>
+                                <th class="text-right align-middle">Total</th>
                             </tr>
                             </thead>
                             <%
@@ -53,11 +52,12 @@
                             %>
                             <tbody>
                             <tr>
-                                <td style=":hover"><%="<a href='order?no=" + i + "'>" + order.getId() + "</a>"%>
+                                <td class="align-middle"
+                                    style=":hover"><%="<a href='order?no=" + i + "'>" + order.getId() + "</a>"%>
                                 </td>
-                                <td class="text-center"><%=order.getDate()%>
+                                <td class="text-center align-middle"><%=order.getDate()%>
                                 </td>
-                                <td class="text-center">
+                                <td class="text-center align-middle">
                                     <%
                                         int size = 0;
                                         for (ItemCart itemC : order.getCart().values()) {
@@ -66,24 +66,21 @@
                                     %>
                                     <%=size%>
                                 </td>
-                                <%--                                <% if (order.getShipped()) {%>--%>
-                                <%--                                <td class="text-center text-success">Expédié</td>--%>
-                                <%--                                <% } else { %>--%>
-                                <%--                                <td class="text-center text-danger">En attente</td>--%>
-                                <%--                                <% } %>--%>
-                                <%--                                <td class="text-right"><%=df.format(order.generateTotal())%>$</td>--%>
-                                <%--                                <% if (order.getShipped()) {%>--%>
-                                <%--                                <td class="text-center">--%>
-                                <%--                                    <button type="button" class="btn btn-danger">Supprimer</button>--%>
-                                <%--                                </td>--%>
-                                <%--                                <% } else { %>--%>
-                                <%--                                <td class="text-center">--%>
+                                <% if (order.getShipped()) {%>
+                                <td class="text-center text-success align-middle">Expédié</td>
+                                <% } else { %>
+                                <td class="text-center text-danger align-middle">En Attente</td>
+                                <% } %>
+                                <td class="text-right align-middle"><%=df.format(order.generateTotal())%>$</td>
+
+
                             </tr>
                             </tbody>
                             <%
                                 }
                             %>
                         </table>
+
                     </div>
                 </div>
             </div>

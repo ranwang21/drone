@@ -26,6 +26,7 @@
             <th scope="col">Nom</th>
             <th scope="col">Prénom</th>
             <th scope="col">Date</th>
+            <th scope="col">Livraison</th>
             <th scope="col">Actions</th>
         </tr>
         </thead>
@@ -38,13 +39,20 @@
             </td>
             <td><%=order.getDate()%>
             </td>
+            <% if (order.getShipped()) {%>
+            <td class="text-center text-success align-middle">Expédié</td>
+            <% } else { %>
+            <td class="text-center text-danger align-middle">En Attente</td>
+            <% } %>
             <td>
                 <div class="dropdown">
                     <button class="btn btn-info">&#11167</button>
                     <div class="dropdown-content">
                         <a href="#">Action 1</a>
+                        <% if (!order.getShipped()) { %>
                         <a data-modal-target="#modal" href="#"
                            onclick="setIdOrder(<%=order.getId()%>)">Supprimer</a>
+                        <% } %>
                         <a href="#">Action 3</a>
                     </div>
                 </div>
