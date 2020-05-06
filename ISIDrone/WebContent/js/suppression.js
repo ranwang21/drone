@@ -45,9 +45,9 @@ function setIdOrder(id) {
     link.setAttribute('href', 'remove-order?order_id=' + id)
 }
 
-function setIdOrderExp(id) {
-    let link = document.getElementById('confirm-link')
-    link.setAttribute('href', 'edit-order-exp?order_id=' + id)
+function setIdOrderClient(id) {
+    let link = document.getElementById('confirm-client-link')
+    link.setAttribute('href', 'remove-order?order_id=' + id)
 }
 
 function setIdProduct(id) {

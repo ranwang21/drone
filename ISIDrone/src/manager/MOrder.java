@@ -148,7 +148,7 @@ public class MOrder {
         ArrayList<Order> orders = new ArrayList<Order>();
         try {
             MDB.connect();
-            String query = "SELECT `order`.id, `order`.date, `order`.user_id,`order`.isShipped,"
+            String query = "SELECT `order`.id, `order`.date, `order`.user_id, `order`.isShipped,"
                     + " `user`.firstName, `user`.lastName, `user`.email "
                     + " FROM `order` "
                     + " INNER JOIN `user` ON `order`.user_id = `user`.id ";

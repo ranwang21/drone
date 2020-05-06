@@ -23,39 +23,36 @@
     <table class="table table-striped">
         <thead>
         <tr>
-            <th class="text-center" scope="col">Nom</th>
-            <th class="text-center" scope="col">Prénom</th>
-            <th class="text-center" scope="col">Status d'envoie</th>
-            <th class="text-center" scope="col">Date</th>
-            <th class="text-center" scope="col">Actions</th>
+            <th scope="col">Nom</th>
+            <th scope="col">Prénom</th>
+            <th scope="col">Date</th>
+            <th scope="col">Livraison</th>
+            <th scope="col">Actions</th>
         </tr>
         </thead>
         <tbody>
         <%for (Order order : orders) {%>
         <tr>
-            <td class="text-center"><%=order.getUser().getLastName()%>
+            <td><%=order.getUser().getLastName()%>
             </td>
-            <td class="text-center"><%=order.getUser().getFirstName()%>
+            <td><%=order.getUser().getFirstName()%>
             </td>
-            <% if (order.getShipped()) { %>
-            <td class="text-center text-success">Expédié</td>
+            <td><%=order.getDate()%>
+            </td>
+            <% if (order.getShipped()) {%>
+            <td class="text-center text-success align-middle">Expédié</td>
             <% } else { %>
-            <td class="text-center">
-                <a data-modal-target="#modal" href="#"
-                   onclick="setIdOrderExp(<%=order.getId()%>)">
-                    <button class="btn btn-success">&#9992;</button>
-                </a>
-            </td>
+            <td class="text-center text-danger align-middle">En Attente</td>
             <% } %>
-            <td class="text-center"><%=order.getDate()%>
-            </td>
-            <td class="text-center">
+            <td>
                 <div class="dropdown">
                     <button class="btn btn-info">&#11167</button>
                     <div class="dropdown-content">
                         <a href="#">Action 1</a>
+                        <% if (!order.getShipped()) { %>
                         <a data-modal-target="#modal" href="#"
                            onclick="setIdOrder(<%=order.getId()%>)">Supprimer</a>
+                        <% } %>
                         <a href="#">Action 3</a>
                     </div>
                 </div>
@@ -66,7 +63,7 @@
     </table>
     <div class="modal-supp" id="modal">
         <div class="modal-header-supp">
-            <div id="main-title" class="title-supp">Suppression</div>
+            <div class="title-supp">Suppression</div>
             <button data-close-button class="close-button-supp">&times;</button>
         </div>
         <div class="modal-body-supp">
