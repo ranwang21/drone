@@ -132,7 +132,7 @@
                             <strong>Status d'expédition:</strong><br>
                             <%
                                 if (order != null) {
-                                    if (order.getShipped()) {
+                                    if (order.getShipped().booleanValue() == true) {
                             %>
                             <span>Expédié</span>
                             <%} else {%>
