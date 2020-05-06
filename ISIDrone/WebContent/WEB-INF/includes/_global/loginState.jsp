@@ -23,13 +23,28 @@
     <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#"><%=user.getFirstName().toUpperCase()%>
     </a>
 
+
     <div class="dropdown-menu dropdown-menu-right" id="dropdownMenuUser">
         <% if (user.getIsAdmin() == 0) {%>
         <a class="dropdown-item" href="<%="order-history"%>">Historique commande</a>
         <%} else {%>
+        <div class="dropdown show">
+            <a class="btn btn-secondary dropdown-toggle" href="https://example.com" id="dropdownMenuLink"
+               data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Dropdown link
+            </a>
+
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                <a class="dropdown-item" href="#">Action</a>
+                <a class="dropdown-item" href="#">Another action</a>
+                <a class="dropdown-item" href="#">Something else here</a>
+            </div>
+        </div>
+
         <a class="dropdown-item" href="list-products?category=1">Liste des produits</a>
         <a class="dropdown-item" href="list-categories">Liste des catégories</a>
         <a class="dropdown-item" href="listOrders">Liste des commandes</a>
+        <a class="dropdown-item" href="listClients">Liste des clients</a>
         <div class="dropdown-divider"></div>
         <a class="dropdown-item" href="item?ajouterProduit=1">Ajouter un produit</a>
         <a class="dropdown-item" href="addCategory">Ajouter une catégorie</a>
