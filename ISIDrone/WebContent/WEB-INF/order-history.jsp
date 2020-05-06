@@ -36,6 +36,7 @@
                                 <th class="text-center">Nombre d'item</th>
                                 <th class="text-center">Livraison</th>
                                 <th class="text-right">Total</th>
+                                <th class="text-center"></th>
                             </tr>
                             </thead>
                             <%
@@ -65,12 +66,18 @@
                                     %>
                                     <%=size%>
                                 </td>
-                                <% if (order.getShipped()) {%>
-                                <td class="text-center text-success">Expédié</td>
-                                <% } else { %>
-                                <td class="text-center text-danger">En attente</td>
-                                <% } %>
-                                <td class="text-right"><%=df.format(order.generateTotal())%>$</td>
+                                <%--                                <% if (order.getShipped()) {%>--%>
+                                <%--                                <td class="text-center text-success">Expédié</td>--%>
+                                <%--                                <% } else { %>--%>
+                                <%--                                <td class="text-center text-danger">En attente</td>--%>
+                                <%--                                <% } %>--%>
+                                <%--                                <td class="text-right"><%=df.format(order.generateTotal())%>$</td>--%>
+                                <%--                                <% if (order.getShipped()) {%>--%>
+                                <%--                                <td class="text-center">--%>
+                                <%--                                    <button type="button" class="btn btn-danger">Supprimer</button>--%>
+                                <%--                                </td>--%>
+                                <%--                                <% } else { %>--%>
+                                <%--                                <td class="text-center">--%>
                             </tr>
                             </tbody>
                             <%
