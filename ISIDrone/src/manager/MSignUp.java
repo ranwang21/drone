@@ -5,7 +5,9 @@ import java.security.NoSuchAlgorithmException;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
+import entities.Category;
 import util.Hash;
 import entities.Address;
 import entities.User;
@@ -112,6 +114,36 @@ public class MSignUp {
         }
 
         return id;
+    }
+
+
+    public static ArrayList<User> getClients() {
+        ArrayList<User> clients = new ArrayList<>();
+        try {
+            MDB.connect();
+            String query = "SELECT * FROM user WHERE isAdmin = ?";
+
+            PreparedStatement ps = MDB.getPS(query);
+            ps.setInt(1, 0);
+            ResultSet rs = ps.executeQuery();
+
+            while (rs.next()) {
+                User user = new User();
+                user.setId(rs.getInt("id"));
+                user.setLastName(rs.getString("lastName"));
+                user.setFirstName(rs.getString("firstName"));
+                user.setEmail(rs.getString("email"));
+
+                clients.add(user);
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            MDB.disconnect();
+        }
+
+        return clients;
     }
 
 }
