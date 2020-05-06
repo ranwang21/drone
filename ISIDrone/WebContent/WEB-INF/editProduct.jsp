@@ -27,7 +27,7 @@
                 <div class="panel-body">
                     <fieldset class="col-md-12">
                         <% if (msg != null) {%>
-                        <div class="col-md-12 alert alert-success" role="alert">
+                        <div class="col-md-12 alert alert-success" id="successMsgProduct" role="alert">
                             Modification effectuée avec succès !!!
                         </div>
                         <%} %>
@@ -90,7 +90,7 @@
                     </fieldset>
 
                     <div class="form-group text-center" style="clear: left; top: 15px; margin-bottom: 15px;">
-                        <a href="#" id="btnEditCategory" class="btn btn-default">Modifier</a>
+                        <a href="#" id="btnEditProduct" class="btn btn-default">Modifier</a>
                         <button style="display: none" type="submit" class="btn btn-default">Modifier</button>
                     </div>
                 </div>
@@ -98,35 +98,4 @@
         </div>
     </div>
 </div>
-<script>
-    function getById(param) {
-        return document.getElementById(param)
-    }
-
-    // Validation du formulaire de modification d'un produit
-    const btnEditProduct = getById("btnEditProduct")
-    btnEditProduct.addEventListener('click', btnEditProductClick)
-
-    function btnEditProductClick() {
-        const errorMessage = getById("editProductError")
-        const errorName = getById("errorName")
-        const errorPrice = getById("errorPrice")
-        const errorStock = getById("errorStock")
-
-        const form = getById("formEditProduct")
-        const name = getById("editProductName")
-        const price = getById("editProductPrice")
-        const stock = getById("editProductStock")
-
-        if (name.value.length === 0 || price.value.length === 0 || stock.value.length === 0) {
-            errorMessage.style.display = "block";
-            errorName.style.display = name.value.length === 0 ? "block" : "none"
-            errorPrice.style.display = price.value.length === 0 ? "block" : "none"
-            errorStock.style.display = stock.value.length === 0 ? "block" : "none"
-        } else {
-            errorMessage.style.display = "none";
-            form.submit()
-        }
-    }
-</script>
 <jsp:include page="<%=Const.PATH_FOOTER_JSP%>"/>
