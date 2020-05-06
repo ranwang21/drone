@@ -23,13 +23,7 @@ public class MDB {
         InputStream input = null;
 
         try {
-            // Recuperation du fichier de configuration en fonction du type de systeme
-            String defaultConfig = "C:" + File.separator + "isidrone" + File.separator + "conf" + File.separator + "configs.properties";
-            if (isUnix())
-                defaultConfig = File.separator + "isidrone" + File.separator + "conf" + File.separator + "configs.properties";
-
-            String config = System.getenv(DATABASE_CONFIG);
-            input = new FileInputStream(config == null ? defaultConfig : config);
+            input = new FileInputStream(getConfig());
             // load a properties file
             prop.load(input);
 
@@ -127,6 +121,20 @@ public class MDB {
         } finally {
             connection = null;
         }
+    }
+
+    private static String getConfig() {
+        // Recuperation du fichier de configuration en fonction du type de systeme
+        //For WINDOWS
+        String defaultConfig = "C:" + File.separator + "isidrone" + File.separator + "conf" + File.separator + "configs.properties";
+
+        //For LINUX
+        if (isUnix())
+            defaultConfig = File.separator + "isidrone" + File.separator + "conf" + File.separator + "configs.properties";
+
+        String config = System.getenv(DATABASE_CONFIG);
+
+        return config == null ? defaultConfig : config;
     }
 
     public static boolean isUnix() {
