@@ -33,10 +33,9 @@
                             <tr>
                                 <th class="text-center">ID</th>
                                 <th class="text-center">Date</th>
+                                <th class="text-center">Status d'envoie</th>
                                 <th class="text-center">Nombre d'item</th>
-                                <th class="text-center">Livraison</th>
                                 <th class="text-right">Total</th>
-                                <th class="text-center"></th>
                             </tr>
                             </thead>
                             <%
@@ -57,6 +56,11 @@
                                 </td>
                                 <td class="text-center"><%=order.getDate()%>
                                 </td>
+                                <% if (order.getShipped()) {%>
+                                <td class="text-center text-success">Expédié</td>
+                                <% } else { %>
+                                <td class="text-center text-danger">En attente</td>
+                                <% } %>
                                 <td class="text-center">
                                     <%
                                         int size = 0;
@@ -66,18 +70,7 @@
                                     %>
                                     <%=size%>
                                 </td>
-                                <%--                                <% if (order.getShipped()) {%>--%>
-                                <%--                                <td class="text-center text-success">Expédié</td>--%>
-                                <%--                                <% } else { %>--%>
-                                <%--                                <td class="text-center text-danger">En attente</td>--%>
-                                <%--                                <% } %>--%>
-                                <%--                                <td class="text-right"><%=df.format(order.generateTotal())%>$</td>--%>
-                                <%--                                <% if (order.getShipped()) {%>--%>
-                                <%--                                <td class="text-center">--%>
-                                <%--                                    <button type="button" class="btn btn-danger">Supprimer</button>--%>
-                                <%--                                </td>--%>
-                                <%--                                <% } else { %>--%>
-                                <%--                                <td class="text-center">--%>
+                                <td class="text-right"><%=df.format(order.generateTotal())%>$</td>
                             </tr>
                             </tbody>
                             <%
