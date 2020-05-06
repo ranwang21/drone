@@ -35,7 +35,7 @@ To test the project in Linux environment:
 - Create folder `isidrone/conf/` at the root base `/`
 - Transfer configs.properties ( userGuide/configs.properties ) into the above created folder
 
-## configs.properties
+### configs.properties
 ```java
 DB_NAME=isidrone
 DB_IP=127.0.0.1
@@ -43,6 +43,8 @@ DB_PORT=3306
 DB_USERNAME=root
 DB_PASSWORD=abc123...
 ```
+
+### Tomcat configuration
 
 ![](userGuide/isidrone_config.jpg)
 
