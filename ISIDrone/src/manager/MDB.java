@@ -1,5 +1,6 @@
 package manager;
 
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -13,6 +14,7 @@ import java.util.Properties;
 
 public class MDB {
     private static Connection connection = null;
+    private static final String osName = System.getProperty("os.name").toLowerCase();
     private static final String DATABASE_CONFIG = "ISIDRONE_CONFIG";
 
     public static void connect() throws SQLException {
@@ -21,7 +23,13 @@ public class MDB {
         InputStream input = null;
 
         try {
-            input = new FileInputStream(System.getenv(DATABASE_CONFIG));
+            // Recuperation du fichier de configuration en fonction du type de systeme
+            String defaultConfig = "C:" + File.separator + "isidrone" + File.separator + "conf" + File.separator + "configs.properties";
+            if (isUnix())
+                defaultConfig = File.separator + "isidrone" + File.separator + "conf" + File.separator + "configs.properties";
+
+            String config = System.getenv(DATABASE_CONFIG);
+            input = new FileInputStream(config == null ? defaultConfig : config);
             // load a properties file
             prop.load(input);
 
@@ -119,5 +127,9 @@ public class MDB {
         } finally {
             connection = null;
         }
+    }
+
+    public static boolean isUnix() {
+        return (osName.contains("nix") || osName.contains("nux") || osName.indexOf("aix") > 0);
     }
 }
