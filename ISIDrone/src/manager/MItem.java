@@ -178,8 +178,7 @@ public class MItem {
         } finally {
             MDB.disconnect();
         }
-
-        System.out.println(result);
+        
         return result;
     }
 
