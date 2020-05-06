@@ -23,22 +23,33 @@
     <table class="table table-striped">
         <thead>
         <tr>
-            <th scope="col">Nom</th>
-            <th scope="col">Prénom</th>
-            <th scope="col">Date</th>
-            <th scope="col">Actions</th>
+            <th class="text-center" scope="col">Nom</th>
+            <th class="text-center" scope="col">Prénom</th>
+            <th class="text-center" scope="col">Status d'envoie</th>
+            <th class="text-center" scope="col">Date</th>
+            <th class="text-center" scope="col">Actions</th>
         </tr>
         </thead>
         <tbody>
         <%for (Order order : orders) {%>
         <tr>
-            <td><%=order.getUser().getLastName()%>
+            <td class="text-center"><%=order.getUser().getLastName()%>
             </td>
-            <td><%=order.getUser().getFirstName()%>
+            <td class="text-center"><%=order.getUser().getFirstName()%>
             </td>
-            <td><%=order.getDate()%>
+            <% if (order.getShipped()) { %>
+            <td class="text-center text-success">Expédié</td>
+            <% } else { %>
+            <td class="text-center">
+                <a data-modal-target="#modal" href="#"
+                   onclick="setIdOrderExp(<%=order.getId()%>)">
+                    <button class="btn btn-success">&#9992;</button>
+                </a>
             </td>
-            <td>
+            <% } %>
+            <td class="text-center"><%=order.getDate()%>
+            </td>
+            <td class="text-center">
                 <div class="dropdown">
                     <button class="btn btn-info">&#11167</button>
                     <div class="dropdown-content">
@@ -55,7 +66,7 @@
     </table>
     <div class="modal-supp" id="modal">
         <div class="modal-header-supp">
-            <div class="title-supp">Suppression</div>
+            <div id="main-title" class="title-supp">Suppression</div>
             <button data-close-button class="close-button-supp">&times;</button>
         </div>
         <div class="modal-body-supp">
