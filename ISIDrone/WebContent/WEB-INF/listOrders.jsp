@@ -52,8 +52,10 @@
                 <div class="dropdown">
                     <button class="btn btn-info">&#11167</button>
                     <div class="dropdown-content">
+                        <% if (!order.getShipped()) {%>
                         <a data-modal-target="#modal" href="#"
                            onclick="setIdOrder(<%=order.getId()%>)">Supprimer</a>
+                        <%}%>
                         <% if (order.getShipped()) {%>
                         <a data-modal-target="#modal" href="#"
                            onclick="setIdUpdateExp(<%=order.getId()%>, 'false')">Annuler l'expédition</a>
