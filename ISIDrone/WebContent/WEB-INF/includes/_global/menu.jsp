@@ -50,7 +50,7 @@
                     <li><a href="contact">Contact</a></li>
                     <li><a href="items?category=1">Boutique</a></li>
                 </ul>
-                <ul class="nav navbar-nav navbar-right">
+                <ul class="nav navbar-nav navbar-right" style="margin-right: 0px">
                     <jsp:include page="loginState.jsp"/>
                 </ul>
             </div>

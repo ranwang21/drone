@@ -148,7 +148,7 @@ public class MOrder {
         ArrayList<Order> orders = new ArrayList<Order>();
         try {
             MDB.connect();
-            String query = "SELECT `order`.id, `order`.date, `order`.user_id,"
+            String query = "SELECT `order`.id, `order`.date, `order`.user_id,`order`.isShipped,"
                     + " `user`.firstName, `user`.lastName, `user`.email "
                     + " FROM `order` "
                     + " INNER JOIN `user` ON `order`.user_id = `user`.id ";
@@ -163,6 +163,7 @@ public class MOrder {
                 order.setId(rs.getInt("order.id"));
                 order.setUserId(rs.getInt("order.user_id"));
                 order.setDate(rs.getString("order.date"));
+                order.setShipped(rs.getBoolean("order.isShipped"));
 
                 user.setId(rs.getInt("order.user_id"));
                 user.setFirstName(rs.getString("user.firstName"));

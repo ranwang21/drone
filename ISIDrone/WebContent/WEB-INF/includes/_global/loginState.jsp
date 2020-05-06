@@ -20,22 +20,38 @@
     if (user != null) {%>
 
 <li class="nav-item dropdown user-state">
-    <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#"><%=user.getFirstName().toUpperCase()%>
+    <a class="nav-link btn dropdown-toggle" data-toggle="dropdown"
+       href="#" style="padding-right: 20px; padding-left: 20px; outline: none"><%=user.getFirstName().toUpperCase()%>
     </a>
 
     <div class="dropdown-menu dropdown-menu-right" id="dropdownMenuUser">
+        <style>
+            #dropdownMenuUser a {
+                transition: all .3s;
+                font-weight: bold;
+                color: gray;
+                padding: 7px 10px;
+                text-decoration: none !important;
+            }
+
+            #dropdownMenuUser a:hover {
+                color: black;
+                background-color: #7bbdf7 !important;
+            }
+        </style>
         <% if (user.getIsAdmin() == 0) {%>
         <a class="dropdown-item" href="<%="order-history"%>">Historique commande</a>
         <%} else {%>
-        <a class="dropdown-item" href="list-products?category=1">Liste des produits</a>
+        <a class="dropdown-item" id="men1" href="list-products?category=1">Liste des produits</a>
         <a class="dropdown-item" href="list-categories">Liste des catégories</a>
         <a class="dropdown-item" href="listOrders">Liste des commandes</a>
-        <div class="dropdown-divider"></div>
+        <a class="dropdown-item" href="listClients">Liste des clients</a>
+        <div class="dropdown-divider" style="margin: 0; border: 1px solid #7bbdf7;"></div>
         <a class="dropdown-item" href="item?ajouterProduit=1">Ajouter un produit</a>
         <a class="dropdown-item" href="addCategory">Ajouter une catégorie</a>
         <%}%>
 
-        <div class="dropdown-divider"></div>
+        <div class="dropdown-divider" style="margin: 0; border: 1px solid #7bbdf7;"></div>
         <a class="dropdown-item" href="login">Déconnexion</a>
     </div>
 </li>
