@@ -44,4 +44,8 @@ DB_USERNAME=root
 DB_PASSWORD=abc123...
 ```
 
+![](userGuide/isidrone_config.jpg)
+
+- Tab `Startup/Connection`, choose `pass environement variables` and add an environement variable with the name `ISIDRONE_CONFIG` and value `C:/isidrone/conf/configs.properties`
+
 - Restart the Tomcat
