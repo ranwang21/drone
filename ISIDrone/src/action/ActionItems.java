@@ -5,6 +5,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.Part;
 
 import entities.Item;
+import manager.MCategory;
 import manager.MDB;
 import manager.MItem;
 
@@ -26,10 +27,7 @@ public class ActionItems {
         request.setAttribute("item", MItem.getItemById(id));
     }
 
-    public static int removeProduct(HttpServletRequest request, int prodId) {
-//        int prodId = Integer.parseInt(productId);
-//        Item itemToRemove = MItem.getItemById(prodId);
-     
+    public static boolean removeProduct(int prodId) {
         return MItem.removeProduct(prodId);
     }
 
@@ -55,7 +53,7 @@ public class ActionItems {
         //For LINUX
         if (MDB.isUnix())
             path = File.separator + "isidrone" + File.separator + "products" + File.separator + "img" + File.separator;
-        
+
         try (OutputStream out = new FileOutputStream(new File(path + fileName)); InputStream filecontent = filePart.getInputStream()) {
             int read = 0;
             final byte[] bytes = new byte[1024];
