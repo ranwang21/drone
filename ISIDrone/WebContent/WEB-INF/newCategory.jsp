@@ -27,11 +27,6 @@
                             Catégorie ajoutée avec succès !!!
                         </div>
                         <%} %>
-                        <div style="display: none" class="alert alert-danger" id="addCategoryError" role="alert">
-                            Tous les champs ci-dessous sont obligatoires
-                            <p id="errorNameCategory">* Nom</p>
-                            <p id="errorOrderCategory">* Position</p>
-                        </div>
 
                         <div style="display: none" class="alert alert-danger" id="addCategorySameNameError"
                              role="alert">
@@ -41,7 +36,7 @@
                         <div class="form-group col-md-12">
                             <label for="addCategoryName">Nom</label>
                             <input type="text" class="form-control" id="addCategoryName" name="name"
-                                   placeholder="Nom du produit">
+                                   placeholder="Nom du produit" maxlength="45" required>
                         </div>
                         <div class="form-group col-md-12">
                             <label for="addCategoryDescription">Description</label>
@@ -51,7 +46,7 @@
                         <div class="form-group col-md-12">
                             <label for="addCategoryPosition">Position</label>
                             <input type="number" class="form-control" id="addCategoryPosition" name="order"
-                                   placeholder="Position">
+                                   placeholder="Position" min="0" step="1" required>
                         </div>
                         <div class="form-group col-md-12 form-check">
                             <input type="checkbox"
@@ -63,6 +58,8 @@
 
                     <div class="form-group text-center" style="clear: left; top: 15px; margin-bottom: 15px;">
                         <a href="#" id="btnAddCategory" class="btn btn-default">Ajouter</a>
+                        <button style="display: none" type="submit" id="btnAddCategorySubmit"
+                                class="btn btn-default"></button>
                     </div>
                 </div>
             </form>
@@ -75,34 +72,21 @@
     }
 
     const categories = [<% for (int i = 0; i < categories.size(); i++) { %>"<%= categories.get(i).getName() %>"<%= i + 1 < categories.size() ? ",":"" %><% } %>];
-    console.log(categories)
 
     // Validation du formulaire d'ajout d'une categorie
     const btnAddCategory = getById("btnAddCategory")
+    const btnSubmit = getById("btnAddCategorySubmit")
     btnAddCategory.addEventListener('click', btnAddCategoryClick)
 
     function btnAddCategoryClick() {
-        const errorMessage = getById("addCategoryError")
         const addSameNameError = getById("addCategorySameNameError")
-        const errorName = getById("errorNameCategory")
-        const errorOrder = getById("errorOrderCategory")
-
-        const form = getById("formAddCategory")
         const name = getById("addCategoryName")
-        const order = getById("addCategoryPosition")
-
-        if (name.value.length === 0 || order.value.length === 0) {
-            errorMessage.style.display = "block";
-            errorName.style.display = name.value.length === 0 ? "block" : "none"
-            errorOrder.style.display = order.value.length === 0 ? "block" : "none"
+        const form = getById("formAddCategory")
+        if (categories.includes(name.value)) {
+            addSameNameError.style.display = "block"
         } else {
-            errorMessage.style.display = "none";
-            if (categories.includes(name.value)) {
-                addSameNameError.style.display = "block"
-            } else {
-                addSameNameError.style.display = "none";
-                form.submit()
-            }
+            addSameNameError.style.display = "none";
+            btnSubmit.click();
         }
     }
 </script>
