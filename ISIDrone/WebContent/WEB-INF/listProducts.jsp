@@ -6,11 +6,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ page import="util.Const" %>
 <%
-
     ArrayList<Item> items = (ArrayList<Item>) request.getAttribute("items");
     ArrayList<Category> categories = (ArrayList<Category>) request.getAttribute("categories");
     String result = (String) request.getAttribute("result");
-
 %>
 
 <jsp:include page="<%=Const.PATH_HEAD_JSP%>"/>
