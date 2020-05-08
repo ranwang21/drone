@@ -32,27 +32,29 @@ public class Home extends HttpServlet {
         ActionFeaturedProduct.getFeaturedProduct(request);
 
         String lang = request.getParameter("lang");
-        //Creation cookie lang si il existe pas
         Cookie[] mesCookies = request.getCookies();
+        Cookie cookieLang = null;
+
         if (mesCookies != null) {
             for (Cookie cookie : mesCookies) {
-                System.out.println(cookie.getValue());
-                if (!cookie.getName().equals("lang")) {
-                    Cookie langCookie = new Cookie("lang", Const.LANG_FR);
-                    langCookie.setMaxAge(60 * 60 * 24 * 365);
-                    response.addCookie(langCookie);
-                } else {
-                    if (lang.equals("fr")) {
-                        Cookie langCookie = new Cookie("lang", Const.LANG_FR);
-                        langCookie.setMaxAge(60 * 60 * 24 * 365);
-                        response.addCookie(langCookie);
-                    } else if (lang.equals("en")) {
-                        Cookie langCookie = new Cookie("lang", Const.LANG_EN);
-                        langCookie.setMaxAge(60 * 60 * 24 * 365);
-                        response.addCookie(langCookie);
-                    }
+                if (cookie.getName().equals("lang")) {
+                    cookieLang = cookie;
                 }
             }
+        }
+        if (cookieLang != null) {
+            if (lang != null) {
+                if (lang.equals("fr")) {
+                    cookieLang.setValue(Const.LANG_FR);
+                } else if (lang.equals("en")) {
+                    cookieLang.setValue(Const.LANG_EN);
+                }
+            }
+            response.addCookie(cookieLang);
+        } else {
+            Cookie monCookie = new Cookie("lang", Const.LANG_FR);
+            monCookie.setMaxAge(60 * 60 * 24 * 365);
+            response.addCookie(monCookie);
         }
 
         //Redirection
