@@ -41,12 +41,11 @@ function setIdCategory(id) {
 }
 
 function setIdOrder(id) {
+    let divTitle = document.getElementById('order-main-title')
+    let divBody = document.getElementById('order-body-title')
+    divTitle.innerHTML = 'Suppression'
+    divBody.innerHTML = "Voulez-vous supprimer la commande sélectionnée ?"
     let link = document.getElementById('confirm-link')
-    link.setAttribute('href', 'remove-order?order_id=' + id)
-}
-
-function setIdOrderClient(id) {
-    let link = document.getElementById('confirm-client-link')
     link.setAttribute('href', 'remove-order?order_id=' + id)
 }
 
@@ -54,4 +53,18 @@ function setIdProduct(id) {
     let link = document.getElementById('confirm-link')
     link.setAttribute('href', 'delete-product?category=1&productToremoveId=' + id)
 
+}
+
+function setIdUpdateExp(id, isExp) {
+    let divTitle = document.getElementById('order-main-title')
+    let divBody = document.getElementById('order-body-title')
+    if (isExp === 'true') {
+        divTitle.innerHTML = 'Confirmation'
+        divBody.innerHTML = 'Voulez-vous expédié la commande sélectionnée ?'
+    } else {
+        divTitle.innerHTML = 'Annulation'
+        divBody.innerHTML = "Voulez-vous annuler l'expédition de la commande sélectionnée ?"
+    }
+    let link = document.getElementById('confirm-link')
+    link.setAttribute('href', 'edit-order-exp?order_id=' + id + '&is_exp=' + isExp)
 }

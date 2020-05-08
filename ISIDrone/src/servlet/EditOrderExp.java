@@ -27,6 +27,10 @@ public class EditOrderExp extends HttpServlet {
      * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
      */
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        int idOrder = Integer.parseInt(request.getParameter("order_id"));
+        boolean isExp = Boolean.parseBoolean(request.getParameter("is_exp"));
+        ActionOrder.updateOrderExp(request, idOrder, isExp);
+        ActionOrder.getAllOrders(request, response);
         request.getRequestDispatcher(Const.PATH_PAGE_LIST_ORDERS).forward(request, response);
     }
 

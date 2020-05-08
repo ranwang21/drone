@@ -197,6 +197,31 @@ public class MOrder {
         }
         return isSuccess;
     }
+
+    public static String updateOrderExp(int id, boolean isExp) {
+
+        try {
+            MDB.connect();
+
+            // Ajoute l'address a la BD
+            String query = "UPDATE isidrone.order SET isShipped = ? where id = ?;";
+
+            PreparedStatement ps = MDB.getPS(query);
+            if (isExp) {
+                ps.setInt(1, 1);
+            } else {
+                ps.setInt(1, 0);
+            }
+            ps.setInt(2, id);
+
+            ps.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            MDB.disconnect();
+        }
+        return "msg";
+    }
 }
 
 

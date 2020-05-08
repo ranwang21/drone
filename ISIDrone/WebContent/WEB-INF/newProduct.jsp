@@ -11,7 +11,6 @@
 <%@ page import="entities.Category" %>
 <%@ page import="java.util.ArrayList" %>
 <%
-
     ArrayList<Category> categories = (ArrayList<Category>) request.getAttribute("categories");
     String itemAdded = (String) request.getAttribute("itemAdded");
 %>
@@ -22,7 +21,7 @@
 
     <div class="row">
         <div class="col-sm-12">
-            <form action="item" method="post" class="panel panel-primary form-horizontal"
+            <form action="item" id="formAddProduct" method="post" class="panel panel-primary form-horizontal"
                   style="float: unset; margin: auto;">
                 <div class="panel-heading">
                     <h3 class="panel-title">Ajout d'un produit</h3>
@@ -30,14 +29,15 @@
                 <div class="panel-body">
                     <fieldset class="col-md-12">
                         <% if (itemAdded != null) {%>
-                        <div class="col-md-12 alert alert-success" role="alert">
+                        <div class="col-md-12 alert alert-success" id="successMsgAddProduct" role="alert">
                             Produit ajouté avec succès !!!
                         </div>
                         <%} %>
                         <input type="hidden" name="product_id" value="2">
                         <div class="form-group col-md-6">
                             <label for="nom">Nom</label>
-                            <input type="text" class="form-control" id="nom" name="nom" placeholder="Nom du produit">
+                            <input type="text" class="form-control" id="nom" name="nom" placeholder="Nom du produit"
+                                   required>
                         </div>
                         <div class="form-group col-md-6">
                             <label for="category">Categories</label>
@@ -57,7 +57,7 @@
                         <div class="form-group col-md-6">
                             <label for="prix">Prix</label>
                             <input type="number" step="0.01" class="form-control" id="prix" name="prix"
-                                   placeholder="Prix du produit">
+                                   placeholder="Prix du produit" required>
                         </div>
                         <div class="form-group col-md-6">
                             <label for="serial">Numero de serie</label>
@@ -67,7 +67,7 @@
                         <div class="form-group col-md-6">
                             <label for="qty">Quantite</label>
                             <input type="number" class="form-control" id="qty" name="qty"
-                                   placeholder="Quantite du produit">
+                                   placeholder="Quantite du produit" required>
                         </div>
                         <div class="col-md-6"></div>
                         <div class="form-group col-md-6">

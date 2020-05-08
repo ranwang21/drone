@@ -38,6 +38,9 @@
 <!-- Suppression popup -->
 <script type="text/javascript" src="js/suppression.js"></script>
 
+<!-- Validation -->
+<script type="text/javascript" src="js/validation.js"></script>
+
 
 <%
     String pageUrl = request.getRequestURI();
