@@ -56,4 +56,7 @@ public class Const {
     public static String PATH_MENU_BANNER = PATH_INDEX_INCLUDES + "banner.jsp";        // Banner
 
     //public static String PATH_MENU_PRODUCT = PATH_IMG + "product.png";	// Place Holder Product
+
+    public static String LANG_EN = "lang_en";
+    public static String LANG_FR = "lang_fr";
 }
