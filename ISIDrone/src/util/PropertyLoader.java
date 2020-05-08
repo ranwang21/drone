@@ -19,6 +19,7 @@ public class PropertyLoader {
         }
     }
 
+    // gets the property from the file
     public String getConfig(String property) {
         return config.getProperty(property);
     }

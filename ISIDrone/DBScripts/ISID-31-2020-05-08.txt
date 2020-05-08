@@ -3,4 +3,4 @@
 USE isidrone;
 
 ALTER TABLE isidrone.user
-ADD COLUMN  status VARCHAR(255)  NOT NULL DEFAULT 'activated' AFTER isAdmin; 
+ADD COLUMN  status VARCHAR(255)  NOT NULL DEFAULT 'ACTIVATED' AFTER isAdmin;

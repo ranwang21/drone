@@ -30,7 +30,7 @@ public class ListProducts extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         ActionItems.getItems(request, response);
         ActionCategory.getCategories(request, response);
-        request.getRequestDispatcher(Const.PATH_PAGE_LISTPRODUCTS).forward(request, response);
+        request.getRequestDispatcher(Const.PATH_PAGE_LIST_PRODUCTS).forward(request, response);
     }
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

@@ -28,7 +28,14 @@
                     </li>
                     <jsp:include page="<%=Const.PATH_CART_DROPDOWN_JSP%>"/>
                 </ul>
+                <div style="margin-right:0; text-align: right">
+                    <a href="home?lang=fr" style="padding-left:10px;">FR</a>
+                    <a href="home?lang=en" style="padding-left:10px;">EN</a>
+                </div>
+
             </div>
+
+
         </div>
     </div>
     <nav class="navbar navbar-default" role="navigation">

@@ -1,6 +1,6 @@
 package servlet;
 
-import java.io.IOException;
+import java.io.*;
 import java.util.Arrays;
 import java.util.Objects;
 import java.util.UUID;
@@ -14,22 +14,22 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.Part;
 
 import action.ActionCategory;
-import action.ActionItems;
 import entities.Item;
 import util.Const;
+import action.ActionItems;
 
 /**
- * Servlet implementation class EditProduct
+ * Servlet implementation class Item
  */
-@WebServlet(name = "editProduct", urlPatterns = {"/editProduct"})
+@WebServlet(name = "addProduct", urlPatterns = {"/addProduct"})
 @MultipartConfig
-public class EditProduct extends HttpServlet {
+public class AddProduct extends HttpServlet {
     private static final long serialVersionUID = 1L;
 
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public EditProduct() {
+    public AddProduct() {
         super();
     }
 
@@ -37,11 +37,8 @@ public class EditProduct extends HttpServlet {
      * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
      */
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        int idProduct = Integer.parseInt(request.getParameter("product_id"));
-
         ActionCategory.getCategories(request, response);
-        ActionItems.getItemById(idProduct, request, response);
-        request.getRequestDispatcher(Const.PATH_PAGE_EDIT_PRODUCT).forward(request, response);
+        request.getRequestDispatcher(Const.PATH_NEW_PRODUCT_JSP).forward(request, response);
     }
 
     /**
@@ -50,18 +47,16 @@ public class EditProduct extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         request.setCharacterEncoding("UTF-8");
         Item item = new Item();
-        item.setId(Integer.parseInt(request.getParameter("product_id")));
-        item.setName(request.getParameter("name"));
-        item.setCategory(Integer.parseInt(request.getParameter("category")));
+        item.setName(request.getParameter("nom"));
+        item.setCategory(Integer.parseInt(request.getParameter("categoryId")));
         item.setDescription(request.getParameter("description"));
         item.setPrice(Double.parseDouble(request.getParameter("price")));
         item.setSerial(request.getParameter("serial"));
-        item.setStock(Integer.parseInt(request.getParameter("stock")));
+        item.setStock(Integer.parseInt(request.getParameter("qty")));
         item.setActive(!Arrays.toString(request.getParameterValues("isActive")).equals("null"));
-        request.setAttribute("product_id", item.getId());
-        item.setImage(request.getParameter("oldImgName"));
+        item.setImage("drone_default.png");
 
-        final Part filePart = request.getPart("editProductFile");
+        final Part filePart = request.getPart("addProductFile");
         final String fileName = ActionItems.getFileName(filePart);
 
         int numError = 1;
@@ -71,13 +66,12 @@ public class EditProduct extends HttpServlet {
             int retour = ActionItems.uploadProductImg(outFile, filePart);
             item.setImage(outFile);
 
-            if (retour == 0) {
+            if (retour == 0)
                 //erreur pendant telechargement de l'image
                 numError = 2;
-            }
         }
 
-        if (numError == 1) ActionItems.updateItemById(request, response, item);
+        if (numError == 1) ActionItems.addItem(request, response, item);
         request.setAttribute("message", numError);
         doGet(request, response);
     }

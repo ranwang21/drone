@@ -27,7 +27,7 @@ public class deleteProduct extends HttpServlet {
 
         ActionItems.getItems(request, response);
         ActionCategory.getCategories(request, response);
-        request.getRequestDispatcher(Const.PATH_PAGE_LISTPRODUCTS).forward(request, response);
+        request.getRequestDispatcher(Const.PATH_PAGE_LIST_PRODUCTS).forward(request, response);
 
     }
 

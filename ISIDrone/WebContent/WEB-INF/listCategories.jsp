@@ -1,13 +1,12 @@
-<%@page import="java.text.DecimalFormat" %>
-<%@page import="entities.Item" %>
 <%@page import="java.util.ArrayList" %>
 <%@page import="entities.Category" %>
-<%@page import="entities.Cart" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ page import="util.Const" %>
+<%@ page import="java.util.Collections" %>
 <%
     @SuppressWarnings("unchecked")
     ArrayList<Category> categories = (ArrayList<Category>) request.getAttribute("categories");
+    Collections.sort(categories);
     String error = (String) request.getAttribute("deleteError");
 %>
 
@@ -49,7 +48,6 @@
                         <a href="editCategory?category_id=<%=category.getId()%>">Modifier</a>
                         <a data-modal-target="#modal" href="#"
                            onclick="setIdCategory(<%=category.getId()%>)">Supprimer</a>
-                        <a href="#">Action 3</a>
                     </div>
                 </div>
             </td>
@@ -78,5 +76,7 @@
     </div>
     <div id="overlay-supp"></div>
 </div>
+
+<script type="text/javascript" src="js/suppression.js"></script>
 
 <jsp:include page="<%=Const.PATH_FOOTER_JSP%>"/>

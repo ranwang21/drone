@@ -51,8 +51,7 @@
                 <div class="dropdown">
                     <button class="btn btn-info">&#11167</button>
                     <div class="dropdown-content">
-                        <a href="#">Action 1</a>
-                        <a href="#">Action 2</a>
+
                     </div>
                 </div>
             </td>
@@ -61,5 +60,7 @@
         </tbody>
     </table>
 </div>
+
+<script type="text/javascript" src="js/suppression.js"></script>
 
 <jsp:include page="<%=Const.PATH_FOOTER_JSP%>"/>

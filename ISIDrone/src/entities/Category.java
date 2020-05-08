@@ -1,6 +1,6 @@
 package entities;
 
-public class Category {
+public class Category implements Comparable<Category> {
     private int id;
     private String name,
             description;
@@ -60,5 +60,10 @@ public class Category {
 
     public boolean isActive() {
         return isActive;
+    }
+
+    @Override
+    public int compareTo(Category o) {
+        return (Integer.compare(this.getOrder(), o.getOrder()));
     }
 }

@@ -1,4 +1,0 @@
-USE isidrone;
-
-ALTER TABLE category
-MODIFY COLUMN `name` varchar(255) COLLATE utf8_bin DEFAULT NULL COMMENT 'The name of the category';

@@ -34,7 +34,7 @@ public class RemoveCategory extends HttpServlet {
             request.setAttribute("deleteError", "Delete Error");
         }
         ActionCategory.getCategories(request, response);
-        request.getRequestDispatcher(Const.PATH_PAGE_LISTCATEGORIES).forward(request, response);
+        request.getRequestDispatcher(Const.PATH_PAGE_LIST_CATEGORIES).forward(request, response);
     }
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

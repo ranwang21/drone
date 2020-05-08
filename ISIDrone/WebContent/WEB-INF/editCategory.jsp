@@ -16,28 +16,26 @@
 <div class="container">
     <div class="row">
         <div class="col-sm-12">
-            <form action="editCategory" method="post" class="panel panel-primary form-horizontal"
+            <form name="editCategory" action="editCategory" method="post"
+                  class="panel panel-primary form-horizontal"
                   style="float: unset; margin: auto;">
                 <div class="panel-heading">
                     <h3 class="panel-title">Edit Category</h3>
                 </div>
                 <div class="panel-body">
                     <fieldset class="col-md-12">
-                        <% if (msg != null) {%>
-                        <div class="col-md-12 alert alert-success" role="alert">
+                        <div class="col-md-12 alert alert-success" role="alert"
+                             style="display:<%=msg != null ? "block" : "none"%>">
                             Modification effectuée avec succès !!!
                         </div>
-                        <%} %>
-                        <div style="display: none" class="alert alert-danger" id="editCategoryError" role="alert">
-                            Tous les champs sont obligatoires
-                        </div>
+
                         <input type="hidden" name="category_id" value="<%=category.getId()%>">
 
                         <div class="form-group col-md-6">
                             <label for="editCategoryName">Nom</label>
-                            <input type="text" class="form-control" id="editCategoryName" name="name"
+                            <input maxlength="45" type="text" class="form-control" id="editCategoryName" name="name"
                                    placeholder="Nom de la Catégorie"
-                                   value="<%=category.getName()%>">
+                                   value="<%=category.getName()%>" required>
                         </div>
 
                         <div class="form-group col-md-6">
@@ -54,7 +52,8 @@
 
                         <div class="form-group col-md-6">
                             <label for="editCategoryDescription">Description</label>
-                            <textarea class="form-control" id="editCategoryDescription" name="description" rows="3"
+                            <textarea maxlength="255" class="form-control" id="editCategoryDescription"
+                                      name="description" rows="3"
                                       placeholder="Description de la Catégorie"><%=category.getDescription()%></textarea>
                         </div>
 
@@ -74,4 +73,6 @@
         </div>
     </div>
 </div>
+
+<script type="text/javascript" src="js/validation.js"></script>
 <jsp:include page="<%=Const.PATH_FOOTER_JSP%>"/>
