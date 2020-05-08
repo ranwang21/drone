@@ -18,12 +18,12 @@ public class deleteProduct extends HttpServlet {
         String productId = request.getParameter("productToremoveId");
         int removeProductId = Integer.parseInt(productId);
 
-        if (removeProductId != -1) {
-            ActionItems.removeProduct(request, removeProductId);
-        } else {
-            request.setAttribute("result", -1);
 
+        int resultat = ActionItems.removeProduct(request, removeProductId);
+        if (resultat != 0) {
+            request.setAttribute("result", resultat + "");
         }
+
 
         ActionItems.getItems(request, response);
         ActionCategory.getCategories(request, response);

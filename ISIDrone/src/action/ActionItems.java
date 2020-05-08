@@ -13,6 +13,7 @@ public class ActionItems {
     public static void getItems(HttpServletRequest request, HttpServletResponse response) {
         request.setAttribute("items", MItem.getItems(ActionCategory.getSelectedCategory(request, response)));
 
+
     }
 
     public static void getSearchItems(HttpServletRequest request, HttpServletResponse response) {
@@ -23,11 +24,11 @@ public class ActionItems {
         request.setAttribute("item", MItem.getItemById(id));
     }
 
-    public static void removeProduct(HttpServletRequest request, int prodId) {
+    public static int removeProduct(HttpServletRequest request, int prodId) {
 //        int prodId = Integer.parseInt(productId);
 //        Item itemToRemove = MItem.getItemById(prodId);
-        request.setAttribute("result", MItem.removeProduct(prodId));
-
+     
+        return MItem.removeProduct(prodId);
     }
 
 
