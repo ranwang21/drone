@@ -16,7 +16,8 @@
 <div class="container">
     <div class="row">
         <div class="col-sm-12">
-            <form action="editCategory" method="post" class="panel panel-primary form-horizontal"
+            <form name="editCategory" action="editCategory" method="post"
+                  class="panel panel-primary form-horizontal"
                   style="float: unset; margin: auto;">
                 <div class="panel-heading">
                     <h3 class="panel-title">Edit Category</h3>
@@ -35,7 +36,7 @@
 
                         <div class="form-group col-md-6">
                             <label for="editCategoryName">Nom</label>
-                            <input type="text" class="form-control" id="editCategoryName" name="name"
+                            <input maxlength="45" type="text" class="form-control" id="editCategoryName" name="name"
                                    placeholder="Nom de la Catégorie"
                                    value="<%=category.getName()%>">
                         </div>
@@ -54,7 +55,8 @@
 
                         <div class="form-group col-md-6">
                             <label for="editCategoryDescription">Description</label>
-                            <textarea class="form-control" id="editCategoryDescription" name="description" rows="3"
+                            <textarea maxlength="255" class="form-control" id="editCategoryDescription"
+                                      name="description" rows="3"
                                       placeholder="Description de la Catégorie"><%=category.getDescription()%></textarea>
                         </div>
 
@@ -67,7 +69,8 @@
                     </fieldset>
 
                     <div class="form-group text-center" style="clear: left; top: 15px; margin-bottom: 15px;">
-                        <button type="submit" class="btn btn-default">Modifier</button>
+                        <button type="submit" class="btn btn-default">Modifier
+                        </button>
                     </div>
                 </div>
             </form>
