@@ -14,21 +14,14 @@ import java.io.IOException;
 @WebServlet(name = "deleteProduct", urlPatterns = {"/delete-product"})
 public class deleteProduct extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
-        String productId = request.getParameter("productToremoveId");
-        int removeProductId = Integer.parseInt(productId);
-
-
-        int resultat = ActionItems.removeProduct(request, removeProductId);
-        if (resultat != 0) {
-            request.setAttribute("result", resultat + "");
+        int removeProductId = Integer.parseInt(request.getParameter("productToremoveId"));
+        boolean isDeleted = ActionItems.removeProduct(removeProductId);
+        if (!isDeleted) {
+            request.setAttribute("result", "Error");
         }
-
-
         ActionItems.getItems(request, response);
         ActionCategory.getCategories(request, response);
         request.getRequestDispatcher(Const.PATH_PAGE_LIST_PRODUCTS).forward(request, response);
-
     }
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

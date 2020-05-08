@@ -1,4 +1,3 @@
-<%--<script type="text/javascript" src="../js/alert.js"></script>--%>
 <%@page import="java.text.DecimalFormat" %>
 <%@page import="entities.Item" %>
 <%@page import="java.util.ArrayList" %>
@@ -8,11 +7,10 @@
 <%@ page import="util.Const" %>
 <%
 
-    @SuppressWarnings("unchecked")
     ArrayList<Item> items = (ArrayList<Item>) request.getAttribute("items");
-    @SuppressWarnings("unchecked")
     ArrayList<Category> categories = (ArrayList<Category>) request.getAttribute("categories");
-    //  String result = (String) request.getAttribute("result");
+    String result = (String) request.getAttribute("result");
+
 %>
 
 <jsp:include page="<%=Const.PATH_HEAD_JSP%>"/>
@@ -21,7 +19,7 @@
 <div class="container">
     <h2 class="text-center">Administration: Liste des produits</h2>
     <br>
-    <%if (request.getAttribute("result") == null) {%>
+    <%if (result != null) {%>
     <br>
     <div class="alert alert-danger text-center" role="alert">
         Impossible de supprimer le produit demandée. Des commandes sont associés à celle-ci

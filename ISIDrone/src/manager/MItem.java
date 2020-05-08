@@ -180,29 +180,29 @@ public class MItem {
         }
     }
 
-    public static int removeProduct(int id) {
-        int result = -1;
-
-
+    public static boolean removeProduct(int id) {
         try {
             MDB.connect();
-
-            String query = "DELETE FROM  product  WHERE id = ? and id NOT IN (SELECT  product_id FROM order_info) ";
+            String query = "SELECT * FROM order_info WHERE product_id = ?;";
 
             PreparedStatement ps = MDB.getPS(query);
-
             ps.setInt(1, id);
+            ResultSet rs = ps.executeQuery();
 
-            result = ps.executeUpdate();
+            if (rs.first()) {
+                return false;
+            } else {
+                String queryToDelete = "DELETE FROM product WHERE id = ?";
+                PreparedStatement psToDelete = MDB.getPS(queryToDelete);
+                psToDelete.setInt(1, id);
+                psToDelete.executeUpdate();
+            }
 
-
-        } catch (SQLException ex) {
-
+        } catch (SQLException e) {
+            e.printStackTrace();
         } finally {
             MDB.disconnect();
         }
-
-        return result;
+        return true;
     }
-
 }
