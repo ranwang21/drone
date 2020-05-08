@@ -1,13 +1,12 @@
-<%@page import="java.text.DecimalFormat" %>
-<%@page import="entities.Item" %>
 <%@page import="java.util.ArrayList" %>
 <%@page import="entities.Category" %>
-<%@page import="entities.Cart" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ page import="util.Const" %>
+<%@ page import="java.util.Collections" %>
 <%
     @SuppressWarnings("unchecked")
     ArrayList<Category> categories = (ArrayList<Category>) request.getAttribute("categories");
+    Collections.sort(categories);
     String error = (String) request.getAttribute("deleteError");
 %>
 
