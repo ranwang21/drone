@@ -47,7 +47,7 @@
         <a class="dropdown-item" href="listOrders">Liste des commandes</a>
         <a class="dropdown-item" href="listClients">Liste des clients</a>
         <div class="dropdown-divider" style="margin: 0; border: 1px solid #7bbdf7;"></div>
-        <a class="dropdown-item" href="item?ajouterProduit=1">Ajouter un produit</a>
+        <a class="dropdown-item" href="addProduct">Ajouter un produit</a>
         <a class="dropdown-item" href="addCategory">Ajouter une catégorie</a>
         <%}%>
 

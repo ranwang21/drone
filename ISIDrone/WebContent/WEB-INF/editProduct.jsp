@@ -8,7 +8,7 @@
     Item item = (Item) request.getAttribute("item");
     ArrayList<Category> categories = (ArrayList<Category>) request.getAttribute("categories");
     Category itemCategory = ActionCategory.getCategory(item.getCategory());
-    String msg = (String) request.getAttribute("message");
+    int msg = request.getAttribute("message") != null ? (Integer) request.getAttribute("message") : 0;
 %>
 
 <jsp:include page="<%=Const.PATH_HEAD_JSP%>"/>
@@ -20,15 +20,21 @@
     <div class="row">
         <div class="col-sm-12">
             <form action="editProduct" id="formEditProduct" method="post" class="panel panel-primary form-horizontal"
+                  enctype="multipart/form-data"
                   style="float: unset; margin: auto;">
                 <div class="panel-heading">
                     <h3 class="panel-title">Modification d'un produit</h3>
                 </div>
                 <div class="panel-body">
                     <fieldset class="col-md-12">
-                        <% if (msg != null) {%>
+                        <% if (msg == 1) {%>
                         <div class="col-md-12 alert alert-success" id="successMsgProduct" role="alert">
                             Modification effectuée avec succès !!!
+                        </div>
+                        <%} %>
+                        <% if (msg == 2) {%>
+                        <div class="col-md-12 alert alert-danger" id="successMsgAddProduct" role="alert">
+                            Une erreur est survenu lors du téléchargement de l'image
                         </div>
                         <%} %>
                         <div style="display: none" class="alert alert-danger" id="editProductError" role="alert">
@@ -38,6 +44,13 @@
                             <p id="errorStock" style="display: none">* Quantite</p>
                         </div>
                         <input type="hidden" name="product_id" value="<%=item.getId()%>">
+                        <input type="hidden" name="oldImgName" value="<%=item.getImage()%>">
+
+                        <div class="form-group row col-md-10">
+                            <label for="editProductFile">Image du produit</label>
+                            <input type="file" class="form-control" accept="image/png, image/jpg, image/jpeg"
+                                   id="editProductFile" name="editProductFile">
+                        </div>
 
                         <div class="form-group col-md-6">
                             <label for="editProductName">Nom</label>
@@ -48,13 +61,16 @@
                         <div class="form-group col-md-6">
                             <label for="inputCategories">Categories</label>
                             <select id="inputCategories" name="category" class="form-control">
-                                <% for (Category category : categories) {%>
+                                <% for (Category category : categories) {
+                                    if ((category.getId() > 1)) {%>%>
                                 <option value="<%=category.getId()%>"
-                                        <%if (category.getId() == 1) {%> disabled <% } %>
                                         <%if (category.getId() == itemCategory.getId()) {%>selected<% } %>>
                                     <%=category.getName()%>
                                 </option>
-                                <%}%>
+                                <%
+                                        }
+                                    }
+                                %>
                             </select>
                         </div>
                         <div class="form-group col-md-6">
