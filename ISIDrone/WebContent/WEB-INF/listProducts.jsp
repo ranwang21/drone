@@ -10,6 +10,7 @@
     ArrayList<Item> items = (ArrayList<Item>) request.getAttribute("items");
     ArrayList<Category> categories = (ArrayList<Category>) request.getAttribute("categories");
     String result = (String) request.getAttribute("result");
+
 %>
 
 <jsp:include page="<%=Const.PATH_HEAD_JSP%>"/>
