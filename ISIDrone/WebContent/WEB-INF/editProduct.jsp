@@ -37,13 +37,6 @@
                             Une erreur est survenu lors du téléchargement de l'image
                         </div>
                         <%} %>
-                        <div style="display: none" class="alert alert-danger" id="editProductError" role="alert">
-                            Tous les champs ci-dessous sont obligatoires
-                            <p id="errorName" style="display: none">* Nom</p>
-                            <p id="errorPrice" style="display: none">* Prix</p>
-                            <p id="errorStock" style="display: none">* Quantite</p>
-                            et vous ne pouviez saisir une chiffre négative sur le prix et la quantité
-                        </div>
                         <input type="hidden" name="product_id" value="<%=item.getId()%>">
                         <input type="hidden" name="oldImgName" value="<%=item.getImage()%>">
 
@@ -57,7 +50,7 @@
                             <label for="editProductName">Nom</label>
                             <input type="text" class="form-control" id="editProductName" name="name"
                                    placeholder="Nom du produit"
-                                   value="<%=item.getName()%>">
+                                   value="<%=item.getName()%>" maxlength="45" required>
                         </div>
                         <div class="form-group col-md-6">
                             <label for="inputCategories">Categories</label>
@@ -78,20 +71,23 @@
                             <label for="editProductPrice">Prix</label>
                             <input type="number" class="form-control" id="editProductPrice" name="price"
                                    min="0"
+                                   step="any"
                                    placeholder="Prix du produit"
-                                   value="<%=item.getPrice()%>">
+                                   value="<%=item.getPrice()%>" required>
                         </div>
                         <div class="form-group col-md-6">
                             <label for="editProductSerial">Numero de serie</label>
                             <input type="text" class="form-control" id="editProductSerial" name="serial"
                                    placeholder="Numero de serie du produit"
-                                   value="<%=item.getSerial()%>">
+                                   value="<%=item.getSerial()%>" maxlength="45">
                         </div>
                         <div class="form-group col-md-6">
                             <label for="editProductStock">Quantite</label>
                             <input type="number" class="form-control" id="editProductStock" name="stock"
-                                   placeholder="Quantite du produit" min="0"
-                                   value="<%=item.getStock()%>">
+                                   placeholder="Quantite du produit"
+                                   min="0"
+                                   step="1"
+                                   value="<%=item.getStock()%>" required>
                         </div>
                         <div class="col-md-6"></div>
                         <div class="form-group col-md-6">
@@ -109,8 +105,7 @@
                     </fieldset>
 
                     <div class="form-group text-center" style="clear: left; top: 15px; margin-bottom: 15px;">
-                        <a href="#" id="btnEditProduct" class="btn btn-default">Modifier</a>
-                        <button style="display: none" type="submit" class="btn btn-default">Modifier</button>
+                        <button type="submit" class="btn btn-default">Modifier</button>
                     </div>
                 </div>
             </form>

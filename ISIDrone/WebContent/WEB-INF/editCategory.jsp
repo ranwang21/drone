@@ -28,16 +28,14 @@
                              style="display:<%=msg != null ? "block" : "none"%>">
                             Modification effectuée avec succès !!!
                         </div>
-                        <div style="display: none" class="alert alert-danger" id="editCategoryError" role="alert">
-                            Tous les champs sont obligatoires
-                        </div>
+
                         <input type="hidden" name="category_id" value="<%=category.getId()%>">
 
                         <div class="form-group col-md-6">
                             <label for="editCategoryName">Nom</label>
                             <input maxlength="45" type="text" class="form-control" id="editCategoryName" name="name"
                                    placeholder="Nom de la Catégorie"
-                                   value="<%=category.getName()%>">
+                                   value="<%=category.getName()%>" required>
                         </div>
 
                         <div class="form-group col-md-6">
@@ -68,8 +66,7 @@
                     </fieldset>
 
                     <div class="form-group text-center" style="clear: left; top: 15px; margin-bottom: 15px;">
-                        <button type="submit" class="btn btn-default">Modifier
-                        </button>
+                        <button type="submit" class="btn btn-default">Modifier</button>
                     </div>
                 </div>
             </form>

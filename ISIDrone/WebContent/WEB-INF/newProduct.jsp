@@ -50,7 +50,7 @@
                         <div class="form-group col-md-6">
                             <label for="nom">Nom</label>
                             <input type="text" class="form-control" id="nom" name="nom" placeholder="Nom du produit"
-                                   required>
+                                   required maxlength="45">
                         </div>
                         <div class="col-md-6"></div>
                         <div class="form-group col-md-6">
@@ -75,16 +75,20 @@
                         <div class="form-group col-md-6">
                             <label for="price">Prix</label>
                             <input type="number" class="form-control" id="price" name="price"
+                                   min="0"
+                                   step="any"
                                    placeholder="Prix du produit" required>
                         </div>
                         <div class="form-group col-md-6">
                             <label for="serial">Numero de serie</label>
                             <input type="text" class="form-control" id="serial" name="serial"
-                                   placeholder="Numero de serie du produit">
+                                   placeholder="Numero de serie du produit" maxlength="45">
                         </div>
                         <div class="form-group col-md-6">
                             <label for="qty">Quantite</label>
                             <input type="number" class="form-control" id="qty" name="qty"
+                                   min="0"
+                                   step="1"
                                    placeholder="Quantite du produit" required>
                         </div>
                         <div class="form-group col-md-12 form-check">
