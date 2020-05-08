@@ -6,20 +6,21 @@ function getById(param) {
 const btnEditProduct = getById("btnEditProduct")
 btnEditProduct.addEventListener('click', btnEditProductClick)
 
-function btnEditProductClick() {
-    const successMessage = getById("successMsgProduct")
-    const errorMessage = getById("editProductError")
-    const errorName = getById("errorName")
-    const errorPrice = getById("errorPrice")
-    const errorStock = getById("errorStock")
+const successMessage = getById("successMsgProduct")
+const errorMessage = getById("editProductError")
+const errorName = getById("errorName")
+const errorPrice = getById("errorPrice")
+const errorStock = getById("errorStock")
 
-    const form = getById("formEditProduct")
-    const name = getById("editProductName")
-    const price = getById("editProductPrice")
-    const stock = getById("editProductStock")
+const form = getById("formEditProduct")
+const name = getById("editProductName")
+const price = getById("editProductPrice")
+const stock = getById("editProductStock")
+
+function btnEditProductClick() {
 
     if (name.value.length === 0 || price.value.length === 0 || stock.value.length === 0 || price.value < 0 || stock.value < 0) {
-        successMessage.style.display = "none";
+        // successMessage.style.display = "none";
         errorMessage.style.display = "block";
         errorName.style.display = name.value.length === 0 ? "block" : "none"
         errorPrice.style.display = price.value.length === 0 ? "block" : "none"

@@ -56,7 +56,6 @@
                         <a href="editProduct?product_id=<%=item.getId()%>">Modifier</a>
                         <a data-modal-target="#modal" href="#"
                            onclick="setIdProduct(<%=item.getId()%>)">Supprimer</a>
-                        <a href="#">Action 3</a>
                     </div>
                 </div>
             </td>
@@ -85,5 +84,6 @@
     <div id="overlay-supp"></div>
 </div>
 
+<script type="text/javascript" src="js/suppression.js"></script>
 
 <jsp:include page="<%=Const.PATH_FOOTER_JSP%>"/>

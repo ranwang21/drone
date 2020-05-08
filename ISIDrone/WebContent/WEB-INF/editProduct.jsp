@@ -27,11 +27,11 @@
                 </div>
                 <div class="panel-body">
                     <fieldset class="col-md-12">
-                        <% if (msg == 1) {%>
-                        <div class="col-md-12 alert alert-success" id="successMsgProduct" role="alert">
+                        <div class="col-md-12 alert alert-success" id="successMsgProduct" role="alert"
+                             style="display: <%=(msg == 1 ? "block" : "none")%>">
                             Modification effectuée avec succès !!!
                         </div>
-                        <%} %>
+
                         <% if (msg == 2) {%>
                         <div class="col-md-12 alert alert-danger" id="successMsgAddProduct" role="alert">
                             Une erreur est survenu lors du téléchargement de l'image
@@ -117,4 +117,6 @@
         </div>
     </div>
 </div>
+
+<script type="text/javascript" src="js/validation.js"></script>
 <jsp:include page="<%=Const.PATH_FOOTER_JSP%>"/>

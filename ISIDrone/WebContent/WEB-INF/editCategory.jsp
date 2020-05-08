@@ -24,11 +24,10 @@
                 </div>
                 <div class="panel-body">
                     <fieldset class="col-md-12">
-                        <% if (msg != null) {%>
-                        <div class="col-md-12 alert alert-success" role="alert">
+                        <div class="col-md-12 alert alert-success" role="alert"
+                             style="display:<%=msg != null ? "block" : "none"%>">
                             Modification effectuée avec succès !!!
                         </div>
-                        <%} %>
                         <div style="display: none" class="alert alert-danger" id="editCategoryError" role="alert">
                             Tous les champs sont obligatoires
                         </div>
@@ -77,4 +76,6 @@
         </div>
     </div>
 </div>
+
+<script type="text/javascript" src="js/validation.js"></script>
 <jsp:include page="<%=Const.PATH_FOOTER_JSP%>"/>

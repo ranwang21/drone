@@ -84,4 +84,6 @@
     <div id="overlay-supp"></div>
 </div>
 
+<script type="text/javascript" src="js/suppression.js"></script>
+
 <jsp:include page="<%=Const.PATH_FOOTER_JSP%>"/>
