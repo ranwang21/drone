@@ -42,6 +42,7 @@
                             <p id="errorName" style="display: none">* Nom</p>
                             <p id="errorPrice" style="display: none">* Prix</p>
                             <p id="errorStock" style="display: none">* Quantite</p>
+                            et vous ne pouviez saisir une chiffre négative sur le prix et la quantité
                         </div>
                         <input type="hidden" name="product_id" value="<%=item.getId()%>">
                         <input type="hidden" name="oldImgName" value="<%=item.getImage()%>">
@@ -76,6 +77,7 @@
                         <div class="form-group col-md-6">
                             <label for="editProductPrice">Prix</label>
                             <input type="number" class="form-control" id="editProductPrice" name="price"
+                                   min="0"
                                    placeholder="Prix du produit"
                                    value="<%=item.getPrice()%>">
                         </div>
@@ -88,13 +90,14 @@
                         <div class="form-group col-md-6">
                             <label for="editProductStock">Quantite</label>
                             <input type="number" class="form-control" id="editProductStock" name="stock"
-                                   placeholder="Quantite du produit"
+                                   placeholder="Quantite du produit" min="0"
                                    value="<%=item.getStock()%>">
                         </div>
                         <div class="col-md-6"></div>
                         <div class="form-group col-md-6">
                             <label for="editProductDescription">Description</label>
                             <textarea class="form-control" id="editProductDescription" name="description" rows="3"
+                                      maxlength="255"
                                       placeholder="Description du produit"><%=item.getDescription()%></textarea>
                         </div>
                         <div class="form-group col-md-12 form-check">

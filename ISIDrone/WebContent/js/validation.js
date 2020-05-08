@@ -18,7 +18,7 @@ function btnEditProductClick() {
     const price = getById("editProductPrice")
     const stock = getById("editProductStock")
 
-    if (name.value.length === 0 || price.value.length === 0 || stock.value.length === 0) {
+    if (name.value.length === 0 || price.value.length === 0 || stock.value.length === 0 || price.value < 0 || stock.value < 0) {
         successMessage.style.display = "none";
         errorMessage.style.display = "block";
         errorName.style.display = name.value.length === 0 ? "block" : "none"

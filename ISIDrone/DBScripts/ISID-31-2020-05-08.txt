@@ -1,0 +1,6 @@
+//ajouter un champ dans la table user pour gérer l'état d'un compte utilisateur.
+
+USE isidrone;
+
+ALTER TABLE isidrone.user
+ADD COLUMN  status VARCHAR(255)  NOT NULL DEFAULT 'activated' AFTER isAdmin; 
