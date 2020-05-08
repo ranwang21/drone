@@ -50,13 +50,13 @@
                         <div class="form-group col-md-6">
                             <label for="nom">Nom</label>
                             <input type="text" class="form-control" id="nom" name="nom" placeholder="Nom du produit"
-                                   required value="new prod">
+                                   required>
                         </div>
                         <div class="col-md-6"></div>
                         <div class="form-group col-md-6">
                             <label for="description">Description</label>
                             <textarea class="form-control" id="description" name="description" rows="3"
-                                      placeholder="Description du produit">eygbgdhcydggxhfc</textarea>
+                                      placeholder="Description du produit"></textarea>
                         </div>
                         <div class="form-group col-md-6">
                             <label for="category">Categories</label>
@@ -80,12 +80,12 @@
                         <div class="form-group col-md-6">
                             <label for="serial">Numero de serie</label>
                             <input type="text" class="form-control" id="serial" name="serial"
-                                   placeholder="Numero de serie du produit" value="dfdgfgh">
+                                   placeholder="Numero de serie du produit">
                         </div>
                         <div class="form-group col-md-6">
                             <label for="qty">Quantite</label>
                             <input type="number" class="form-control" id="qty" name="qty"
-                                   placeholder="Quantite du produit" required value="3">
+                                   placeholder="Quantite du produit" required>
                         </div>
                         <div class="form-group col-md-12 form-check">
                             <input type="checkbox"
