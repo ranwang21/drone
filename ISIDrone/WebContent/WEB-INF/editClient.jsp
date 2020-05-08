@@ -31,36 +31,28 @@
                             Cette adresse courriel existe déjà
                         </div>
                         <%} %>
-                        <div style="display: none" class="alert alert-danger" id="editClientError" role="alert">
-                            Tous les champs ci-dessous sont obligatoires
-                            <p id="errorName" style="display: none">* Nom</p>
-                            <p id="errorPrice" style="display: none">* Prix</p>
-                            <p id="errorStock" style="display: none">* Quantite</p>
-                            <p id="errorNegation" style="display: none">* Pas de quan</p>
-                            et vous ne pouviez saisir une chiffre négative sur le prix et la quantité
-                        </div>
                         <input type="hidden" name="client_id" value="<%=user.getId()%>">
 
 
                         <div class="form-group col-md-6">
                             <label for="clientLastName">Nom</label>
                             <input type="text" class="form-control" id="clientLastName" name="lastName"
-                                   placeholder="Nom du produit"
-                                   value="<%=user.getLastName()%>" required>
+                                   placeholder="Nom"
+                                   value="<%=user.getLastName()%>" required maxlength="45">
                         </div>
 
                         <div class="form-group col-md-6">
-                            <label for="clientFirstName">Prenom</label>
+                            <label for="clientFirstName">Prénom</label>
                             <input type="text" class="form-control" id="clientFirstName" name="firstName"
-                                   placeholder="Nom du produit"
-                                   value="<%=user.getFirstName()%>" required>
+                                   placeholder="Prénom"
+                                   value="<%=user.getFirstName()%>" required maxlength="45">
                         </div>
 
                         <div class="form-group col-md-6">
                             <label for="clientEmail">Email</label>
                             <input type="text" class="form-control" id="clientEmail" name="email"
-                                   placeholder="Nom du produit"
-                                   value="<%=user.getEmail()%>" required>
+                                   placeholder="Email"
+                                   value="<%=user.getEmail()%>" required maxlength="45">
                         </div>
 
                         <div class="panel panel-primary form-horizontal col-md-12"
