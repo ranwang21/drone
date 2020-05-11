@@ -2,6 +2,7 @@ package servlet;
 
 import action.ActionCategory;
 import action.ActionUser;
+import entities.User;
 import util.Const;
 
 import javax.servlet.ServletException;
@@ -27,14 +28,21 @@ public class ActivateClient extends HttpServlet {
      * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
      */
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        int idClient = Integer.parseInt(request.getParameter("user_id"));
-        // return true if deactivated
-        boolean isDeleted = ActionUser.Activate(idClient);
-        if (!isDeleted) {
-            request.setAttribute("activateError", "Activate Error");
+        User user = (User) request.getSession().getAttribute("user");
+
+        if (user != null && user.getIsAdmin() == 1) {
+            int idClient = Integer.parseInt(request.getParameter("user_id"));
+            // return true if deactivated
+            boolean isDeleted = ActionUser.Activate(idClient);
+            if (!isDeleted) {
+                request.setAttribute("activateError", "Activate Error");
+            }
+            ActionUser.getClients(request, response);
+            request.getRequestDispatcher(Const.PATH_PAGE_LIST_CLIENTS).forward(request, response);
+        } else {
+            response.sendRedirect(Const.PATH_REDIRECT_HOME);
         }
-        ActionUser.getClients(request, response);
-        request.getRequestDispatcher(Const.PATH_PAGE_LIST_CLIENTS).forward(request, response);
+
     }
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
