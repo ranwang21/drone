@@ -51,7 +51,7 @@
                 <div class="dropdown">
                     <button class="btn btn-info">&#11167</button>
                     <div class="dropdown-content">
-
+                        <a href="editClient?client_id=<%=user.getId()%>">Modifier</a>
                     </div>
                 </div>
             </td>
