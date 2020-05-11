@@ -1,12 +1,16 @@
 package action;
 
-
-import manager.MDB;
+import entities.Address;
+import entities.Category;
+import entities.User;
+import manager.MCategory;
 import manager.MSignUp;
 import manager.MUser;
+import util.Misc;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.util.Arrays;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -24,7 +28,33 @@ public class ActionUser {
         return MUser.Activate(id);
     }
 
+    public static void getUser(int idClient, HttpServletRequest request, HttpServletResponse response) {
+        request.setAttribute("user", MUser.getUserById(idClient));
+    }
+
     public static boolean Deactivate(int id) {
         return MUser.Deactivate(id);
+    }
+        
+    public static void updateUserById(HttpServletRequest request, HttpServletResponse response) {
+        User user = new User();
+        Address address = new Address();
+
+        address.setId(Integer.parseInt(request.getParameter("address_id")));
+        address.setNo(request.getParameter("addr_no"));
+        address.setAppt(request.getParameter("addr_appt"));
+        address.setStreet(request.getParameter("addr_street"));
+        address.setZip(request.getParameter("addr_zip"));
+        address.setCity(request.getParameter("addr_city"));
+        address.setState(request.getParameter("addr_state"));
+        address.setCountry(request.getParameter("addr_country"));
+
+        user.setId(Integer.parseInt(request.getParameter("client_id")));
+        user.setLastName(request.getParameter("lastName"));
+        user.setFirstName(request.getParameter("firstName"));
+        user.setEmail(request.getParameter("email"));
+        user.setShipAdress(address);
+
+        MUser.updateUser(user);
     }
 }

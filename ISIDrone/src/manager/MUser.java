@@ -1,7 +1,7 @@
 package manager;
 
 
-import entities.Item;
+import entities.Address;
 import entities.User;
 
 import java.sql.PreparedStatement;
@@ -126,5 +126,117 @@ public class MUser {
             MDB.disconnect();
         }
         return true;
+    }
+
+    public static User getUserById(int id) {
+        User user = new User();
+        try {
+            MDB.connect();
+            String query = "SELECT user.id, lastName, firstName, email, ship_address_id, no, appt, street, zip, city, state, country " +
+                    "FROM user INNER JOIN address ON user.ship_address_id = address.id " +
+                    "WHERE user.id = ?";
+
+            PreparedStatement ps = MDB.getPS(query);
+            ps.setInt(1, id);
+            ResultSet rs = ps.executeQuery();
+
+            Address address = new Address();
+            while (rs.next()) {
+                user.setId(rs.getInt("id"));
+                user.setLastName(rs.getString("lastName"));
+                user.setFirstName(rs.getString("firstName"));
+                user.setEmail(rs.getString("email"));
+                address.setId(rs.getInt("ship_address_id"));
+                address.setNo(rs.getString("no"));
+                address.setAppt(rs.getString("appt"));
+                address.setStreet(rs.getString("street"));
+                address.setZip(rs.getString("zip"));
+                address.setCity(rs.getString("city"));
+                address.setState(rs.getString("state"));
+                address.setCountry(rs.getString("country"));
+                user.setShipAdress(address);
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            MDB.disconnect();
+        }
+
+        return user;
+    }
+
+    public static void updateUser(User user) {
+
+        try {
+            MDB.connect();
+
+            updateUserAddress(user.getShipAddress());
+
+            String query = "UPDATE user SET lastName = ?, firstName = ?, email = ?  WHERE id = ?";
+            PreparedStatement ps = MDB.getPS(query);
+
+            ps.setString(1, user.getLastName());
+            ps.setString(2, user.getFirstName());
+            ps.setString(3, user.getEmail());
+            ps.setInt(4, user.getId());
+
+            ps.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            MDB.disconnect();
+        }
+    }
+
+    private static void updateUserAddress(Address address) {
+
+        try {
+            MDB.connect();
+
+            String query = "UPDATE address SET no = ?, appt = ?, street = ?, zip = ?, city = ?, state = ?, country = ?  WHERE id = ?";
+
+            PreparedStatement ps = MDB.getPS(query);
+            ps.setString(1, address.getNo());
+            ps.setString(2, address.getAppt());
+            ps.setString(3, address.getStreet());
+            ps.setString(4, address.getZip());
+            ps.setString(5, address.getCity());
+            ps.setString(6, address.getState());
+            ps.setString(7, address.getCountry());
+            ps.setInt(8, address.getId());
+
+            ps.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            MDB.disconnect();
+        }
+    }
+
+
+    /* -1 : Problème de connexion
+     *  0 : L'adresse email est déjà associee a un autre user
+     *  1 : L'adresse email n'est pas associer a un autre user
+     * */
+    public static int emailExist(User user) {
+        int isExist = -1;
+        try {
+            MDB.connect();
+
+            String query = "SELECT id FROM user WHERE email = ? AND id <> ?";
+            PreparedStatement ps = MDB.getPS(query);
+
+            ps.setString(1, user.getEmail());
+            ps.setInt(2, user.getId());
+            ResultSet rs = ps.executeQuery();
+
+            isExist = (rs.first() ? 0 : 1);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            MDB.disconnect();
+        }
+        return isExist;
     }
 }
