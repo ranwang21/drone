@@ -21,6 +21,7 @@ public class MUser {
             user.setEmail(rs.getString("email"));
             user.setPassword(rs.getString("password"));
             user.setIsAdmin(rs.getInt("isAdmin"));
+            user.setStatus(rs.getString("status"));
 
 //            must implement
 //            user.setShipAdress(rs.getInt("ship_adress_id"));
