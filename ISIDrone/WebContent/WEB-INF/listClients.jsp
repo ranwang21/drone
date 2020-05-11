@@ -35,6 +35,7 @@
             <th scope="col">Nom</th>
             <th scope="col">Prénom</th>
             <th scope="col">Email</th>
+            <th scope="col">Status</th>
             <th scope="col">Actions</th>
         </tr>
         </thead>
@@ -47,11 +48,14 @@
             </td>
             <td><%=user.getEmail()%>
             </td>
+            <td><%=user.getStatus()%>
+            </td>
             <td>
                 <div class="dropdown">
                     <button class="btn btn-info">&#11167</button>
                     <div class="dropdown-content">
-
+                        <% if (user.getStatus() == "ACTIVATED") %>
+                        <a href=""
                     </div>
                 </div>
             </td>
