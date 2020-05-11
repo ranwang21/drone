@@ -79,6 +79,7 @@ public class ActionSignUp {
             user.setEmail(hm_formParamValue.get("email"));
             user.setPassword(hm_formParamValue.get("password"));
             user.setShipAdress(address);
+            user.setStatus("ACTIVATED");
             // pour setter le type de user ==> par defaut 0 pour un client
             user.setIsAdmin(0);
 
