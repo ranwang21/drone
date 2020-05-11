@@ -50,19 +50,20 @@
             </td>
             <td>
                 <button type="button"
-                        class="btn disabled <%=user.getStatus().equals("ACTIVATED") ? "btn-success" : "btn-danger"%>"
-                        disabled><%=user.getStatus()%>
+                        class="btn disabled <%=user.getStatus().toUpperCase().equals("ACTIVATED") ? "btn-success" : "btn-danger"%>"
+                        disabled><%=user.getStatus().toUpperCase()%>
                 </button>
             </td>
             <td>
                 <div class="dropdown">
                     <button class="btn btn-info">&#11167</button>
                     <div class="dropdown-content">
-                        <% System.out.println(user.getStatus()); %>
-                        <% if (user.getStatus().equals("ACTIVATED")) {%>
-                        <a href="deactivate-client?user_id=<%=user.getId()%>">Déactiver</a>
-                        <% } else if (user.getStatus().equals("DEACTIVATED")) { %>
-                        <a href="activate-client?user_id=<%=user.getId()%>">Activer</a>
+
+                        <% if (user.getStatus().toUpperCase().equals("ACTIVATED")) {%>
+                        <a data-modal-target="#modal" href="#" onclick="setIdUserToDeactivate(<%=user.getId()%>)">Déactiver</a>
+                        <% } else if (user.getStatus().toUpperCase().equals("DISACTIVATED")) { %>
+                        <a data-modal-target="#modal" href="#"
+                           onclick="setIdUserToActivate(<%=user.getId()%>)">Activer</a>
                         <% } %>
                     </div>
                 </div>
@@ -72,6 +73,22 @@
         </tbody>
     </table>
 </div>
+
+<div class="modal-supp" id="modal">
+    <div class="modal-header-supp">
+        <div class="title-supp">Confirmation</div>
+        <button data-close-button class="close-button-supp">&times;</button>
+    </div>
+    <div class="modal-body-supp">
+        Veillez confirmer votre action.
+        <div class="confirmer-button">
+            <a id="confirm-link">
+                <button class="btn btn-danger">Confirmer</button>
+            </a>
+        </div>
+    </div>
+</div>
+<div id="overlay-supp"></div>
 
 <script type="text/javascript" src="js/suppression.js"></script>
 

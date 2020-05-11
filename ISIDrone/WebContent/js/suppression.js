@@ -55,6 +55,18 @@ function setIdProduct(id) {
 
 }
 
+function setIdUserToActivate(id) {
+    let link = document.getElementById('confirm-link')
+    link.setAttribute('href', 'activate-client?user_id=' + id)
+
+}
+
+function setIdUserToDeactivate(id) {
+    let link = document.getElementById('confirm-link')
+    link.setAttribute('href', 'deactivate-client?user_id=' + id)
+
+}
+
 function setIdUpdateExp(id, isExp) {
     let divTitle = document.getElementById('order-main-title')
     let divBody = document.getElementById('order-body-title')
@@ -68,3 +80,4 @@ function setIdUpdateExp(id, isExp) {
     let link = document.getElementById('confirm-link')
     link.setAttribute('href', 'edit-order-exp?order_id=' + id + '&is_exp=' + isExp)
 }
+

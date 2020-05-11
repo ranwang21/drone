@@ -26,6 +26,7 @@ public class Const {
     public static String PATH_MENU_JSP = PATH_GLOBAL_INCLUDES + "menu.jsp";                     // Menu
     public static String PATH_CART_DROPDOWN_JSP = PATH_GLOBAL_INCLUDES + "cart_dropdown.jsp";   // Menu
     public static String PATH_CATEGORY_JSP = PATH_GLOBAL_INCLUDES + "category.jsp";
+    public static String PATH_REDIRECT_HOME = "/ISIDrone";
 
     public static String PATH_PAGE_HOME = PATH_PRIVATE + "index.jsp";
     public static String PATH_PAGE_ABOUT = PATH_PRIVATE + "about.jsp";

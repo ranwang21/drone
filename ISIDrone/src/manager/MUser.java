@@ -93,7 +93,7 @@ public class MUser {
     public static boolean Deactivate(int id) {
         try {
             MDB.connect();
-            String queryToDelete = "UPDATE user SET status = 'DEACTIVATED' WHERE id = ?";
+            String queryToDelete = "UPDATE user SET status = 'DISACTIVATED' WHERE id = ?";
             PreparedStatement psToDelete = MDB.getPS(queryToDelete);
             psToDelete.setInt(1, id);
             int rs = psToDelete.executeUpdate();

@@ -15,6 +15,7 @@ import javax.servlet.http.Part;
 
 import action.ActionCategory;
 import entities.Item;
+import entities.User;
 import util.Const;
 import action.ActionItems;
 
@@ -37,42 +38,59 @@ public class AddProduct extends HttpServlet {
      * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
      */
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        ActionCategory.getCategories(request, response);
-        request.getRequestDispatcher(Const.PATH_NEW_PRODUCT_JSP).forward(request, response);
+        User user = (User) request.getSession().getAttribute("user");
+
+        if (user != null && user.getIsAdmin() == 1) {
+            ActionCategory.getCategories(request, response);
+            request.getRequestDispatcher(Const.PATH_NEW_PRODUCT_JSP).forward(request, response);
+        } else {
+            response.sendRedirect(Const.PATH_REDIRECT_HOME);
+        }
+
+
     }
 
     /**
      * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
      */
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        request.setCharacterEncoding("UTF-8");
-        Item item = new Item();
-        item.setName(request.getParameter("nom"));
-        item.setCategory(Integer.parseInt(request.getParameter("categoryId")));
-        item.setDescription(request.getParameter("description"));
-        item.setPrice(Double.parseDouble(request.getParameter("price")));
-        item.setSerial(request.getParameter("serial"));
-        item.setStock(Integer.parseInt(request.getParameter("qty")));
-        item.setActive(!Arrays.toString(request.getParameterValues("isActive")).equals("null"));
-        item.setImage("drone_default.png");
 
-        final Part filePart = request.getPart("addProductFile");
-        final String fileName = ActionItems.getFileName(filePart);
+        User user = (User) request.getSession().getAttribute("user");
 
-        int numError = 1;
+        if (user != null && user.getIsAdmin() == 1) {
+            request.setCharacterEncoding("UTF-8");
+            Item item = new Item();
+            item.setName(request.getParameter("nom"));
+            item.setCategory(Integer.parseInt(request.getParameter("categoryId")));
+            item.setDescription(request.getParameter("description"));
+            item.setPrice(Double.parseDouble(request.getParameter("price")));
+            item.setSerial(request.getParameter("serial"));
+            item.setStock(Integer.parseInt(request.getParameter("qty")));
+            item.setActive(!Arrays.toString(request.getParameterValues("isActive")).equals("null"));
+            item.setImage("drone_default.png");
 
-        if (!Objects.equals(fileName, "")) {
-            String outFile = UUID.randomUUID().toString() + "." + ActionItems.getFileExtension(fileName);
-            int retour = ActionItems.uploadProductImg(outFile, filePart);
-            item.setImage(outFile);
+            final Part filePart = request.getPart("addProductFile");
+            final String fileName = ActionItems.getFileName(filePart);
 
-            if (retour == 0)
-                //erreur pendant telechargement de l'image
-                numError = 2;
+            int numError = 1;
+
+            if (!Objects.equals(fileName, "")) {
+                String outFile = UUID.randomUUID().toString() + "." + ActionItems.getFileExtension(fileName);
+                int retour = ActionItems.uploadProductImg(outFile, filePart);
+                item.setImage(outFile);
+
+                if (retour == 0)
+                    //erreur pendant telechargement de l'image
+                    numError = 2;
+            }
+
+            if (numError == 1) ActionItems.addItem(request, response, item);
+            request.setAttribute("message", numError);
+            doGet(request, response);
+        } else {
+            response.sendRedirect(Const.PATH_REDIRECT_HOME);
         }
 
-        if (numError == 1) ActionItems.addItem(request, response, item);
-        request.setAttribute("message", numError);
-        doGet(request, response);
+
     }
 }

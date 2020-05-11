@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import action.ActionCategory;
+import entities.User;
 import util.Const;
 
 /**
@@ -29,17 +30,30 @@ public class AddCategory extends HttpServlet {
      * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
      */
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        ActionCategory.getCategories(request, response);
-        request.getRequestDispatcher(Const.PATH_PAGE_ADD_CATEGORY).forward(request, response);
+        User user = (User) request.getSession().getAttribute("user");
+
+        if (user != null && user.getIsAdmin() == 1) {
+            ActionCategory.getCategories(request, response);
+            request.getRequestDispatcher(Const.PATH_PAGE_ADD_CATEGORY).forward(request, response);
+        } else {
+            response.sendRedirect(Const.PATH_REDIRECT_HOME);
+        }
     }
 
     /**
      * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
      */
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        request.setCharacterEncoding("UTF-8");
-        ActionCategory.addCategory(request, response);
-        doGet(request, response);
+        User user = (User) request.getSession().getAttribute("user");
+
+        if (user != null && user.getIsAdmin() == 1) {
+            request.setCharacterEncoding("UTF-8");
+            ActionCategory.addCategory(request, response);
+            doGet(request, response);
+        } else {
+            response.sendRedirect(Const.PATH_REDIRECT_HOME);
+        }
+
     }
 
 }
