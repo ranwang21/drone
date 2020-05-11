@@ -8,6 +8,7 @@ public class User {
             password;
     int isAdmin;
     Address shipAddress;
+    String status;
 
     public User() {
     }
@@ -26,6 +27,14 @@ public class User {
 
     public int getId() {
         return id;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
     }
 
     public String getFirstName() {
