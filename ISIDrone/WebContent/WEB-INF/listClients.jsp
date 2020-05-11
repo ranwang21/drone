@@ -48,14 +48,22 @@
             </td>
             <td><%=user.getEmail()%>
             </td>
-            <td><%=user.getStatus()%>
+            <td>
+                <button type="button"
+                        class="btn disabled <%=user.getStatus().equals("ACTIVATED") ? "btn-success" : "btn-danger"%>"
+                        disabled><%=user.getStatus()%>
+                </button>
             </td>
             <td>
                 <div class="dropdown">
                     <button class="btn btn-info">&#11167</button>
                     <div class="dropdown-content">
-                        <% if (user.getStatus() == "ACTIVATED") %>
-                        <a href=""
+                        <% System.out.println(user.getStatus()); %>
+                        <% if (user.getStatus().equals("ACTIVATED")) {%>
+                        <a href="deactivate-client?user_id=<%=user.getId()%>">Déactiver</a>
+                        <% } else if (user.getStatus().equals("DEACTIVATED")) { %>
+                        <a href="activate-client?user_id=<%=user.getId()%>">Activer</a>
+                        <% } %>
                     </div>
                 </div>
             </td>
