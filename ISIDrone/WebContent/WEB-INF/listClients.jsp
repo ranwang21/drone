@@ -3,7 +3,6 @@
 <%@ page import="util.Const" %>
 <%@ page import="entities.User" %>
 <%
-    @SuppressWarnings("unchecked")
     ArrayList<User> users = (ArrayList<User>) request.getAttribute("users");
     String search = request.getParameter("search");
 
@@ -90,7 +89,5 @@
     </div>
 </div>
 <div id="overlay-supp"></div>
-
-<script type="text/javascript" src="js/suppression.js"></script>
 
 <jsp:include page="<%=Const.PATH_FOOTER_JSP%>"/>

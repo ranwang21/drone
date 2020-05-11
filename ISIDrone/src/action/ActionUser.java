@@ -35,7 +35,7 @@ public class ActionUser {
     public static boolean Deactivate(int id) {
         return MUser.Deactivate(id);
     }
-        
+
     public static void updateUserById(HttpServletRequest request, HttpServletResponse response) {
         User user = new User();
         Address address = new Address();
@@ -53,6 +53,8 @@ public class ActionUser {
         user.setLastName(request.getParameter("lastName"));
         user.setFirstName(request.getParameter("firstName"));
         user.setEmail(request.getParameter("email"));
+        System.out.println(request.getParameter("status"));
+        user.setStatus(request.getParameter("status"));
         user.setShipAdress(address);
 
         MUser.updateUser(user);
