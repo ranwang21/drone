@@ -61,7 +61,7 @@
 
                         <% if (user.getStatus().toUpperCase().equals("ACTIVATED")) {%>
                         <a data-modal-target="#modal" href="#" onclick="setIdUserToDeactivate(<%=user.getId()%>)">Déactiver</a>
-                        <% } else if (user.getStatus().toUpperCase().equals("DEACTIVATED")) { %>
+                        <% } else if (user.getStatus().toUpperCase().equals("DISACTIVATED")) { %>
                         <a data-modal-target="#modal" href="#"
                            onclick="setIdUserToActivate(<%=user.getId()%>)">Activer</a>
                         <% } %>
