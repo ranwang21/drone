@@ -1,0 +1,18 @@
+use isidrone;
+   CREATE TABLE `provinces` (
+  `id` int(10)  unsigned NOT NULL AUTO_INCREMENT,
+  `name`  varchar(50) COLLATE utf8_bin NOT NULL,
+  PRIMARY KEY (`id`) 
+);
+
+INSERT INTO provinces(id , name) VALUES
+(1, 'Ontario'),
+(2,'Quebec'),
+(3,'Prince Edward Island'),
+(4, 'Nova Scotia'),
+(5, 'New Brunswick'),
+(6,'Manitoba'),
+(7,'British Columbia'),
+(8,'Saskatchewan')
+(9,'Alberta'),
+(10,'Newfoundland and Labrador');
