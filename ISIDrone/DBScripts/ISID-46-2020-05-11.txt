@@ -1,0 +1,8 @@
+use isidrone;
+   CREATE TABLE `clients_deactivations_descriptions`(
+  `id_deactivation_initiator` int(10)  unsigned  NOT NULL AUTO_INCREMENT,
+  `id_client` int(10)  unsigned NOT NULL ,
+  `description`  varchar(255) COLLATE utf8_bin NOT NULL,
+  PRIMARY KEY(id_deactivation_initiator) 
+  FOREIGN KEY (id_client) REFERENCES user(id) 
+);

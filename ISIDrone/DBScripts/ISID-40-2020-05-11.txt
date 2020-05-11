@@ -13,6 +13,6 @@ INSERT INTO provinces(id , name) VALUES
 (5, 'New Brunswick'),
 (6,'Manitoba'),
 (7,'British Columbia'),
-(8,'Saskatchewan')
+(8,'Saskatchewan'),
 (9,'Alberta'),
 (10,'Newfoundland and Labrador');
