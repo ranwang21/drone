@@ -12,7 +12,7 @@ public class User {
 
     public User() {
     }
-
+    
     public User(int id, String lastName, String firstName, String email,
                 String password, int isAdmin, Address shipAddress, String status) {
         super();
@@ -25,6 +25,7 @@ public class User {
         this.isAdmin = isAdmin;
         this.status = status;
     }
+    
 
     public int getId() {
         return id;

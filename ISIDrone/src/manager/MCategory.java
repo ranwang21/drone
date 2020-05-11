@@ -96,7 +96,6 @@ public class MCategory {
         try {
             MDB.connect();
 
-
             // Ajoute l'address a la BD
             String query = "UPDATE category SET name = ?, description = ?, `order` = ?, isActive = ?  WHERE id = ?";
 
