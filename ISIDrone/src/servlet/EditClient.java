@@ -32,24 +32,42 @@ public class EditClient extends HttpServlet {
      * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
      */
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        int idClient = Integer.parseInt(request.getParameter("client_id"));
-        ActionUser.getUser(idClient, request, response);
-        request.getRequestDispatcher(Const.PATH_PAGE_EDIT_CLIENT).forward(request, response);
+
+        User user = (User) request.getSession().getAttribute("user");
+
+        if (user != null && user.getIsAdmin() == 1) {
+            int idClient = Integer.parseInt(request.getParameter("client_id"));
+            ActionUser.getUser(idClient, request, response);
+            request.getRequestDispatcher(Const.PATH_PAGE_EDIT_CLIENT).forward(request, response);
+        } else {
+            response.sendRedirect(Const.PATH_REDIRECT_HOME);
+        }
+
+
     }
 
     /**
      * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
      */
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        request.setCharacterEncoding("UTF-8");
-        User user = new User();
-        user.setEmail(request.getParameter("email"));
-        user.setId(Integer.parseInt(request.getParameter("client_id")));
-        int checkEmail = MUser.emailExist(user);
-        request.setAttribute("message", checkEmail);
-        if (checkEmail == 1) {
-            ActionUser.updateUserById(request, response);
+
+        User userLogin = (User) request.getSession().getAttribute("user");
+
+        if (userLogin != null && userLogin.getIsAdmin() == 1) {
+            request.setCharacterEncoding("UTF-8");
+            User user = new User();
+            user.setEmail(request.getParameter("email"));
+            user.setId(Integer.parseInt(request.getParameter("client_id")));
+            int checkEmail = MUser.emailExist(user);
+            request.setAttribute("message", checkEmail);
+            if (checkEmail == 1) {
+                ActionUser.updateUserById(request, response);
+            }
+            doGet(request, response);
+        } else {
+            response.sendRedirect(Const.PATH_REDIRECT_HOME);
         }
-        doGet(request, response);
+
+
     }
 }

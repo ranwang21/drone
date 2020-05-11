@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import action.ActionCategory;
 import action.ActionItems;
 import action.ActionSignUp;
+import entities.User;
 import util.Const;
 
 /**
@@ -31,20 +32,37 @@ public class EditCategory extends HttpServlet {
      * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
      */
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        int idCategory = Integer.parseInt(request.getParameter("category_id"));
 
-        ActionCategory.getCategories(request, response);
-        ActionCategory.getCategoryById(idCategory, request, response);
-        request.getRequestDispatcher(Const.PATH_PAGE_EDIT_CATEGORY).forward(request, response);
+        User user = (User) request.getSession().getAttribute("user");
+
+        if (user != null && user.getIsAdmin() == 1) {
+            int idCategory = Integer.parseInt(request.getParameter("category_id"));
+
+            ActionCategory.getCategories(request, response);
+            ActionCategory.getCategoryById(idCategory, request, response);
+            request.getRequestDispatcher(Const.PATH_PAGE_EDIT_CATEGORY).forward(request, response);
+        } else {
+            response.sendRedirect(Const.PATH_REDIRECT_HOME);
+        }
+
+
     }
 
     /**
      * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
      */
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        request.setCharacterEncoding("UTF-8");
-        ActionCategory.updateCategoryById(request, response);
-        doGet(request, response);
+        User user = (User) request.getSession().getAttribute("user");
+
+        if (user != null && user.getIsAdmin() == 1) {
+
+            request.setCharacterEncoding("UTF-8");
+            ActionCategory.updateCategoryById(request, response);
+            doGet(request, response);
+        } else {
+            response.sendRedirect(Const.PATH_REDIRECT_HOME);
+        }
+
     }
 
 }
