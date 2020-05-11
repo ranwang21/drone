@@ -50,8 +50,8 @@
             </td>
             <td>
                 <button type="button"
-                        class="btn disabled <%=user.getStatus().equals("ACTIVATED") ? "btn-success" : "btn-danger"%>"
-                        disabled><%=user.getStatus()%>
+                        class="btn disabled <%=user.getStatus().toUpperCase().equals("ACTIVATED") ? "btn-success" : "btn-danger"%>"
+                        disabled><%=user.getStatus().toUpperCase()%>
                 </button>
             </td>
             <td>
@@ -59,9 +59,9 @@
                     <button class="btn btn-info">&#11167</button>
                     <div class="dropdown-content">
 
-                        <% if (user.getStatus().equals("ACTIVATED")) {%>
+                        <% if (user.getStatus().toUpperCase().equals("ACTIVATED")) {%>
                         <a data-modal-target="#modal" href="#" onclick="setIdUserToDeactivate(<%=user.getId()%>)">Déactiver</a>
-                        <% } else if (user.getStatus().equals("DEACTIVATED")) { %>
+                        <% } else if (user.getStatus().toUpperCase().equals("DEACTIVATED")) { %>
                         <a data-modal-target="#modal" href="#"
                            onclick="setIdUserToActivate(<%=user.getId()%>)">Activer</a>
                         <% } %>
