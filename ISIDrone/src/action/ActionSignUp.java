@@ -114,8 +114,8 @@ public class ActionSignUp {
         Restriction restrictPassword = new Restriction(8, 40, Pattern.compile("^(?=.*[A-Za-z])(?=.*\\d)(?=.*[$@$!%*#?&])[A-Za-z\\d$@$!%*#?&]{8,}$"));
         Restriction restrictConfirmPassword = new Restriction(hm_formParamValue.get("password"));
 
-        Restriction restrictAddr_no = new Restriction(1, 10, Pattern.compile("[a-zA-z0-9]*"));
-        Restriction restrictionAddr_app = new Restriction(true, 1, 10, Pattern.compile("[a-zA-z0-9]*"));
+        Restriction restrictAddr_no = new Restriction(1, 10, Pattern.compile("[a-zA-Z0-9]*"));
+        Restriction restrictionAddr_app = new Restriction(true, 1, 10, Pattern.compile("[a-zA-Z0-9]*"));
         Restriction restrictionAddr_street = new Restriction(1, 45);
         Restriction restrictAddr_zip = new Restriction();
 

@@ -53,7 +53,7 @@ public class MSignUp {
      *  0 : L'adresse email est déjà présente dans la base de données
      *  1 : L'adresse email n'est pas présente dans la base de données
      * */
-    private static int isExist(User user) {
+    public static int isExist(User user) {
         int isExist = -1;
 
         try {
@@ -115,5 +115,5 @@ public class MSignUp {
 
         return id;
     }
-    
+
 }
