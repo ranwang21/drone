@@ -11,6 +11,9 @@ import util.Misc;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.util.Arrays;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 
 public class ActionUser {
     public static void getSearchUsers(HttpServletRequest request, HttpServletResponse response) {
@@ -21,10 +24,18 @@ public class ActionUser {
         request.setAttribute("users", MUser.getClients());
     }
 
+    public static boolean Activate(int id) {
+        return MUser.Activate(id);
+    }
+
     public static void getUser(int idClient, HttpServletRequest request, HttpServletResponse response) {
         request.setAttribute("user", MUser.getUserById(idClient));
     }
 
+    public static boolean Deactivate(int id) {
+        return MUser.Deactivate(id);
+    }
+        
     public static void updateUserById(HttpServletRequest request, HttpServletResponse response) {
         User user = new User();
         Address address = new Address();

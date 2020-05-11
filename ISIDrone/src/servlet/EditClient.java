@@ -1,9 +1,6 @@
 package servlet;
 
 import java.io.IOException;
-import java.util.Arrays;
-import java.util.Objects;
-import java.util.UUID;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -13,7 +10,6 @@ import javax.servlet.http.HttpServletResponse;
 
 import action.ActionUser;
 import entities.User;
-import manager.MSignUp;
 import manager.MUser;
 import util.Const;
 

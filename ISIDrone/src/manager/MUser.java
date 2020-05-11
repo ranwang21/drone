@@ -75,6 +75,7 @@ public class MUser {
                 user.setLastName(rs.getString("lastName"));
                 user.setFirstName(rs.getString("firstName"));
                 user.setEmail(rs.getString("email"));
+                user.setStatus(rs.getString("status"));
 
                 clients.add(user);
             }
@@ -86,6 +87,44 @@ public class MUser {
         }
 
         return clients;
+    }
+
+    public static boolean Deactivate(int id) {
+        try {
+            MDB.connect();
+            String queryToDelete = "UPDATE user SET status = 'DEACTIVATED' WHERE id = ?";
+            PreparedStatement psToDelete = MDB.getPS(queryToDelete);
+            psToDelete.setInt(1, id);
+            int rs = psToDelete.executeUpdate();
+            if (rs <= 0) {
+                return false;
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            MDB.disconnect();
+        }
+        return true;
+    }
+
+    public static boolean Activate(int id) {
+        try {
+            MDB.connect();
+            String queryToDelete = "UPDATE user SET status = 'ACTIVATED' WHERE id = ?";
+            PreparedStatement psToDelete = MDB.getPS(queryToDelete);
+            psToDelete.setInt(1, id);
+            int rs = psToDelete.executeUpdate();
+            if (rs <= 0) {
+                return false;
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            MDB.disconnect();
+        }
+        return true;
     }
 
     public static User getUserById(int id) {
@@ -126,7 +165,7 @@ public class MUser {
         return user;
     }
 
-    public static String updateUser(User user) {
+    public static void updateUser(User user) {
 
         try {
             MDB.connect();
@@ -147,10 +186,9 @@ public class MUser {
         } finally {
             MDB.disconnect();
         }
-        return "msg";
     }
 
-    private static String updateUserAddress(Address address) {
+    private static void updateUserAddress(Address address) {
 
         try {
             MDB.connect();
@@ -173,7 +211,6 @@ public class MUser {
         } finally {
             MDB.disconnect();
         }
-        return "msg";
     }
 
 

@@ -8,12 +8,13 @@ public class User {
             password;
     int isAdmin;
     Address shipAddress;
+    String status;
 
     public User() {
     }
 
     public User(int id, String lastName, String firstName, String email,
-                String password, int isAdmin, Address shipAddress) {
+                String password, int isAdmin, Address shipAddress, String status) {
         super();
         this.id = id;
         this.lastName = lastName;
@@ -22,10 +23,19 @@ public class User {
         this.password = password;
         this.shipAddress = shipAddress;
         this.isAdmin = isAdmin;
+        this.status = status;
     }
 
     public int getId() {
         return id;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
     }
 
     public String getFirstName() {
