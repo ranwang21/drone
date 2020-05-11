@@ -54,7 +54,7 @@ public class ActionLogin {
 
             //Si c'est un utilisateur valide
             if (user != null) {
-                if (user.getStatus().equals("DEACTIVATED")) {
+                if (user.getStatus().equals("DISACTIVATED")) {
                     hm_errorMsg.put("loginState", "Account Deactivated");
                 } else {
                     //Si l'utilisateur à cocher la case Connexion automatique
