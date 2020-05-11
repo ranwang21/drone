@@ -1,6 +1,7 @@
 package servlet;
 
 import action.ActionOrder;
+import entities.User;
 import util.Const;
 
 import javax.servlet.ServletException;
@@ -26,8 +27,16 @@ public class ListOrders extends HttpServlet {
      * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
      */
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        ActionOrder.getAllOrders(request, response);
-        request.getRequestDispatcher(Const.PATH_PAGE_LIST_ORDERS).forward(request, response);
+        User user = (User) request.getSession().getAttribute("user");
+
+        if (user != null && user.getIsAdmin() == 1) {
+            ActionOrder.getAllOrders(request, response);
+            request.getRequestDispatcher(Const.PATH_PAGE_LIST_ORDERS).forward(request, response);
+        } else {
+            response.sendRedirect(Const.PATH_REDIRECT_HOME);
+        }
+
+
     }
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
