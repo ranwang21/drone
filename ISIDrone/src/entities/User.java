@@ -14,18 +14,6 @@ public class User {
     }
 
     public User(int id, String lastName, String firstName, String email,
-                String password, int isAdmin, Address shipAddress) {
-        super();
-        this.id = id;
-        this.lastName = lastName;
-        this.firstName = firstName;
-        this.email = email;
-        this.password = password;
-        this.shipAddress = shipAddress;
-        this.isAdmin = isAdmin;
-    }
-
-    public User(int id, String lastName, String firstName, String email,
                 String password, int isAdmin, Address shipAddress, String status) {
         super();
         this.id = id;
