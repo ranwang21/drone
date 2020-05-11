@@ -7,6 +7,7 @@ import java.util.regex.Pattern;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import entities.Province;
 import manager.MSignUp;
 import util.Misc;
 import util.Restriction;
@@ -66,12 +67,11 @@ public class ActionSignUp {
             // Par exemple si on le supprime du formulaire (en éditant la page) et il n'est pas testé plus haut
             address.setId(-1);
             address.setNo(hm_formParamValue.get("addr_no"));
-            address.setAppt(Misc.getOrDefault(hm_formParamValue, "addr_appt", ""));
             address.setStreet(hm_formParamValue.get("addr_street"));
             address.setZip(hm_formParamValue.get("addr_zip"));
             address.setCity(hm_formParamValue.get("addr_city"));
-            address.setState(hm_formParamValue.get("addr_state"));
-            address.setCountry(hm_formParamValue.get("addr_country"));
+            address.setProvince(new Province(Integer.parseInt(hm_formParamValue.get("addr_state")), "quebec"));
+            address.setTelephone(hm_formParamValue.get("addr_tel"));
 
             user.setId(-1);
             user.setLastName(hm_formParamValue.get("lastName"));
@@ -115,7 +115,7 @@ public class ActionSignUp {
         Restriction restrictConfirmPassword = new Restriction(hm_formParamValue.get("password"));
 
         Restriction restrictAddr_no = new Restriction(1, 10, Pattern.compile("[a-zA-Z0-9]*"));
-        Restriction restrictionAddr_app = new Restriction(true, 1, 10, Pattern.compile("[a-zA-Z0-9]*"));
+        //Restriction restrictionAddr_app = new Restriction(true, 1, 10, Pattern.compile("[a-zA-Z0-9]*"));
         Restriction restrictionAddr_street = new Restriction(1, 45);
         Restriction restrictAddr_zip = new Restriction();
 
@@ -128,12 +128,9 @@ public class ActionSignUp {
         validation.addRestriction("password", restrictPassword);
         validation.addRestriction("confirmPassword", restrictConfirmPassword);
         validation.addRestriction("addr_no", restrictAddr_no);
-        validation.addRestriction("addr_appt", restrictionAddr_app);
         validation.addRestriction("addr_street", restrictionAddr_street);
         validation.addRestriction("addr_zip", restrictAddr_zip);
         validation.addRestriction("addr_city", restrict1);
-        validation.addRestriction("addr_state", restrict1);
-        validation.addRestriction("addr_country", restrict1);
 
         //On conserve les résultat des tests
         ArrayList<ResultValidation> resultValidations = validation.validate();
