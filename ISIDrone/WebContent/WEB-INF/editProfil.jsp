@@ -1,8 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ page import="util.Const" %>
 <%@ page import="entities.User" %>
+<%@ page import="entities.Province" %>
+<%@ page import="java.util.ArrayList" %>
 <%
     User user = (User) request.getAttribute("user");
+    ArrayList<Province> provinces = (ArrayList<Province>) request.getAttribute("provinces");
     int msg = request.getAttribute("message") != null ? (Integer) request.getAttribute("message") : 10;
 %>
 
@@ -11,10 +14,11 @@
 <!-- /.container -->
 <!-- Page Content -->
 <div class="container">
+
     <div class="row">
         <div class="col-sm-12">
-            <form action="editProfil" id="formEditClient" method="post" class="panel panel-primary form-horizontal"
-                  style="float: unset; margin: auto;">
+            <form action="editClient" id="formEditClient" method="post" class="panel panel-primary form-horizontal"
+                  style="margin: auto;">
                 <div class="panel-heading">
                     <h3 class="panel-title">Modification d'information personnel</h3>
                 </div>
@@ -68,11 +72,6 @@
                                        value="<%=user.getShipAddress().getNo()%>" required maxlength="10">
                             </div>
                             <div class="form-group col-md-4">
-                                <label for="addressAppt">Appartement</label>
-                                <input type="text" class="form-control" id="addressAppt" name="addr_appt"
-                                       value="<%=user.getShipAddress().getAppt()%>" maxlength="10">
-                            </div>
-                            <div class="form-group col-md-4">
                                 <label for="addressStreet">Rue</label>
                                 <input type="text" class="form-control" id="addressStreet" name="addr_street"
                                        value="<%=user.getShipAddress().getStreet()%>" required maxlength="45">
@@ -84,16 +83,20 @@
                                        value="<%=user.getShipAddress().getCity()%>" required maxlength="45">
                             </div>
                             <div class="form-group col-md-4">
-                                <label for="addressState">Province</label>
-                                <input type="text" class="form-control" id="addressState" name="addr_state"
-                                       pattern="^([a-zA-ZàéèêâïçÀÉÈÊÏÇ])+([ -][a-zA-ZàéèêâïçÀÉÈÊÏÇ]+)*"
-                                       value="<%=user.getShipAddress().getState()%>" required maxlength="45">
+                                <label for="addressPhone">Telephone</label>
+                                <input type="number" class="form-control" id="addressPhone" name="addr_tel"
+                                       value="<%=user.getShipAddress().getTelephone()%>" maxlength="45">
                             </div>
                             <div class="form-group col-md-4">
-                                <label for="addressCountry">Pays</label>
-                                <input type="text" class="form-control" id="addressCountry" name="addr_country"
-                                       pattern="^([a-zA-ZàéèêâïçÀÉÈÊÏÇ])+([ -][a-zA-ZàéèêâïçÀÉÈÊÏÇ]+)*"
-                                       value="<%=user.getShipAddress().getCountry()%>" required maxlength="45">
+                                <label for="addressState">Province</label>
+                                <select class="form-control" id="addressState" name="addr_state">
+                                    <% for (Province province : provinces) {%>
+                                    <option value="<%=province.getId()%>"
+                                            <%if (province.getId() == user.getShipAddress().getProvince().getId()) {%>selected<% } %>>
+                                        <%=province.getName()%>
+                                    </option>
+                                    <%}%>
+                                </select>
                             </div>
                             <div class="form-group col-md-4">
                                 <label for="addressZip">Code Postal</label>
@@ -103,8 +106,28 @@
                             </div>
                         </fieldset>
 
-                    </fieldset>
+                        <fieldset class="col-md-12">
+                            <legend>Status du compte</legend>
+                            <div class="form-group col-md-6">
+                                <label for="status">Status du compte</label>
+                                <a style="opacity: 0" id="modalDisactivation" data-modal-target="#modal"
+                                   href="#"></a>
+                                <select class="form-control" id="status" name="status">
+                                    <option <%if(user.getStatus().equals("ACTIVATED")){%>selected<%}%>
+                                            value="ACTIVATED">ACTIVER
+                                    </option>
+                                    <option <%if(user.getStatus().equals("DISACTIVATED")){%>selected<%}%>
+                                            value="DISACTIVATED" id="statusDesactivated">DESACTIVER
+                                    </option>
+                                </select>
+                            </div>
+                            <div class="form-group col-md-6" id="reasonDiv">
+                                <label for="reason">Raison de la desactivation</label>
+                                <textarea class="form-control" id="reason" name="reason"></textarea>
+                            </div>
+                        </fieldset>
 
+                    </fieldset>
                     <div class="form-group text-center" style="clear: left; top: 15px; margin-bottom: 15px;">
                         <button type="submit" class="btn btn-default">Modifier</button>
                     </div>
