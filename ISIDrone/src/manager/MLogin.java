@@ -85,9 +85,9 @@ public class MLogin {
         try {
             MDB.connect();
 
-            String query = "SELECT user.id, user.lastName, user.firstName, user.email, user.password,user.isAdmin,"
+            String query = "SELECT user.id, user.lastName, user.firstName, user.email, user.password, user.isAdmin, user.status, "
                     + "address.id, address.no, address.appt, address.street, address.zip, address.city, address.state, address.country"
-                    + " FROM user inner join address on user.ship_address_id = address.id "
+                    + " FROM user INNER JOIN address ON user.ship_address_id = address.id "
                     + " WHERE user.id = (SELECT user FROM autoLogin WHERE id = ? AND token = ?)";
 
             ps = MDB.getPS(query);
