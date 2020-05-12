@@ -7,12 +7,13 @@ public class User {
             email,
             password;
     int isAdmin;
+    Address billAddress;
     Address shipAddress;
     String status;
 
     public User() {
     }
-    
+
     public User(int id, String lastName, String firstName, String email,
                 String password, int isAdmin, Address shipAddress, String status) {
         super();
@@ -25,7 +26,18 @@ public class User {
         this.isAdmin = isAdmin;
         this.status = status;
     }
-    
+
+    public User(int id, String lastName, String firstName, String email, String password, int isAdmin, Address billAddress, Address shipAddress, String status) {
+        this.id = id;
+        this.lastName = lastName;
+        this.firstName = firstName;
+        this.email = email;
+        this.password = password;
+        this.isAdmin = isAdmin;
+        this.billAddress = billAddress;
+        this.shipAddress = shipAddress;
+        this.status = status;
+    }
 
     public int getId() {
         return id;
@@ -57,6 +69,18 @@ public class User {
 
     public int getIsAdmin() {
         return isAdmin;
+    }
+
+    public Address getBillAddress() {
+        return billAddress;
+    }
+
+    public void setBillAddress(Address billAddress) {
+        this.billAddress = billAddress;
+    }
+
+    public void setShipAddress(Address shipAddress) {
+        this.shipAddress = shipAddress;
     }
 
     public Address getShipAddress() {

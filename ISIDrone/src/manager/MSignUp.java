@@ -18,7 +18,7 @@ public class MSignUp {
      *  0 : L'adresse email est déjà présente dans la base de données
      *  1 : L'ajout c'est fait sans problème
      * */
-    public static int signUp(User user) {
+    public static int signUp(User user, String isCheck) {
         int code = isExist(user);
 
         if (code == 1) {
@@ -26,9 +26,12 @@ public class MSignUp {
                 MDB.connect();
 
                 // Ajoute l'address a la BD
-                MSignUp.addAddress(user.getShipAddress());
+                MSignUp.addAddress(user.getBillAddress());
+                if (isCheck == null) {
+                    MSignUp.addAddress(user.getShipAddress());
+                }
 
-                String query = "INSERT INTO user (`lastName`, `firstName`, `email`, `isAdmin`, `password`, `ship_address_id`) VALUES (?, ?, ?, ?, ?, ?)";
+                String query = "INSERT INTO user (`lastName`, `firstName`, `email`, `isAdmin`, `password`, `bill_address_id`, `ship_address_id`) VALUES (?, ?, ?, ?, ?, ?, ?)";
 
                 PreparedStatement ps = MDB.getPS(query);
 
@@ -37,7 +40,8 @@ public class MSignUp {
                 ps.setString(3, user.getEmail());
                 ps.setInt(4, user.getIsAdmin());
                 ps.setString(5, Hash.SHA1(user.getPassword()));
-                ps.setInt(6, user.getShipAddress().getId());
+                ps.setInt(6, user.getBillAddress().getId());
+                ps.setInt(7, user.getShipAddress().getId());
 
                 ps.executeUpdate();
             } catch (SQLException | NoSuchAlgorithmException | UnsupportedEncodingException e) {

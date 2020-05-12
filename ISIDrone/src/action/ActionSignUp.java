@@ -18,7 +18,7 @@ import entities.User;
 
 public class ActionSignUp {
 
-    public static boolean signUp(HttpServletRequest request, HttpServletResponse response) {
+    public static boolean signUp(HttpServletRequest request, HttpServletResponse response, String isCheck) {
         String[] s_formParamsNeeded = {"lastName", "firstName", "email", "confirmEmail", "password", "confirmPassword",
                 "addr_no", "addr_street", "addr_zip", "addr_city"};
         String[] s_formValuesNeeded = {
@@ -49,7 +49,8 @@ public class ActionSignUp {
             // Créer l'addresse en premier
             // Creer l'utilisateur et relie l'adresse
             User user = new User();
-            Address address = new Address();
+            Address billAddress = new Address();
+            Address shipAddress = new Address();
 
             String selectValue = request.getParameter("addr_state");
             int provinceId = Integer.parseInt(selectValue.replaceAll("[^0-9]", ""));
@@ -59,25 +60,44 @@ public class ActionSignUp {
 
             //Utilisez Misc.getOrDefault pour les champs qui sont optionnel, car il se pourrait que sa retourne null
             // Par exemple si on le supprime du formulaire (en éditant la page) et il n'est pas testé plus haut
-            address.setId(-1);
-            address.setNo(hm_formParamValue.get("addr_no"));
-            address.setStreet(hm_formParamValue.get("addr_street"));
-            address.setZip(hm_formParamValue.get("addr_zip"));
-            address.setCity(hm_formParamValue.get("addr_city"));
-            address.setProvince(province);
-            address.setTelephone(request.getParameter("addr_tel"));
+            billAddress.setId(-1);
+            billAddress.setNo(hm_formParamValue.get("addr_no"));
+            billAddress.setStreet(hm_formParamValue.get("addr_street"));
+            billAddress.setZip(hm_formParamValue.get("addr_zip"));
+            billAddress.setCity(hm_formParamValue.get("addr_city"));
+            billAddress.setProvince(province);
+            billAddress.setTelephone(request.getParameter("addr_tel"));
 
             user.setId(-1);
             user.setLastName(hm_formParamValue.get("lastName"));
             user.setFirstName(hm_formParamValue.get("firstName"));
             user.setEmail(hm_formParamValue.get("email"));
             user.setPassword(hm_formParamValue.get("password"));
-            user.setShipAdress(address);
+            user.setBillAddress(billAddress);
             user.setStatus("ACTIVATED");
             // pour setter le type de user ==> par defaut 0 pour un client
             user.setIsAdmin(0);
 
-            int rep = MSignUp.signUp(user);
+            if (isCheck == null) {
+                selectValue = request.getParameter("liv_state");
+                provinceId = Integer.parseInt(selectValue.replaceAll("[^0-9]", ""));
+                provinceName = selectValue.replaceAll("[0-9]", "");
+                Province livProvince = new Province(provinceId, provinceName);
+
+                shipAddress.setId(-1);
+                shipAddress.setNo(request.getParameter("liv_no"));
+                shipAddress.setStreet(request.getParameter("liv_street"));
+                shipAddress.setZip(request.getParameter("liv_zip"));
+                shipAddress.setCity(request.getParameter("liv_city"));
+                shipAddress.setProvince(livProvince);
+                shipAddress.setTelephone(request.getParameter("liv_tel"));
+
+                user.setShipAddress(shipAddress);
+            } else {
+                user.setShipAddress(billAddress);
+            }
+
+            int rep = MSignUp.signUp(user, isCheck);
 
             //Si une erreur est arrivé
             if (rep < 1) {

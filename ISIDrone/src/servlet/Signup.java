@@ -39,7 +39,8 @@ public class Signup extends HttpServlet {
      */
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         request.setCharacterEncoding("UTF-8");
-        if (ActionSignUp.signUp(request, response))
+        String isCheck = request.getParameter("liv_box");
+        if (ActionSignUp.signUp(request, response, isCheck))
             if (request.getParameter("fromCart") == null)
                 request.getRequestDispatcher(Const.PATH_PAGE_SIGNUP_COMPLETE).forward(request, response);
             else

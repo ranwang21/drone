@@ -9,12 +9,18 @@ DROP COLUMN state;
 
 // AJOUT "province_id" FOREIGN KEY TO "address" //
 
+// ETAPE 1 //
+
 ALTER TABLE address
 ADD province_id INT NOT NULL DEFAULT 2,
 ADD telephone VARCHAR(45) NULL;
 
+// ETAPE 2 //
+
 ALTER TABLE `isidrone`.`provinces` 
 CHANGE COLUMN `id` `id` INT NOT NULL AUTO_INCREMENT;
+
+// ETAPE 3 //
 
 ALTER TABLE address
 ADD CONSTRAINT fk_province_id FOREIGN KEY (province_id)
