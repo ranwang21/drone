@@ -35,11 +35,11 @@
 <script type="text/javascript" src="js/3rd/jquery.autocomplete.min.js"></script>
 <script type="text/javascript" src="js/drone-autocomplete.js"></script>
 
-<%--<!-- Suppression popup -->--%>
-<%--<script type="text/javascript" src="js/suppression.js"></script>--%>
+<!-- Suppression popup -->
+<script type="text/javascript" src="js/suppression.js"></script>
 
-<%--<!-- Validation -->--%>
-<%--<script type="text/javascript" src="js/validation.js"></script>--%>
+<!-- Signup Form -->
+<script type="text/javascript" src="js/signup-checkbox.js"></script>
 
 
 <%

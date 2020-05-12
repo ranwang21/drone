@@ -18,7 +18,7 @@ public class MSignUp {
      *  0 : L'adresse email est déjà présente dans la base de données
      *  1 : L'ajout c'est fait sans problème
      * */
-    public static int signUp(User user) {
+    public static int signUp(User user, String isCheck) {
         int code = isExist(user);
 
         if (code == 1) {
@@ -26,9 +26,12 @@ public class MSignUp {
                 MDB.connect();
 
                 // Ajoute l'address a la BD
-                MSignUp.addAddress(user.getShipAddress());
+                MSignUp.addAddress(user.getBillAddress());
+                if (isCheck == null) {
+                    MSignUp.addAddress(user.getShipAddress());
+                }
 
-                String query = "INSERT INTO user (`lastName`, `firstName`, `email`, `isAdmin`, `password`, `ship_address_id`) VALUES (?, ?, ?, ?, ?, ?)";
+                String query = "INSERT INTO user (`lastName`, `firstName`, `email`, `isAdmin`, `password`, `bill_address_id`, `ship_address_id`) VALUES (?, ?, ?, ?, ?, ?, ?)";
 
                 PreparedStatement ps = MDB.getPS(query);
 
@@ -37,7 +40,8 @@ public class MSignUp {
                 ps.setString(3, user.getEmail());
                 ps.setInt(4, user.getIsAdmin());
                 ps.setString(5, Hash.SHA1(user.getPassword()));
-                ps.setInt(6, user.getShipAddress().getId());
+                ps.setInt(6, user.getBillAddress().getId());
+                ps.setInt(7, user.getShipAddress().getId());
 
                 ps.executeUpdate();
             } catch (SQLException | NoSuchAlgorithmException | UnsupportedEncodingException e) {
@@ -86,18 +90,17 @@ public class MSignUp {
 
         try {
             MDB.connect();
-            String query = "INSERT INTO address (`no`, `appt`, `street`, `zip`, `city`, `state`, `country`) VALUES (?, ?, ?, ?, ?, ?, ?)";
+            String query = "INSERT INTO address (`no`, `street`, `zip`, `city`, `province_id`, `telephone`) VALUES (?, ?, ?, ?, ?, ?)";
 
             // Genere un prepare statement qui attent l'id creer
             PreparedStatement ps = MDB.getPS(query, 1);
 
             ps.setString(1, address.getNo());
-            ps.setString(2, address.getAppt());
-            ps.setString(3, address.getStreet());
-            ps.setString(4, address.getZip());
-            ps.setString(5, address.getCity());
-            ps.setString(6, address.getState());
-            ps.setString(7, address.getCountry());
+            ps.setString(2, address.getStreet());
+            ps.setString(3, address.getZip());
+            ps.setString(4, address.getCity());
+            ps.setInt(5, address.getProvince().getId());
+            ps.setString(6, address.getTelephone());
 
             ps.executeUpdate();
             ResultSet generatedKeys = ps.getGeneratedKeys();

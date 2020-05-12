@@ -2,6 +2,7 @@ package action;
 
 import entities.Address;
 import entities.Category;
+import entities.Province;
 import entities.User;
 import manager.MCategory;
 import manager.MSignUp;
@@ -40,20 +41,24 @@ public class ActionUser {
         User user = new User();
         Address address = new Address();
 
+        String selectValue = request.getParameter("addr_state");
+        int provinceId = Integer.parseInt(selectValue.replaceAll("[^0-9]", ""));
+        String provinceName = selectValue.replaceAll("[0-9]", "");
+
+        Province province = new Province(provinceId, provinceName);
+
         address.setId(Integer.parseInt(request.getParameter("address_id")));
         address.setNo(request.getParameter("addr_no"));
-        address.setAppt(request.getParameter("addr_appt"));
         address.setStreet(request.getParameter("addr_street"));
         address.setZip(request.getParameter("addr_zip"));
         address.setCity(request.getParameter("addr_city"));
-        address.setState(request.getParameter("addr_state"));
-        address.setCountry(request.getParameter("addr_country"));
+        address.setProvince(province);
+        address.setTelephone(request.getParameter("addr_tel"));
 
         user.setId(Integer.parseInt(request.getParameter("client_id")));
         user.setLastName(request.getParameter("lastName"));
         user.setFirstName(request.getParameter("firstName"));
         user.setEmail(request.getParameter("email"));
-        System.out.println(request.getParameter("status"));
         user.setStatus(request.getParameter("status"));
         user.setShipAdress(address);
 

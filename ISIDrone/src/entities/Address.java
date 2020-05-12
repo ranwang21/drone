@@ -1,101 +1,88 @@
 package entities;
 
 public class Address {
-	
-	int id;
-	String no;
-	String appt;
-	String street;
-	String zip;
-	String city;
-	String state;
-	String country;
-	
-	// Constructeur
-	public Address() {
-		super();
-	}
 
-	public Address(int id, String no, String appt, String street, String zip,
-			String city, String state, String country) {
-		super();
-		this.id = id;
-		this.no = no;
-		this.appt = appt;
-		this.street = street;
-		this.zip = zip;
-		this.city = city;
-		this.state = state;
-		this.country = country;
-	}
+    int id;
+    String no;
+    String street;
+    String zip;
+    String city;
+    Province province;
+    String telephone;
+
+    // Constructeur
+    public Address() {
+        super();
+    }
+
+    public Address(int id, String no, String street, String zip,
+                   String city, Province province, String telephone) {
+        super();
+        this.id = id;
+        this.no = no;
+        this.street = street;
+        this.zip = zip;
+        this.city = city;
+        this.province = province;
+        this.telephone = telephone;
+    }
 
 
+    // Getters | Setters
 
-	// Getters | Setters
+    public int getId() {
+        return id;
+    }
 
-	public int getId() {
-		return id;
-	}
+    public void setId(int id) {
+        this.id = id;
+    }
 
-	public void setId(int id) {
-		this.id = id;
-	}
+    public String getNo() {
+        return no;
+    }
 
-	public String getNo() {
-		return no;
-	}
-	
-	public void setNo(String no) {
-		this.no = no;
-	}
+    public void setNo(String no) {
+        this.no = no;
+    }
 
-	public String getAppt() {
-		return appt;
-	}
+    public String getStreet() {
+        return street;
+    }
 
-	public void setAppt(String appt) {
-		this.appt = appt;
-	}
+    public void setStreet(String street) {
+        this.street = street;
+    }
 
-	public String getStreet() {
-		return street;
-	}
+    public String getZip() {
+        return zip;
+    }
 
-	public void setStreet(String street) {
-		this.street = street;
-	}
+    public void setZip(String zip) {
+        this.zip = zip;
+    }
 
-	public String getZip() {
-		return zip;
-	}
+    public String getCity() {
+        return city;
+    }
 
-	public void setZip(String zip) {
-		this.zip = zip;
-	}
+    public void setCity(String city) {
+        this.city = city;
+    }
 
-	public String getCity() {
-		return city;
-	}
+    public Province getProvince() {
+        return province;
+    }
 
-	public void setCity(String city) {
-		this.city = city;
-	}
+    public void setProvince(Province province) {
+        this.province = province;
+    }
 
-	public String getState() {
-		return state;
-	}
+    public String getTelephone() {
+        return telephone;
+    }
 
-	public void setState(String state) {
-		this.state = state;
-	}
-
-	public String getCountry() {
-		return country;
-	}
-
-	public void setCountry(String country) {
-		this.country = country;
-	}
-	
-	
+    public void setTelephone(String telephone) {
+        this.telephone = telephone;
+    }
 }

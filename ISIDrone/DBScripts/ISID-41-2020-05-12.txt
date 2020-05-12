@@ -1,0 +1,9 @@
+// AJOUT COLUMN "bill_address_id" TABLE "user" //
+
+use isidrone;
+ALTER TABLE user
+ADD bill_address_id INT NOT NULL DEFAULT 0 AFTER password;
+Update user SET bill_address_id = ship_address_id Where bill_address_id = 0;
+ALTER TABLE user
+ADD CONSTRAINT fk_bill_id FOREIGN KEY (bill_address_id)
+REFERENCES isidrone.address(id);
