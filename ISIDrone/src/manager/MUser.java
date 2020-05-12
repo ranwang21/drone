@@ -132,7 +132,7 @@ public class MUser {
         User user = new User();
         try {
             MDB.connect();
-            String query = "SELECT user.id, lastName, firstName, email, ship_address_id, no, street, zip, city, province_id, telephone " +
+            String query = "SELECT user.id, lastName, firstName, email, status, ship_address_id, no, street, zip, city, province_id, telephone " +
                     "FROM user INNER JOIN address ON user.ship_address_id = address.id " +
                     "WHERE user.id = ?";
 

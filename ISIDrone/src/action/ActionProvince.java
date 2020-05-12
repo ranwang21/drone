@@ -1,6 +1,5 @@
 package action;
 
-import manager.MCategory;
 import manager.MProvince;
 
 import javax.servlet.http.HttpServletRequest;

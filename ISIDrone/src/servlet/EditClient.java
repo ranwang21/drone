@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import action.ActionProvince;
 import action.ActionUser;
 import entities.User;
 import manager.MUser;
@@ -38,6 +39,7 @@ public class EditClient extends HttpServlet {
         if (user != null && user.getIsAdmin() == 1) {
             int idClient = Integer.parseInt(request.getParameter("client_id"));
             ActionUser.getUser(idClient, request, response);
+            ActionProvince.getProvinces(request, response);
             request.getRequestDispatcher(Const.PATH_PAGE_EDIT_CLIENT).forward(request, response);
         } else {
             response.sendRedirect(Const.PATH_REDIRECT_HOME);
