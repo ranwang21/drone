@@ -38,6 +38,10 @@
 <!-- Suppression popup -->
 <script type="text/javascript" src="js/suppression.js"></script>
 
+<!-- Signup Form -->
+<script type="text/javascript" src="js/signup-checkbox.js"></script>
+
+
 <%--<!-- Validation -->--%>
 <%--<script type="text/javascript" src="js/validation.js"></script>--%>
 
