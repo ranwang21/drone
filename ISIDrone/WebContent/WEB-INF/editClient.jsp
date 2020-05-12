@@ -110,12 +110,12 @@
                                  style="display: flex; flex-wrap: wrap">
                                 <div class="form-check form-check-inline" style="padding-right: 50px">
                                     <input class="form-check-input" type="radio" name="status" value="ACTIVATED"
-                                           id="statusActivated">
+                                           id="statusActivated" required>
                                     <label class="form-check-label" for="statusActivated">ACTIVER</label>
                                 </div>
                                 <div class="form-check form-check-inline" style="padding-right: 50px">
-                                    <input class="form-check-input" type="radio" name="status" value="DESACTIVATED"
-                                           id="statusDesactivated">
+                                    <input class="form-check-input" type="radio" name="status" value="DISACTIVATED"
+                                           id="statusDesactivated" required>
                                     <label class="form-check-label" for="statusDesactivated">DESACTIVER</label>
                                 </div>
                             </div>
