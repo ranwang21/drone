@@ -2,6 +2,7 @@ package manager;
 
 
 import entities.Address;
+import entities.Province;
 import entities.User;
 
 import java.sql.PreparedStatement;
@@ -141,20 +142,22 @@ public class MUser {
             ResultSet rs = ps.executeQuery();
 
             Address address = new Address();
+            Province province = new Province();
             while (rs.next()) {
-                user.setId(rs.getInt("id"));
-                user.setLastName(rs.getString("lastName"));
-                user.setFirstName(rs.getString("firstName"));
-                user.setEmail(rs.getString("email"));
-                user.setStatus(rs.getString("status"));
+                province.setId(rs.getInt("province_id"));
                 address.setId(rs.getInt("ship_address_id"));
                 address.setNo(rs.getString("no"));
                 address.setStreet(rs.getString("street"));
                 address.setZip(rs.getString("zip"));
                 address.setCity(rs.getString("city"));
                 address.setTelephone(rs.getString("telephone"));
+                address.setProvince(province);
+                user.setId(rs.getInt("id"));
+                user.setLastName(rs.getString("lastName"));
+                user.setFirstName(rs.getString("firstName"));
+                user.setEmail(rs.getString("email"));
+                user.setStatus(rs.getString("status"));
                 user.setShipAdress(address);
-                address.setProvince(address.getProvince());
             }
 
         } catch (SQLException e) {
@@ -224,12 +227,12 @@ public class MUser {
 
             PreparedStatement ps = MDB.getPS(query);
             ps.setString(1, address.getNo());
-            ps.setString(3, address.getStreet());
-            ps.setString(4, address.getZip());
-            ps.setString(5, address.getCity());
-            ps.setInt(6, address.getProvince().getId());
-            ps.setString(7, address.getTelephone());
-            ps.setInt(8, address.getId());
+            ps.setString(2, address.getStreet());
+            ps.setString(3, address.getZip());
+            ps.setString(4, address.getCity());
+            ps.setInt(5, address.getProvince().getId());
+            ps.setString(6, address.getTelephone());
+            ps.setInt(7, address.getId());
 
             ps.executeUpdate();
         } catch (SQLException e) {

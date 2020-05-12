@@ -40,12 +40,8 @@ public class ActionUser {
     public static void updateUserById(HttpServletRequest request, HttpServletResponse response) {
         User user = new User();
         Address address = new Address();
-
-        String selectValue = request.getParameter("addr_state");
-        int provinceId = Integer.parseInt(selectValue.replaceAll("[^0-9]", ""));
-        String provinceName = selectValue.replaceAll("[0-9]", "");
-
-        Province province = new Province(provinceId, provinceName);
+        Province province = new Province();
+        province.setId(Integer.parseInt(request.getParameter("addr_state")));
 
         address.setId(Integer.parseInt(request.getParameter("address_id")));
         address.setNo(request.getParameter("addr_no"));

@@ -83,18 +83,19 @@
                                        value="<%=user.getShipAddress().getCity()%>" required maxlength="45">
                             </div>
                             <div class="form-group col-md-4">
+                                <label for="addressPhone">Telephone</label>
+                                <input type="number" class="form-control" id="addressPhone" name="addr_tel"
+                                       value="<%=user.getShipAddress().getTelephone()%>" maxlength="45">
+                            </div>
+                            <div class="form-group col-md-4">
                                 <label for="addressState">Province</label>
                                 <select class="form-control" id="addressState" name="addr_state">
-                                    <% for (Province province : provinces) {
-                                        if ((province.getId() > 1)) {%>%>
+                                    <% for (Province province : provinces) {%>
                                     <option value="<%=province.getId()%>"
                                             <%if (province.getId() == user.getShipAddress().getProvince().getId()) {%>selected<% } %>>
                                         <%=province.getName()%>
                                     </option>
-                                    <%
-                                            }
-                                        }
-                                    %>
+                                    <%}%>
                                 </select>
                             </div>
                             <div class="form-group col-md-4">
