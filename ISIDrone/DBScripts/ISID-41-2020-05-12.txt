@@ -1,4 +1,4 @@
-// AJOUT COLUMN "bill_address_id" TABLE "user" //
+/* AJOUT COLUMN "bill_address_id" TABLE "user" */
 
 use isidrone;
 ALTER TABLE user
