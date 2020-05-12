@@ -41,8 +41,7 @@
         </style>
         <% if (user.getIsAdmin() == 0) {%>
         <a class="dropdown-item" href="<%="order-history"%>">Historique commande</a>
-        <div class="dropdown-divider" style="margin: 0; border: 1px solid #7bbdf7;"></div>
-        <a class="dropdown-item" href="<%="editProfil"%>">Modifier mon profil </a>
+        <a class="dropdown-item" href="editProfil">Modifier mon profil </a>
         <%} else {%>
         <a class="dropdown-item" id="men1" href="list-products?category=1">Liste des produits</a>
         <a class="dropdown-item" href="list-categories">Liste des catégories</a>
