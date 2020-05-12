@@ -55,6 +55,7 @@ public class Const {
     public static String PATH_PAGE_SIGNUP_COMPLETE = PATH_PRIVATE + "signUpComplete.jsp";
     public static String PATH_PAGE_LIST_CLIENTS = PATH_PRIVATE + "listClients.jsp";
     public static String PATH_PAGE_EDIT_CLIENT = PATH_PRIVATE + "editClient.jsp";
+    public static String PATH_PAGE_EDIT_PROFIL_CLIENT = PATH_PRIVATE + "editProfil.jsp";
 
     //ORDER
     public static String PATH_PAGE_CARTUSER = PATH_PRIVATE + "cartuser.jsp";

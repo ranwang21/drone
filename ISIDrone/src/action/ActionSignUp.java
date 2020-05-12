@@ -7,6 +7,7 @@ import java.util.regex.Pattern;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import entities.Province;
 import manager.MSignUp;
 import util.Misc;
 import util.Restriction;
@@ -19,8 +20,7 @@ public class ActionSignUp {
 
     public static boolean signUp(HttpServletRequest request, HttpServletResponse response) {
         String[] s_formParamsNeeded = {"lastName", "firstName", "email", "confirmEmail", "password", "confirmPassword",
-                "addr_no", "addr_street", "addr_zip", "addr_city", "addr_state", "addr_country"},
-                s_formParamsOptional = {"addr_appt"};
+                "addr_no", "addr_street", "addr_zip", "addr_city"};
         String[] s_formValuesNeeded = {
                 request.getParameter(s_formParamsNeeded[0]),
                 request.getParameter(s_formParamsNeeded[1]),
@@ -31,13 +31,7 @@ public class ActionSignUp {
                 request.getParameter(s_formParamsNeeded[6]),
                 request.getParameter(s_formParamsNeeded[7]),
                 request.getParameter(s_formParamsNeeded[8]),
-                request.getParameter(s_formParamsNeeded[9]),
-                request.getParameter(s_formParamsNeeded[10]),
-                request.getParameter(s_formParamsNeeded[11])};
-
-        String[] s_formValueOptional = {
-                request.getParameter(s_formParamsOptional[0])
-        };
+                request.getParameter(s_formParamsNeeded[9]),};
 
         boolean isCompleted = true;
 
@@ -45,11 +39,6 @@ public class ActionSignUp {
         HashMap<String, String> hm_formParamValue = new HashMap<String, String>();
         for (int i = 0; i < s_formValuesNeeded.length; i++) {
             hm_formParamValue.put(s_formParamsNeeded[i], s_formValuesNeeded[i]);
-        }
-
-        //HasMap des données Optionnel
-        for (int i = 0; i < s_formValueOptional.length; i++) {
-            hm_formParamValue.put(s_formParamsOptional[i], s_formValueOptional[i]);
         }
 
         //Valide le formulaire et enregriste les message d'erreur dans la requête
@@ -62,16 +51,21 @@ public class ActionSignUp {
             User user = new User();
             Address address = new Address();
 
+            String selectValue = request.getParameter("addr_state");
+            int provinceId = Integer.parseInt(selectValue.replaceAll("[^0-9]", ""));
+            String provinceName = selectValue.replaceAll("[0-9]", "");
+
+            Province province = new Province(provinceId, provinceName);
+
             //Utilisez Misc.getOrDefault pour les champs qui sont optionnel, car il se pourrait que sa retourne null
             // Par exemple si on le supprime du formulaire (en éditant la page) et il n'est pas testé plus haut
             address.setId(-1);
             address.setNo(hm_formParamValue.get("addr_no"));
-            address.setAppt(Misc.getOrDefault(hm_formParamValue, "addr_appt", ""));
             address.setStreet(hm_formParamValue.get("addr_street"));
             address.setZip(hm_formParamValue.get("addr_zip"));
             address.setCity(hm_formParamValue.get("addr_city"));
-            address.setState(hm_formParamValue.get("addr_state"));
-            address.setCountry(hm_formParamValue.get("addr_country"));
+            address.setProvince(province);
+            address.setTelephone(request.getParameter("addr_tel"));
 
             user.setId(-1);
             user.setLastName(hm_formParamValue.get("lastName"));
@@ -116,7 +110,7 @@ public class ActionSignUp {
         Restriction restrictConfirmPassword = new Restriction(hm_formParamValue.get("password"));
 
         Restriction restrictAddr_no = new Restriction(1, 10, Pattern.compile("[a-zA-Z0-9]*"));
-        Restriction restrictionAddr_app = new Restriction(true, 1, 10, Pattern.compile("[a-zA-Z0-9]*"));
+        //Restriction restrictionAddr_app = new Restriction(true, 1, 10, Pattern.compile("[a-zA-Z0-9]*"));
         Restriction restrictionAddr_street = new Restriction(1, 45);
         Restriction restrictAddr_zip = new Restriction();
 
@@ -129,12 +123,9 @@ public class ActionSignUp {
         validation.addRestriction("password", restrictPassword);
         validation.addRestriction("confirmPassword", restrictConfirmPassword);
         validation.addRestriction("addr_no", restrictAddr_no);
-        validation.addRestriction("addr_appt", restrictionAddr_app);
         validation.addRestriction("addr_street", restrictionAddr_street);
         validation.addRestriction("addr_zip", restrictAddr_zip);
         validation.addRestriction("addr_city", restrict1);
-        validation.addRestriction("addr_state", restrict1);
-        validation.addRestriction("addr_country", restrict1);
 
         //On conserve les résultat des tests
         ArrayList<ResultValidation> resultValidations = validation.validate();

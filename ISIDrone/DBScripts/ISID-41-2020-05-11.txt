@@ -1,0 +1,21 @@
+USE isidrone;
+
+// REMOVE "country" & "appt" COLUMN FROM "address" //
+
+ALTER TABLE address
+DROP COLUMN country,
+DROP COLUMN appt,
+DROP COLUMN state;
+
+// AJOUT "province_id" FOREIGN KEY TO "address" //
+
+ALTER TABLE address
+ADD province_id INT NOT NULL DEFAULT 2,
+ADD telephone VARCHAR(45) NULL;
+
+ALTER TABLE `isidrone`.`provinces` 
+CHANGE COLUMN `id` `id` INT NOT NULL AUTO_INCREMENT ;
+
+ALTER TABLE address
+ADD CONSTRAINT fk_province_id FOREIGN KEY (province_id)
+REFERENCES isidrone.provinces(id);
