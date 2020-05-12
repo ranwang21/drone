@@ -32,7 +32,8 @@
                         <!-- La recherche n'est pas fini d'être implementé -->
                         <form class="navbar-form" role="search" action="search-items?">
                             <div class="form-group" style="padding-right:0;">
-                                <input class="form-control biginput" name="search" placeholder="Rechercher" type="text">
+                                <input class="form-control biginput" name="search"
+                                       placeholder="<%=langProp.getConfig("RECHERCHER")%>" type="text">
                             </div>
                             <button type="submit" class="btn btn-default"><span
                                     class="glyphicon glyphicon-search"></span></button>

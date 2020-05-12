@@ -3,11 +3,23 @@
 <%@page import="action.ActionLogin" %>
 <%@page import="manager.MCookies" %>
 <%@ page import="entities.User" %>
+<%@ page import="util.PropertyLoader" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8" %>
 <%
     //S'il n'y a pas d'utilisateur déjà de connecté
     User user = (User) session.getAttribute("user");
+
+    // get lang attribute
+    String lang = "lang_fr";
+
+    if (request.getAttribute("lang") != null) {
+        lang = (String) request.getAttribute("lang");
+    }
+
+    // load lang properties file
+    PropertyLoader langProp = new PropertyLoader(lang);
+    System.out.println(langProp.getConfig("INTRODUCTION"));
 
 //S'il n'y a pas d'utilisaeur de connecté présentement, on vérifie dans les cookies
 // et si nous somme pas en train de nous déconnecter
@@ -57,6 +69,9 @@
 </li>
 
 <% } else { %>
-<li><a href="signup<%=(request.getParameter("fromCart") != null ? "?fromCart=true" : "")%>">S'enregistrer</a></li>
-<li id="loginState"><a href="login">Connexion</a></li>
+<li>
+    <a href="signup<%=(request.getParameter("fromCart") != null ? "?fromCart=true" : "")%>"><%=langProp.getConfig("ENREGISTRER")%>
+    </a></li>
+<li id="loginState"><a href="login"><%=langProp.getConfig("CONNEXION")%>
+</a></li>
 <% } %>
