@@ -1,0 +1,34 @@
+use isidrone;
+
+/* Creation de la table PRODUCT_INFO */
+
+DROP TABLE IF EXISTS `product_infos`;
+
+CREATE TABLE `product_infos`(
+  `id` int NOT NULL AUTO_INCREMENT,
+  `id_product` int  unsigned  NOT NULL,
+  `lang` varchar(2) DEFAULT 'fr',
+  `name`  varchar(255) NOT NULL,
+  `description`  varchar(255) NOT NULL,
+  PRIMARY KEY (`id`),
+  CONSTRAINT `FK_PRODUCT_INFO_PRODUCT` FOREIGN KEY (`id_product`) REFERENCES `product` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+);
+
+
+/* Copie des colonnes NOM et DESCRIPTION de la table PRODUCT vers PRODUCT_INFO avec generation des valeurs dans le champ lang */
+
+INSERT INTO `product_infos` 
+   (`id_product`, `lang`, `name`, `description`)
+    SELECT id, "fr" AS lang, name, description FROM isidrone.product
+	UNION
+    SELECT id, "en" AS lang, name, description FROM isidrone.product
+	ORDER BY id;
+
+
+/* Suppression des colonnes NOM et DESCRIPTION de la table PRODUCT */
+
+/*ALTER TABLE isidrone.product DROP COLUMN `name`, `description`;*/
+	
+ALTER TABLE `product`
+   DROP COLUMN `name`,
+   DROP COLUMN `description`;
