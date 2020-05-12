@@ -14,10 +14,10 @@
 
     <div class="row">
         <div class="col-sm-12">
-            <form action="editClient" id="formEditClient" method="post" class="panel panel-primary form-horizontal"
-                  style="margin: auto;">
+            <form action="editProfil" id="formEditClient" method="post" class="panel panel-primary form-horizontal"
+                  style="float: unset; margin: auto;">
                 <div class="panel-heading">
-                    <h3 class="panel-title">Modification d'un client</h3>
+                    <h3 class="panel-title">Modification d'information personne</h3>
                 </div>
                 <div class="panel-body"
                      style="display: flex; flex-direction: column;align-items: center;">
@@ -104,24 +104,8 @@
                             </div>
                         </fieldset>
 
-                        <fieldset class="col-md-12">
-                            <legend>Status du compte</legend>
-                            <div class="status-div"
-                                 style="display: flex; flex-wrap: wrap">
-                                <div class="form-check form-check-inline" style="padding-right: 50px">
-                                    <input class="form-check-input" type="radio" name="status" value="ACTIVATED"
-                                           id="statusActivated" required>
-                                    <label class="form-check-label" for="statusActivated">ACTIVER</label>
-                                </div>
-                                <div class="form-check form-check-inline" style="padding-right: 50px">
-                                    <input class="form-check-input" type="radio" name="status" value="DISACTIVATED"
-                                           id="statusDesactivated" required>
-                                    <label class="form-check-label" for="statusDesactivated">DESACTIVER</label>
-                                </div>
-                            </div>
-                        </fieldset>
-
                     </fieldset>
+
                     <div class="form-group text-center" style="clear: left; top: 15px; margin-bottom: 15px;">
                         <button type="submit" class="btn btn-default">Modifier</button>
                     </div>

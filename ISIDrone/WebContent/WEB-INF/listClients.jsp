@@ -3,7 +3,6 @@
 <%@ page import="util.Const" %>
 <%@ page import="entities.User" %>
 <%
-    @SuppressWarnings("unchecked")
     ArrayList<User> users = (ArrayList<User>) request.getAttribute("users");
     String search = request.getParameter("search");
 
@@ -58,6 +57,7 @@
                 <div class="dropdown">
                     <button class="btn btn-info">&#11167</button>
                     <div class="dropdown-content">
+                        <a href="editClient?client_id=<%=user.getId()%>">Modifier</a>
 
                         <% if (user.getStatus().toUpperCase().equals("ACTIVATED")) {%>
                         <a data-modal-target="#modal" href="#" onclick="setIdUserToDeactivate(<%=user.getId()%>)">Déactiver</a>
@@ -89,7 +89,5 @@
     </div>
 </div>
 <div id="overlay-supp"></div>
-
-<script type="text/javascript" src="js/suppression.js"></script>
 
 <jsp:include page="<%=Const.PATH_FOOTER_JSP%>"/>

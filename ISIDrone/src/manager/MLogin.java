@@ -93,6 +93,7 @@ public class MLogin {
         try {
             MDB.connect();
 
+<<<<<<< HEAD
             String query = "SELECT user.id, user.lastName, user.firstName, user.email, user.password, user.isAdmin,"
                     + "address.id, address.no, address.street, address.zip, address.city, address.province_id, address.telephone"
                     + "provinces.id, provinces.name"
@@ -100,6 +101,12 @@ public class MLogin {
                     + "INNER JOIN address on user.ship_address_id = address.id "
                     + "INNER JOIN provinces on address.province_id = provinces.id"
                     + "WHERE user.id = (SELECT user FROM autoLogin WHERE id = ? AND token = ?)";
+=======
+            String query = "SELECT user.id, user.lastName, user.firstName, user.email, user.password, user.isAdmin, user.status, "
+                    + "address.id, address.no, address.appt, address.street, address.zip, address.city, address.state, address.country"
+                    + " FROM user INNER JOIN address ON user.ship_address_id = address.id "
+                    + " WHERE user.id = (SELECT user FROM autoLogin WHERE id = ? AND token = ?)";
+>>>>>>> 16a1f49a3130899f04ea70d659b0690989bbe3f2
 
             ps = MDB.getPS(query);
 
