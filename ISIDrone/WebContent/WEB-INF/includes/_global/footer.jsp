@@ -35,8 +35,8 @@
 <script type="text/javascript" src="js/3rd/jquery.autocomplete.min.js"></script>
 <script type="text/javascript" src="js/drone-autocomplete.js"></script>
 
-<%--<!-- Suppression popup -->--%>
-<%--<script type="text/javascript" src="js/suppression.js"></script>--%>
+<!-- Suppression popup -->
+<script type="text/javascript" src="js/suppression.js"></script>
 
 <%--<!-- Validation -->--%>
 <%--<script type="text/javascript" src="js/validation.js"></script>--%>
@@ -54,6 +54,10 @@
         case "invoice": {
             out.println("<script src='js/3rd/jQuery.print.js'></script>");
             out.println("<script src='js/invoice.js'></script>");
+            break;
+        }
+        case "editClient": {
+            out.println("<script src='js/radio-check.js'></script>");
             break;
         }
     }

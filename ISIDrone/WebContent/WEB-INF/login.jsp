@@ -84,8 +84,7 @@
                 </div>
                 <div class="form-group">
                     <label for="password">Mot de passe: </label>
-                    <input type="password" id="password" class="form-control" name="password" required
-                           value="@bc123!!!"/>
+                    <input type="password" id="password" class="form-control" name="password" required/>
                 </div>
                 <div class="form-group login-group-checkbox">
                     <input id="remember" name="remember" type="checkbox">
