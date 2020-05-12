@@ -46,7 +46,8 @@
             <h3>
                 David Pelletier
             </h3>
-            <h3><small>Webmester</small></h3>
+            <h3><small><%=langProp.getConfig("WEB_MASTRE")%>
+            </small></h3>
         </div>
         <div class="col-lg-3 col-sm-3 text-center">
             <img class="img-circle img-responsive img-center"
