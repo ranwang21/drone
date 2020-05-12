@@ -50,8 +50,7 @@ public class EditProduct extends HttpServlet {
         } else {
             response.sendRedirect(Const.PATH_REDIRECT_HOME);
         }
-
-
+        
     }
 
     /**

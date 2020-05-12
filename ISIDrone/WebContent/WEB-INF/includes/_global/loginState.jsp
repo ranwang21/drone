@@ -41,7 +41,7 @@
         </style>
         <% if (user.getIsAdmin() == 0) {%>
         <a class="dropdown-item" href="<%="order-history"%>">Historique commande</a>
-        <a class="dropdown-item" href="editProfil">Modifier mon profil </a>
+        <a class="dropdown-item" href="editProfil?user_id=<%=user.getId()%>">Modifier mon profil </a>
         <%} else {%>
         <a class="dropdown-item" id="men1" href="list-products?category=1">Liste des produits</a>
         <a class="dropdown-item" href="list-categories">Liste des catégories</a>

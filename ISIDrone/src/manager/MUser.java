@@ -189,6 +189,31 @@ public class MUser {
         }
     }
 
+
+    public static void updateUserProfil(User user) {
+
+        try {
+            MDB.connect();
+
+            updateUserAddress(user.getShipAddress());
+
+            String query = "UPDATE user SET lastName = ?, firstName = ?, email = ?   WHERE id = ?";
+            PreparedStatement ps = MDB.getPS(query);
+
+            ps.setString(1, user.getLastName());
+            ps.setString(2, user.getFirstName());
+            ps.setString(3, user.getEmail());
+            ps.setInt(4, user.getId());
+
+            ps.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            MDB.disconnect();
+        }
+    }
+
+
     private static void updateUserAddress(Address address) {
 
         try {

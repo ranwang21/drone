@@ -35,7 +35,6 @@
 
             </div>
 
-
         </div>
     </div>
     <nav class="navbar navbar-default" role="navigation">

@@ -11,13 +11,12 @@
 <!-- /.container -->
 <!-- Page Content -->
 <div class="container">
-
     <div class="row">
         <div class="col-sm-12">
             <form action="editProfil" id="formEditClient" method="post" class="panel panel-primary form-horizontal"
                   style="float: unset; margin: auto;">
                 <div class="panel-heading">
-                    <h3 class="panel-title">Modification d'information personne</h3>
+                    <h3 class="panel-title">Modification d'information personnel</h3>
                 </div>
                 <div class="panel-body"
                      style="display: flex; flex-direction: column;align-items: center;">
