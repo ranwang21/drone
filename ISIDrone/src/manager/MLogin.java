@@ -93,12 +93,12 @@ public class MLogin {
         try {
             MDB.connect();
 
-            String query = "SELECT user.id, user.lastName, user.firstName, user.email, user.password, user.isAdmin, user.status,"
-                    + "address.id, address.no, address.street, address.zip, address.city, address.province_id, address.telephone"
-                    + "provinces.id, provinces.name"
-                    + " FROM user"
+            String query = "SELECT user.id, user.lastName, user.firstName, user.email, user.password, user.isAdmin, user.status, "
+                    + "address.id, address.no, address.street, address.zip, address.city, address.province_id, address.telephone, "
+                    + "provinces.id, provinces.name "
+                    + "FROM user "
                     + "INNER JOIN address on user.ship_address_id = address.id "
-                    + "INNER JOIN provinces on address.province_id = provinces.id"
+                    + "INNER JOIN provinces on address.province_id = provinces.id "
                     + "WHERE user.id = (SELECT user FROM autoLogin WHERE id = ? AND token = ?)";
 
             ps = MDB.getPS(query);
