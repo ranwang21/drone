@@ -26,10 +26,10 @@ public class MLogin {
 
             String query = "SELECT user.id, user.lastName, user.firstName, user.email, user.password, user.isAdmin, user.status, "
                     + "address.id, address.no, address.street, address.zip, address.city, address.province_id, address.telephone, "
-                    + "provinces.id, provinces.name"
-                    + " FROM user "
-                    + "INNER JOIN address on user.ship_address_id = address.id"
-                    + "INNER JOIN provinces on address.province_id = provinces.id"
+                    + "provinces.id, provinces.name "
+                    + "FROM user "
+                    + "INNER JOIN address on user.ship_address_id = address.id "
+                    + "INNER JOIN provinces on address.province_id = provinces.id "
                     + "WHERE email = ? AND password = ?";
             ps = MDB.getPS(query);
 
@@ -93,20 +93,13 @@ public class MLogin {
         try {
             MDB.connect();
 
-<<<<<<< HEAD
-            String query = "SELECT user.id, user.lastName, user.firstName, user.email, user.password, user.isAdmin,"
+            String query = "SELECT user.id, user.lastName, user.firstName, user.email, user.password, user.isAdmin, user.status,"
                     + "address.id, address.no, address.street, address.zip, address.city, address.province_id, address.telephone"
                     + "provinces.id, provinces.name"
                     + " FROM user"
                     + "INNER JOIN address on user.ship_address_id = address.id "
                     + "INNER JOIN provinces on address.province_id = provinces.id"
                     + "WHERE user.id = (SELECT user FROM autoLogin WHERE id = ? AND token = ?)";
-=======
-            String query = "SELECT user.id, user.lastName, user.firstName, user.email, user.password, user.isAdmin, user.status, "
-                    + "address.id, address.no, address.appt, address.street, address.zip, address.city, address.state, address.country"
-                    + " FROM user INNER JOIN address ON user.ship_address_id = address.id "
-                    + " WHERE user.id = (SELECT user FROM autoLogin WHERE id = ? AND token = ?)";
->>>>>>> 16a1f49a3130899f04ea70d659b0690989bbe3f2
 
             ps = MDB.getPS(query);
 
@@ -117,7 +110,7 @@ public class MLogin {
             ResultSet rs = ps.getResultSet();
 
             if (rs.next()) {
-                province = new Province(rs.getInt(14), rs.getString(15));
+                province = new Province(rs.getInt(15), rs.getString(16));
                 address = new Address(rs.getInt(8), rs.getString(9), rs.getString(10), rs.getString(11),
                         rs.getString(12), province, rs.getString(14));
                 user = new User(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getInt(6), address, rs.getString(7));

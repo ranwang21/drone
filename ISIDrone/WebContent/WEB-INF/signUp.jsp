@@ -232,9 +232,9 @@
                 <div class="form-group">
                     <div class="col-sm-10">
                         <label for="lastName" class="col-sm-2 control-label">*Province</label>
-                        <select id="addr_state" class="form-control">
+                        <select id="addr_state" name="addr_state" class="form-control">
                             <% for (Province province : provinces) { %>
-                            <option value="<%=province.getId()%>"><%=province.getName()%>
+                            <option value="<%=province.getId() + province.getName()%>"><%=province.getName()%>
                             </option>
                             <% } %>
                         </select>
@@ -254,113 +254,6 @@
                         <label for="lastName" class="col-sm-2 control-label">*Téléphone</label>
                         <input type="text" id="addr_tel" class="form-control" name="addr_tel"
                                value="<%=Misc.getOrDefault(hm_formParamValue, "addr_tel", "")%>" required/>
-                    </div>
-                </div>
-            </fieldset>
-            <fieldset class="col-sm-6 col-lg-6 col-md-6">
-                <legend>Adresse de livraison</legend>
-                <input type="checkbox" id="liv_box" name="liv_box" value="liv_box">
-                <label for="liv_box">Utiliser la même adresse de facturation</label>
-                <%
-                    if (hm_fieldErrorMsg != null && hm_fieldErrorMsg.containsKey("liv_no")) {
-                %>
-                <div class="alert alert-warning"
-                     style="margin-bottom: 0px; white-space: pre-line;"><%=hm_fieldErrorMsg.get("liv_no")%>
-                </div>
-                <%
-                    }
-                %>
-                <br>
-                <br>
-                <div class="form-group">
-                    <div class="col-sm-10">
-                        <label for="lastName" class="col-sm-2 control-label">*Numéro&nbsp;civique</label>
-                        <input type="text" id="liv_no" class="form-control" name="liv_no"
-                               value="<%=Misc.getOrDefault(hm_formParamValue, "liv_no", "")%>" required/>
-                    </div>
-                </div>
-                <%
-                    if (hm_fieldErrorMsg != null && hm_fieldErrorMsg.containsKey("liv_street")) {
-                %>
-                <div class="alert alert-warning"
-                     style="margin-bottom: 0px; white-space: pre-line;"><%=hm_fieldErrorMsg.get("liv_street")%>
-                </div>
-                <%
-                    }
-                %>
-                <div class="form-group">
-                    <div class="col-sm-10">
-                        <label for="lastName" class="col-sm-2 control-label">*Rue</label>
-                        <input type="text" id="liv_street" class="form-control" name="liv_street"
-                               value="<%=Misc.getOrDefault(hm_formParamValue, "liv_street", "")%>" required/>
-                    </div>
-                </div>
-                <%
-                    if (hm_fieldErrorMsg != null && hm_fieldErrorMsg.containsKey("liv_zip")) {
-                %>
-                <div class="alert alert-warning"
-                     style="margin-bottom: 0px; white-space: pre-line;"><%=hm_fieldErrorMsg.get("liv_zip")%>
-                </div>
-                <%
-                    }
-                %>
-                <div class="form-group">
-                    <div class="col-sm-10">
-                        <label for="lastName" class="col-sm-2 control-label">*Code&nbsp;postal</label>
-                        <input type="text" id="liv_zip" class="form-control" name="liv_zip"
-                               value="<%=Misc.getOrDefault(hm_formParamValue, "liv_zip", "")%>" required/>
-                    </div>
-                </div>
-                <%
-                    if (hm_fieldErrorMsg != null && hm_fieldErrorMsg.containsKey("liv_city")) {
-                %>
-                <div class="alert alert-warning"
-                     style="margin-bottom: 0px; white-space: pre-line;"><%=hm_fieldErrorMsg.get("liv_city")%>
-                </div>
-                <%
-                    }
-                %>
-                <div class="form-group">
-                    <div class="col-sm-10">
-                        <label for="lastName" class="col-sm-2 control-label">*Ville</label>
-                        <input type="text" id="liv_city" class="form-control" name="liv_city"
-                               value="<%=Misc.getOrDefault(hm_formParamValue, "liv_city", "")%>" required/>
-                    </div>
-                </div>
-                <%
-                    if (hm_fieldErrorMsg != null && hm_fieldErrorMsg.containsKey("liv_state")) {
-                %>
-                <div class="alert alert-warning"
-                     style="margin-bottom: 0px; white-space: pre-line;"><%=hm_fieldErrorMsg.get("liv_state")%>
-                </div>
-                <%
-                    }
-                %>
-                <div class="form-group">
-                    <div class="col-sm-10">
-                        <label for="lastName" class="col-sm-2 control-label">*Province</label>
-                        <select id="liv_state" class="form-control">
-                            <% for (Province province : provinces) { %>
-                            <option value="<%=province.getId()%>"><%=province.getName()%>
-                            </option>
-                            <% } %>
-                        </select>
-                    </div>
-                </div>
-                <%
-                    if (hm_fieldErrorMsg != null && hm_fieldErrorMsg.containsKey("liv_tel")) {
-                %>
-                <div class="alert alert-warning"
-                     style="margin-bottom: 0px; white-space: pre-line;"><%=hm_fieldErrorMsg.get("liv_tel")%>
-                </div>
-                <%
-                    }
-                %>
-                <div class="form-group">
-                    <div class="col-sm-10">
-                        <label for="lastName" class="col-sm-2 control-label">*Téléphone</label>
-                        <input type="text" id="liv_tel" class="form-control" name="liv_tel"
-                               value="<%=Misc.getOrDefault(hm_formParamValue, "liv_tel", "")%>" required/>
                     </div>
                 </div>
             </fieldset>

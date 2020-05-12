@@ -20,8 +20,7 @@ public class ActionSignUp {
 
     public static boolean signUp(HttpServletRequest request, HttpServletResponse response) {
         String[] s_formParamsNeeded = {"lastName", "firstName", "email", "confirmEmail", "password", "confirmPassword",
-                "addr_no", "addr_street", "addr_zip", "addr_city", "addr_state", "addr_country"},
-                s_formParamsOptional = {"addr_appt"};
+                "addr_no", "addr_street", "addr_zip", "addr_city"};
         String[] s_formValuesNeeded = {
                 request.getParameter(s_formParamsNeeded[0]),
                 request.getParameter(s_formParamsNeeded[1]),
@@ -32,13 +31,7 @@ public class ActionSignUp {
                 request.getParameter(s_formParamsNeeded[6]),
                 request.getParameter(s_formParamsNeeded[7]),
                 request.getParameter(s_formParamsNeeded[8]),
-                request.getParameter(s_formParamsNeeded[9]),
-                request.getParameter(s_formParamsNeeded[10]),
-                request.getParameter(s_formParamsNeeded[11])};
-
-        String[] s_formValueOptional = {
-                request.getParameter(s_formParamsOptional[0])
-        };
+                request.getParameter(s_formParamsNeeded[9]),};
 
         boolean isCompleted = true;
 
@@ -46,11 +39,6 @@ public class ActionSignUp {
         HashMap<String, String> hm_formParamValue = new HashMap<String, String>();
         for (int i = 0; i < s_formValuesNeeded.length; i++) {
             hm_formParamValue.put(s_formParamsNeeded[i], s_formValuesNeeded[i]);
-        }
-
-        //HasMap des données Optionnel
-        for (int i = 0; i < s_formValueOptional.length; i++) {
-            hm_formParamValue.put(s_formParamsOptional[i], s_formValueOptional[i]);
         }
 
         //Valide le formulaire et enregriste les message d'erreur dans la requête
@@ -63,6 +51,12 @@ public class ActionSignUp {
             User user = new User();
             Address address = new Address();
 
+            String selectValue = request.getParameter("addr_state");
+            int provinceId = Integer.parseInt(selectValue.replaceAll("[^0-9]", ""));
+            String provinceName = selectValue.replaceAll("[0-9]", "");
+
+            Province province = new Province(provinceId, provinceName);
+
             //Utilisez Misc.getOrDefault pour les champs qui sont optionnel, car il se pourrait que sa retourne null
             // Par exemple si on le supprime du formulaire (en éditant la page) et il n'est pas testé plus haut
             address.setId(-1);
@@ -70,8 +64,8 @@ public class ActionSignUp {
             address.setStreet(hm_formParamValue.get("addr_street"));
             address.setZip(hm_formParamValue.get("addr_zip"));
             address.setCity(hm_formParamValue.get("addr_city"));
-            address.setProvince(new Province(Integer.parseInt(hm_formParamValue.get("addr_state")), "quebec"));
-            address.setTelephone(hm_formParamValue.get("addr_tel"));
+            address.setProvince(province);
+            address.setTelephone(request.getParameter("addr_tel"));
 
             user.setId(-1);
             user.setLastName(hm_formParamValue.get("lastName"));

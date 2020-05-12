@@ -86,17 +86,17 @@ public class MSignUp {
 
         try {
             MDB.connect();
-            String query = "INSERT INTO address (`no`, `street`, `zip`, `city`, `province_id`, `telephone`) VALUES (?, ?, ?, ?, ?, ?, ?)";
+            String query = "INSERT INTO address (`no`, `street`, `zip`, `city`, `province_id`, `telephone`) VALUES (?, ?, ?, ?, ?, ?)";
 
             // Genere un prepare statement qui attent l'id creer
             PreparedStatement ps = MDB.getPS(query, 1);
 
             ps.setString(1, address.getNo());
-            ps.setString(3, address.getStreet());
-            ps.setString(4, address.getZip());
-            ps.setString(5, address.getCity());
-            ps.setInt(6, address.getProvince().getId());
-            ps.setString(7, address.getTelephone());
+            ps.setString(2, address.getStreet());
+            ps.setString(3, address.getZip());
+            ps.setString(4, address.getCity());
+            ps.setInt(5, address.getProvince().getId());
+            ps.setString(6, address.getTelephone());
 
             ps.executeUpdate();
             ResultSet generatedKeys = ps.getGeneratedKeys();
