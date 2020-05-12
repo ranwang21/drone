@@ -132,7 +132,7 @@ public class MUser {
         User user = new User();
         try {
             MDB.connect();
-            String query = "SELECT user.id, lastName, firstName, email, status, ship_address_id, no, appt, street, zip, city, state, country " +
+            String query = "SELECT user.id, lastName, firstName, email, ship_address_id, no, street, zip, city, province_id, telephone " +
                     "FROM user INNER JOIN address ON user.ship_address_id = address.id " +
                     "WHERE user.id = ?";
 
@@ -149,13 +149,12 @@ public class MUser {
                 user.setStatus(rs.getString("status"));
                 address.setId(rs.getInt("ship_address_id"));
                 address.setNo(rs.getString("no"));
-                address.setAppt(rs.getString("appt"));
                 address.setStreet(rs.getString("street"));
                 address.setZip(rs.getString("zip"));
                 address.setCity(rs.getString("city"));
-                address.setState(rs.getString("state"));
-                address.setCountry(rs.getString("country"));
+                address.setTelephone(rs.getString("telephone"));
                 user.setShipAdress(address);
+                address.setProvince(address.getProvince());
             }
 
         } catch (SQLException e) {
@@ -196,16 +195,15 @@ public class MUser {
         try {
             MDB.connect();
 
-            String query = "UPDATE address SET no = ?, appt = ?, street = ?, zip = ?, city = ?, state = ?, country = ?  WHERE id = ?";
+            String query = "UPDATE address SET no = ?, street = ?, zip = ?, city = ?, province_id = ?, telephone = ?  WHERE id = ?";
 
             PreparedStatement ps = MDB.getPS(query);
             ps.setString(1, address.getNo());
-            ps.setString(2, address.getAppt());
             ps.setString(3, address.getStreet());
             ps.setString(4, address.getZip());
             ps.setString(5, address.getCity());
-            ps.setString(6, address.getState());
-            ps.setString(7, address.getCountry());
+            ps.setInt(6, address.getProvince().getId());
+            ps.setString(7, address.getTelephone());
             ps.setInt(8, address.getId());
 
             ps.executeUpdate();

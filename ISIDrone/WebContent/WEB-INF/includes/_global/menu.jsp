@@ -3,10 +3,22 @@
 
 <%@ page import="util.Const" %>
 <%@ page import="entities.User" %>
+<%@ page import="util.PropertyLoader" %>
 
 <%
     //S'il n'y a pas d'utilisateur déjà de connecté
     User user = (User) session.getAttribute("user");
+
+    // get lang attribute
+    String lang = "lang_fr";
+
+    if (request.getAttribute("lang") != null) {
+        lang = (String) request.getAttribute("lang");
+    }
+
+    // load lang properties file
+    PropertyLoader langProp = new PropertyLoader(lang);
+    System.out.println(langProp.getConfig("INTRODUCTION"));
 %>
 
 <!-- Navigation -->
@@ -20,7 +32,8 @@
                         <!-- La recherche n'est pas fini d'être implementé -->
                         <form class="navbar-form" role="search" action="search-items?">
                             <div class="form-group" style="padding-right:0;">
-                                <input class="form-control biginput" name="search" placeholder="Rechercher" type="text">
+                                <input class="form-control biginput" name="search"
+                                       placeholder="<%=langProp.getConfig("RECHERCHER")%>" type="text">
                             </div>
                             <button type="submit" class="btn btn-default"><span
                                     class="glyphicon glyphicon-search"></span></button>
@@ -52,10 +65,14 @@
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav">
-                    <li><a href="about">À Propos</a></li>
-                    <li><a href="service">Services</a></li>
-                    <li><a href="contact">Contact</a></li>
-                    <li><a href="items?category=1">Boutique</a></li>
+                    <li><a href="about"><%=langProp.getConfig("A_PROPS")%>
+                    </a></li>
+                    <li><a href="service"><%=langProp.getConfig("SERVICES")%>
+                    </a></li>
+                    <li><a href="contact"><%=langProp.getConfig("CONTACT")%>
+                    </a></li>
+                    <li><a href="items?category=1"><%=langProp.getConfig("BOUTIQUE")%>
+                    </a></li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right" style="margin-right: 0px">
                     <jsp:include page="loginState.jsp"/>

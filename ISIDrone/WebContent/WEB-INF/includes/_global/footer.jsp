@@ -38,6 +38,10 @@
 <!-- Suppression popup -->
 <script type="text/javascript" src="js/suppression.js"></script>
 
+<!-- Signup Form -->
+<script type="text/javascript" src="js/signup-checkbox.js"></script>
+
+
 <%
     String pageUrl = request.getRequestURI();
     String fileName = Misc.getFileNameFromUrl(pageUrl);
