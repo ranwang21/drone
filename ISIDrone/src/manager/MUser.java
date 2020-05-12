@@ -132,7 +132,7 @@ public class MUser {
         User user = new User();
         try {
             MDB.connect();
-            String query = "SELECT user.id, lastName, firstName, email, ship_address_id, no, appt, street, zip, city, state, country " +
+            String query = "SELECT user.id, lastName, firstName, email, status, ship_address_id, no, appt, street, zip, city, state, country " +
                     "FROM user INNER JOIN address ON user.ship_address_id = address.id " +
                     "WHERE user.id = ?";
 
@@ -146,6 +146,7 @@ public class MUser {
                 user.setLastName(rs.getString("lastName"));
                 user.setFirstName(rs.getString("firstName"));
                 user.setEmail(rs.getString("email"));
+                user.setStatus(rs.getString("status"));
                 address.setId(rs.getInt("ship_address_id"));
                 address.setNo(rs.getString("no"));
                 address.setAppt(rs.getString("appt"));
@@ -173,13 +174,14 @@ public class MUser {
 
             updateUserAddress(user.getShipAddress());
 
-            String query = "UPDATE user SET lastName = ?, firstName = ?, email = ?  WHERE id = ?";
+            String query = "UPDATE user SET lastName = ?, firstName = ?, email = ?, status = ?  WHERE id = ?";
             PreparedStatement ps = MDB.getPS(query);
 
             ps.setString(1, user.getLastName());
             ps.setString(2, user.getFirstName());
             ps.setString(3, user.getEmail());
-            ps.setInt(4, user.getId());
+            ps.setString(4, user.getStatus());
+            ps.setInt(5, user.getId());
 
             ps.executeUpdate();
         } catch (SQLException e) {

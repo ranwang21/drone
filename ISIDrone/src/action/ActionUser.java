@@ -53,7 +53,6 @@ public class ActionUser {
         user.setLastName(request.getParameter("lastName"));
         user.setFirstName(request.getParameter("firstName"));
         user.setEmail(request.getParameter("email"));
-        System.out.println(request.getParameter("status"));
         user.setStatus(request.getParameter("status"));
         user.setShipAdress(address);
 
