@@ -259,7 +259,7 @@
             </fieldset>
             <fieldset class="col-sm-6 col-lg-6 col-md-6">
                 <legend>Adresse de livraison</legend>
-                <input type="checkbox" id="liv_box" name="liv_box" value="liv_box">
+                <input type="checkbox" id="liv_box" name="liv_box" value="liv_box" onclick="disableFormLiv()">
                 <label for="liv_box">Utiliser la même adresse de facturation</label>
                 <%
                     if (hm_fieldErrorMsg != null && hm_fieldErrorMsg.containsKey("liv_no")) {
