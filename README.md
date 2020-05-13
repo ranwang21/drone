@@ -1,5 +1,7 @@
 ## ISIDrone
-This is a e-commerce website selling drones built on JAVA and deployment to both Window/Linux systems, our team was assigned to add more features to this projet. We have worked on Jira for project management, Jenkins for auto-deployment and worked as a team with a product owner to simulate real-enterprise working context.
+This is a e-commerce website selling drones built on JAVA, MySQL and deployed to both Window/Linux systems, our team was assigned to add more features to this projet. We have worked on Jira for project management, Jenkins for auto-deployment and worked as a team with a product owner to simulate real-enterprise working context.
+
+The application allows client to sign up, sign in, modify their cart, pass orders, and modify their account information. The application also has a administration system which allows managing products, categories, products informations and read or modify client informations. The application also has a security check system which prohibites malicious actions against the backend.
 
 ## Techstack
 JAVA, Intellij, Jira, and Jenkins
